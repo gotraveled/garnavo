@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ShieldCheck, Envelope, Headset, X } from "@phosphor-icons/react";
 
 export default function OfferBanner() {
   const [dismissed, setDismissed] = useState(false);
+
+  // Auto-hide after 15 seconds
+  useEffect(() => {
+    const t = setTimeout(() => setDismissed(true), 15000);
+    return () => clearTimeout(t);
+  }, []);
+
   if (dismissed) return null;
 
   return (
-    <div data-testid="offer-banner" className="relative bg-[#101826] text-white">
+    <div data-testid="offer-banner" className="relative hidden bg-[#101826] text-white md:block">
       <div className="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 py-2.5 text-xs md:justify-between">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5">
           <span className="inline-flex items-center gap-1.5 text-neutral-200">
