@@ -56,8 +56,7 @@ export default function Activation() {
               <h2 className="mt-5 font-display text-2xl font-bold tracking-tight">{b.name}</h2>
               <p className="mt-2 text-sm text-neutral-600">{b.tagline}</p>
               <div
-                className="mt-6 inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold text-white transition-transform group-hover:scale-[1.03]"
-                style={{ backgroundColor: b.color, color: b.textOn }}
+                className="mt-6 inline-flex items-center gap-2 rounded-md bg-[#101826] px-5 py-2.5 text-sm font-semibold text-white transition-transform group-hover:scale-[1.03]"
               >
                 Activate {b.name} <ArrowRight size={16} weight="bold" />
               </div>

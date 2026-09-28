@@ -67,13 +67,15 @@ export default function ActivationBrand() {
     );
   }
 
+  // Use Garnavo's own palette on activation pages — never brand colors,
+  // so the page can't be mistaken for an official brand site.
   const theme = {
-    "--brand": brand.color,
-    "--brand-dark": brand.colorDark,
-    "--brand-text": brand.textOn,
-    "--brand-soft": brand.soft,
-    "--brand-softer": brand.softAlt,
-    "--brand-border": brand.border,
+    "--brand": "#FF6B45",
+    "--brand-dark": "#E8502B",
+    "--brand-text": "#FFFFFF",
+    "--brand-soft": "#FFEDE6",
+    "--brand-softer": "#FFF8F5",
+    "--brand-border": "#FFD5C6",
   };
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -185,7 +187,7 @@ export default function ActivationBrand() {
           <div id="activation-form" ref={formRef} className="order-1 scroll-mt-32 lg:order-1">
             <div className="sticky top-24 rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.15)] sm:p-8">
               <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-lg brand-bg" style={{ color: brand.textOn }}>
+                <div className="grid h-11 w-11 place-items-center rounded-lg brand-bg" style={{ color: "#fff" }}>
                   <Key size={22} weight="duotone" />
                 </div>
                 <div>
@@ -266,7 +268,7 @@ export default function ActivationBrand() {
               {brand.steps.map((s, i) => (
                 <li key={i} className="relative flex gap-5 rounded-xl border border-neutral-200 bg-white p-5">
                   <div className="flex flex-col items-center">
-                    <div className="grid h-11 w-11 place-items-center rounded-lg brand-bg" style={{ color: brand.textOn }}>
+                    <div className="grid h-11 w-11 place-items-center rounded-lg brand-bg" style={{ color: "#fff" }}>
                       {STEP_ICONS[i]}
                     </div>
                     <span className="mt-3 font-mono text-xs text-neutral-500">0{i + 1}</span>
