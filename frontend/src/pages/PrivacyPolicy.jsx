@@ -25,12 +25,12 @@ export default function PrivacyPolicy() {
     <>
       <SEO
         title="Privacy Policy | Garnavo"
-        description="Read Garnavo privacy policy. Learn how we collect, use, and protect your personal information when purchasing license keys."
+        description="Read Garnavo privacy policy. Learn how we collect, use, and protect your personal information when purchasing digital licenses."
         keywords="Garnavo privacy policy, data protection, personal information security, customer data protection"
       />
       <PolicyLayout
         title="Privacy Policy"
-        subtitle="How we collect, use, and protect your personal information when you purchase license keys from Garnavo."
+        subtitle="How we collect, use, and protect your personal information when you purchase digital licenses from Garnavo."
         lastUpdated="February 1, 2026"
         sections={SECTIONS}
       >
@@ -56,7 +56,7 @@ export default function PrivacyPolicy() {
         <ul className="list-disc pl-6">
           <li>Full name, email address, phone number, and billing address (collected at checkout)</li>
           <li>Order details, product selections, and shopping cart contents</li>
-          <li>License activation information (product key, customer name, email) submitted through our Activation Portal</li>
+          <li>License activation information (activation code, customer name, email) submitted through our Activation Portal</li>
           <li>Communications you send us (inquiries, contact form messages, email correspondence)</li>
           <li>Account credentials if you create an admin account</li>
         </ul>
@@ -78,7 +78,7 @@ export default function PrivacyPolicy() {
       <Section id="how-we-use" title="4. How we use your information">
         <p>We use the personal information we collect for the following purposes:</p>
         <ul className="list-disc pl-6">
-          <li><strong>Order fulfillment:</strong> to process your purchase, deliver license keys to your email, verify payment, and issue refunds when applicable</li>
+          <li><strong>Order fulfillment:</strong> to process your purchase, deliver licenses to your email, verify payment, and issue refunds when applicable</li>
           <li><strong>Customer service:</strong> to respond to your inquiries, provide activation service, and resolve issues</li>
           <li><strong>Communication:</strong> to send order confirmations, delivery notifications, activation instructions, and important account or service announcements</li>
           <li><strong>Fraud prevention & security:</strong> to detect, investigate and prevent fraudulent transactions, chargebacks, and abuse of our services</li>
@@ -102,7 +102,7 @@ export default function PrivacyPolicy() {
         <p>We do NOT sell, rent, or trade your personal information. We share information only in the following limited situations:</p>
         <ul className="list-disc pl-6">
           <li><strong>Payment processors:</strong> PayPal, Inc. processes all payments. Your payment information is handled directly by PayPal under their own <a href="https://www.paypal.com/us/legalhub/privacy-full" target="_blank" rel="noopener noreferrer" className="underline">privacy policy</a>. We only receive a payment confirmation and transaction ID</li>
-          <li><strong>Email delivery:</strong> Resend, Inc. delivers our transactional emails (order confirmations, license keys, activation communications). See <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline">Resend's privacy policy</a></li>
+          <li><strong>Email delivery:</strong> Resend, Inc. delivers our transactional emails (order confirmations, licenses, activation communications). See <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline">Resend's privacy policy</a></li>
           <li><strong>Hosting & infrastructure:</strong> our website is hosted on secure cloud servers with industry-standard access controls and encryption at rest</li>
           <li><strong>Analytics providers:</strong> we may use privacy-friendly analytics tools that aggregate anonymized usage data</li>
           <li><strong>Legal & safety:</strong> we may disclose information to comply with a legal obligation, court order, subpoena, or to protect the rights, property, or safety of Garnavo, our customers, or others</li>

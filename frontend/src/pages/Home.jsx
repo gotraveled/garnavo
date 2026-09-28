@@ -6,7 +6,7 @@ import LoadError from "@/components/LoadError";
 import SEO from "@/components/SEO";
 import { TrustBadges, TrustMarquee } from "@/components/Trust";
 import { BRAND_LIST } from "@/lib/brands";
-import { ShieldCheck, LockKey, Envelope, CreditCard, Lightning, ArrowRight, CheckCircle, Key } from "@phosphor-icons/react";
+import { ShieldCheck, LockKey, Envelope, CreditCard, Lightning, ArrowRight, CheckCircle } from "@phosphor-icons/react";
 
 export default function Home() {
   const [featured, setFeatured] = useState([]);
@@ -28,7 +28,7 @@ export default function Home() {
     "@type": "WebSite",
     "name": "Garnavo",
     "url": "https://garnavo.com",
-    "description": "Shop genuine, factory-sealed antivirus license keys for Norton, Webroot and McAfee, delivered straight to your inbox with secure checkout and a 30-day guarantee.",
+    "description": "Shop genuine antivirus subscription licenses, delivered straight to your inbox with secure checkout and a 30-day guarantee.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://garnavo.com/products?q={search_term_string}",
@@ -42,7 +42,7 @@ export default function Home() {
     "name": "Garnavo",
     "url": "https://garnavo.com",
     "logo": "https://garnavo.com/logo.png",
-    "description": "Garnavo is an independently run online shop for genuine Norton, Webroot and McAfee activation codes, with same-day email delivery and real human support.",
+    "description": "Garnavo is an independently run online shop for genuine antivirus subscription licenses, with same-day email delivery and real human support.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Westwood Street",
@@ -62,9 +62,9 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Genuine Norton, Webroot & McAfee Activation Keys | Garnavo"
-        description="Garnavo sells genuine, ready-to-activate license keys for Norton 360, Webroot Internet Security and McAfee Total Protection. Instant email delivery, encrypted checkout, 30-day guarantee."
-        keywords="antivirus activation key, Norton license, Webroot keycode, McAfee product key, buy antivirus key online, genuine software keys, email delivery"
+        title="Genuine Antivirus Protection Plans, Delivered Instantly | Garnavo"
+        description="Garnavo sells genuine, ready-to-activate antivirus subscription licenses from leading security publishers. Instant email delivery, encrypted checkout, 30-day guarantee."
+        keywords="antivirus subscription, genuine antivirus license, buy antivirus online, internet security plan, email delivery"
         schema={[homeSchema, organizationSchema]}
       />
       <div>
@@ -73,7 +73,7 @@ export default function Home() {
         <div className="container-page grid gap-12 py-12 md:grid-cols-2 md:py-20">
           <div className="fade-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700">
-              <ShieldCheck size={14} weight="fill" className="text-teal-600" /> Independently run · Keys verified before sale
+              <ShieldCheck size={14} weight="fill" className="text-teal-600" /> Independently run · Licenses verified before sale
             </div>
             <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
               Real protection.<br />
@@ -83,13 +83,13 @@ export default function Home() {
               </span>
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-neutral-700">
-              Skip the retail markup. We hand-verify every Norton, Webroot and McAfee key before it ships to your inbox — usually within 5–15 minutes of checkout.
+              Skip the retail markup. We hand-verify every antivirus license before it ships to your inbox — usually within 5–15 minutes of checkout.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link to="/products" data-testid="hero-shop-btn" className="btn-dark">
                 Browse the catalog <ArrowRight size={18} weight="bold" />
               </Link>
-              <Link to="/activation" data-testid="hero-activate-btn" className="btn-outline">Already have a key?</Link>
+              <Link to="/activation" data-testid="hero-activate-btn" className="btn-outline">Already purchased?</Link>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
               <div className="flex items-center gap-1.5 text-sm text-neutral-700"><CheckCircle size={16} weight="fill" className="text-teal-600" /> 30-day replacement guarantee</div>
@@ -111,7 +111,7 @@ export default function Home() {
                     <ShieldCheck size={26} weight="fill" />
                   </div>
                   <div className="mt-3 font-display text-lg font-bold">{b.name}</div>
-                  <div className="mt-1 text-xs text-neutral-500">Genuine keys</div>
+                  <div className="mt-1 text-xs text-neutral-500">Genuine licenses</div>
                   <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold" style={{ color: b.color }}>
                     Shop now <ArrowRight size={12} weight="bold" />
                   </div>
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Pick your protection</div>
           <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Three brands worth trusting</h2>
-          <p className="mt-4 text-neutral-600">Every key is verified before it's listed — pick the brand that fits how you use your devices.</p>
+          <p className="mt-4 text-neutral-600">Every license is verified before it's listed — pick the brand that fits how you use your devices.</p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {BRAND_LIST.map((b) => (
@@ -194,13 +194,13 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">From cart to protected</div>
           <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Four steps, no waiting around</h2>
-          <p className="mt-4 text-neutral-600">No accounts, no subscriptions to manage — just a key that works.</p>
+          <p className="mt-4 text-neutral-600">No accounts, no complicated setup — just a license that works.</p>
         </div>
         <div className="mt-10 md:mt-14 grid gap-4 md:gap-6 md:grid-cols-12">
           {[
             { n: "01", icon: <ShieldCheck size={24} weight="duotone" />, title: "Pick a plan", desc: "Match the brand, tier and number of devices to what you actually need.", span: "md:col-span-5" },
             { n: "02", icon: <CreditCard size={24} weight="duotone" />, title: "Pay through PayPal", desc: "Card or balance, fully encrypted. No login or account creation needed.", span: "md:col-span-7" },
-            { n: "03", icon: <Envelope size={24} weight="duotone" />, title: "Watch your inbox", desc: "A human on our team checks and releases your key, typically within 5–15 minutes.", span: "md:col-span-7" },
+            { n: "03", icon: <Envelope size={24} weight="duotone" />, title: "Watch your inbox", desc: "A human on our team checks and releases your license, typically within 5–15 minutes.", span: "md:col-span-7" },
             { n: "04", icon: <Lightning size={24} weight="duotone" />, title: "Activate & go", desc: "Redeem the code on the publisher's official site and you're covered immediately.", span: "md:col-span-5" },
           ].map((s) => (
             <div key={s.n} className={`${s.span} rounded-2xl border border-neutral-200 bg-white p-8`}>
@@ -237,27 +237,17 @@ export default function Home() {
 
             <div className="mt-8 space-y-6 text-neutral-700">
               <p>
-                Garnavo is a small, independently operated shop for antivirus activation codes. We don't manufacture software — we source genuine keys for <strong>Norton</strong>, <strong>Webroot</strong> and <strong>McAfee</strong> through vetted channels, check each one works before it's listed, and email it to you once your order clears.
+                Garnavo is a small, independently operated shop for antivirus subscription licenses. We don't manufacture security software — we source genuine licenses through vetted channels, confirm each one works before it's listed, and email it to you once your order clears.
               </p>
 
-              <h3 className="font-display text-xl font-semibold text-neutral-900">Norton</h3>
+              <h3 className="font-display text-xl font-semibold text-neutral-900">A range built for how you actually use your devices</h3>
               <p>
-                Norton 360 bundles antivirus scanning with a VPN, password manager, dark web monitoring and cloud backup. Plans range from a lean AntiVirus Plus tier up through Norton 360 with LifeLock for full identity coverage.
-              </p>
-
-              <h3 className="font-display text-xl font-semibold text-neutral-900">Webroot</h3>
-              <p>
-                Webroot runs its detection in the cloud rather than on your machine, so scans finish in seconds and the app barely touches CPU or memory — a solid pick for older laptops or anyone tired of security software slowing things down.
-              </p>
-
-              <h3 className="font-display text-xl font-semibold text-neutral-900">McAfee</h3>
-              <p>
-                McAfee's Total Protection and McAfee+ tiers stack antivirus, VPN, identity monitoring and parental controls together, with multi-device options built for households running several phones, tablets and laptops at once.
+                Some plans focus on lightweight, cloud-based scanning that barely touches your system's resources. Others bundle a full suite — VPN, password manager, dark web monitoring, cloud backup and parental controls — for households running several phones, tablets and laptops at once. Browse the catalog to compare tiers and pick what fits.
               </p>
 
               <h3 className="font-display text-xl font-semibold text-neutral-900">Why people order from us more than once</h3>
               <p>
-                No inflated renewal pricing, no upsell maze at checkout — just a verified key, delivered fast, backed by a 30-day replace-or-refund policy if something doesn't activate. We'll also walk you through setup if you get stuck.
+                No inflated renewal pricing, no upsell maze at checkout — just a verified license, delivered fast, backed by a 30-day replace-or-refund policy if something doesn't activate. We'll also walk you through setup if you get stuck.
               </p>
 
               <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
@@ -266,7 +256,7 @@ export default function Home() {
                   <div>
                     <div className="font-display font-semibold">We're a reseller, not the software maker</div>
                     <p className="mt-1 text-sm text-neutral-700">
-                      Garnavo operates independently and has no affiliation, sponsorship or endorsement from Norton/Gen Digital, Webroot/OpenText, or McAfee. Brand names and marks referenced here belong to their respective owners and are used solely to describe the genuine products available in our catalog.
+                      Garnavo operates independently and has no affiliation, sponsorship or endorsement from the publishers of the security software listed in our catalog. Any brand names or marks that appear on individual product pages belong to their respective owners and are used solely to identify the genuine products available for purchase.
                     </p>
                   </div>
                 </div>
@@ -281,7 +271,7 @@ export default function Home() {
         <div className="container-page flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
             <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">Your devices, actually protected</h2>
-            <p className="mt-2 max-w-xl text-neutral-300">Genuine Norton, Webroot and McAfee keys, verified and emailed fast, backed by a 30-day guarantee.</p>
+            <p className="mt-2 max-w-xl text-neutral-300">Genuine antivirus licenses, verified and emailed fast, backed by a 30-day guarantee.</p>
           </div>
           <Link to="/products" data-testid="cta-shop-btn" className="btn-primary">See the full catalog <ArrowRight size={18} weight="bold" /></Link>
         </div>

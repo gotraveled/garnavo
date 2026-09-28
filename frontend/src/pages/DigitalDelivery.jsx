@@ -17,12 +17,12 @@ export default function DigitalDelivery() {
   return (
     <PolicyLayout
       title="How Digital Delivery Works"
-      subtitle="Everything you need to know about how Garnavo delivers license keys electronically — quickly and safely."
+      subtitle="Everything you need to know about how Garnavo delivers digital licenses electronically — quickly and safely."
       lastUpdated="February 1, 2026"
       sections={SECTIONS}
     >
       <Section id="overview" title="1. What is digital delivery?">
-        <p>Digital delivery means your license key is sent to you electronically — <strong>by email</strong> — instead of being shipped as a physical product. There are no CDs, no boxes, no packing slips, and no waiting for a courier. You receive a unique activation code that unlocks your subscription on the official portal of the brand you purchased (Norton, Webroot or McAfee).</p>
+        <p>Digital delivery means your license is sent to you electronically — <strong>by email</strong> — instead of being shipped as a physical product. There are no CDs, no boxes, no packing slips, and no waiting for a courier. You receive a unique activation code that unlocks your subscription on the official portal of the brand you purchased.</p>
         <p>This method is faster, safer, and better for the environment. It is the same method the software publishers use today. Physical retail boxes have been largely discontinued — even when you buy from a physical store, you receive a code printed inside a small card.</p>
       </Section>
 
@@ -31,9 +31,9 @@ export default function DigitalDelivery() {
           <li><strong>You place your order</strong> — choose a product on our Site and complete checkout with your name, email, phone, billing address, and PayPal payment.</li>
           <li><strong>Payment is verified</strong> — our system automatically confirms your PayPal payment. This usually takes seconds.</li>
           <li><strong>Fraud review</strong> — our activation team reviews every order manually to prevent fraud and protect both you and the publisher. This step typically takes 3–10 minutes.</li>
-          <li><strong>License is assigned</strong> — a genuine, unused product key from our verified inventory is assigned to your order.</li>
-          <li><strong>Email is dispatched</strong> — you receive an email at the address you provided at checkout containing your license key, activation link, and step-by-step activation instructions.</li>
-          <li><strong>You activate</strong> — you sign in to the brand's official portal, enter the key, and download the software to your device. Total time: usually under 10 minutes.</li>
+          <li><strong>License is assigned</strong> — a genuine, unused license from our verified inventory is assigned to your order.</li>
+          <li><strong>Email is dispatched</strong> — you receive an email at the address you provided at checkout containing your activation code, activation link, and step-by-step activation instructions.</li>
+          <li><strong>You activate</strong> — you sign in to the brand's official portal, enter the code, and download the software to your device. Total time: usually under 10 minutes.</li>
         </ol>
       </Section>
 
@@ -46,7 +46,7 @@ export default function DigitalDelivery() {
           <li>PayPal payment holds or eCheck payments (until PayPal confirms funds)</li>
           <li>Rare inventory delays for specific tiers (we will notify you if this affects your order)</li>
         </ul>
-        <p>If your license key has not arrived within 24 hours of payment, please first check your <strong>spam / junk folder</strong> and then contact us. We track every delivery and can resend the email if needed.</p>
+        <p>If your license has not arrived within 24 hours of payment, please first check your <strong>spam / junk folder</strong> and then contact us. We track every delivery and can resend the email if needed.</p>
       </Section>
 
       <Section id="what-you-receive" title="4. What you'll receive">
@@ -54,22 +54,22 @@ export default function DigitalDelivery() {
         <ul className="list-disc pl-6">
           <li>Your <strong>order number</strong> for reference</li>
           <li>The <strong>product</strong> and <strong>plan</strong> you purchased (e.g., "Norton 360 Deluxe — 5 devices / 1 year")</li>
-          <li>Your unique <strong>license key / activation code</strong> (format varies by brand)</li>
+          <li>Your unique <strong>activation code</strong> (format varies by brand)</li>
           <li>A direct link to the brand's <strong>official activation portal</strong> for redemption</li>
           <li>Clear <strong>step-by-step activation instructions</strong> for Windows, macOS, iOS, and Android</li>
           <li>Our contact for any questions or activation service</li>
         </ul>
-        <p>All keys sold by Garnavo are <strong>genuine, unused, and legally acquired from trusted channels</strong>. Each key is verified before delivery.</p>
+        <p>All licenses sold by Garnavo are <strong>genuine, unused, and legally acquired from trusted channels</strong>. Each one is verified before delivery.</p>
       </Section>
 
       <Section id="activation" title="5. Activating your license">
         <p>Activation is quick and straightforward. Each brand has its own portal:</p>
         <ul className="list-disc pl-6">
-          <li><strong>Norton</strong> — sign in at <a href="https://my.norton.com" target="_blank" rel="noopener noreferrer" className="underline">my.norton.com</a> and enter your product key.</li>
-          <li><strong>Webroot</strong> — go to <a href="https://www.webroot.com/safe" target="_blank" rel="noopener noreferrer" className="underline">webroot.com/safe</a> and enter your keycode.</li>
+          <li><strong>Norton</strong> — sign in at <a href="https://my.norton.com" target="_blank" rel="noopener noreferrer" className="underline">my.norton.com</a> and enter your activation code.</li>
+          <li><strong>Webroot</strong> — go to <a href="https://www.webroot.com/safe" target="_blank" rel="noopener noreferrer" className="underline">webroot.com/safe</a> and enter your activation code.</li>
           <li><strong>McAfee</strong> — go to <a href="https://www.mcafee.com/activate" target="_blank" rel="noopener noreferrer" className="underline">mcafee.com/activate</a> and enter your activation code.</li>
         </ul>
-        <p>In every case you'll sign in (or create an account), enter your key, and follow the on-screen prompts to download and install on your devices.</p>
+        <p>In every case you'll sign in (or create an account), enter your activation code, and follow the on-screen prompts to download and install on your devices.</p>
         <p>Questions? Our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a> gives you step-by-step guidance, and our team is available at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>
       </Section>
 
@@ -81,12 +81,12 @@ export default function DigitalDelivery() {
         <p>If you don't see your delivery email within 24 hours after payment:</p>
         <ol className="list-decimal pl-6">
           <li><strong>Check your spam / junk / promotions folder.</strong> Email from an unfamiliar sender often lands there.</li>
-          <li><strong>Search your inbox</strong> for "Garnavo" or your order number (starts with BIK-).</li>
+          <li><strong>Search your inbox</strong> for "Garnavo" or your order number (starts with GNV-).</li>
           <li><strong>Whitelist</strong> our sending domain to prevent future emails from being filtered.</li>
-          <li><strong>Track your order</strong> on our <a href="/track" className="underline">Track Order</a> page — you'll see current status and the license key if it has been delivered.</li>
+          <li><strong>Track your order</strong> on our <a href="/track" className="underline">Track Order</a> page — you'll see current status and the license if it has been delivered.</li>
           <li><strong>Contact us</strong> at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a> with your order number — we will resend or issue a full refund if needed.</li>
         </ol>
-        <p>We will never share your license key with anyone other than the email address on your order. This is why entering the correct email at checkout is important.</p>
+        <p>We will never share your license with anyone other than the email address on your order. This is why entering the correct email at checkout is important.</p>
       </Section>
 
       <Section id="international" title="8. International customers">

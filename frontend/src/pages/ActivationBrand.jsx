@@ -48,7 +48,7 @@ export default function ActivationBrand() {
     return (
       <div className="container-page py-24 text-center">
         <h1 className="font-display text-3xl font-bold">Choose your product to activate</h1>
-        <p className="mt-3 text-neutral-600">Select the brand of the license key you purchased.</p>
+        <p className="mt-3 text-neutral-600">Select the brand of the license you purchased.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           {BRAND_LIST.map((b) => (
             <Link key={b.slug} to={`/activation/${b.slug}`} className="btn-outline">{b.name}</Link>
@@ -115,8 +115,8 @@ export default function ActivationBrand() {
     <div style={theme} className="bg-neutral-50">
       <SEO
         title={`${brand.name} Activation Service — Independent Reseller | Garnavo`}
-        description={`${brand.name} activation service from Garnavo, an independent reseller. We walk you through activating the ${brand.name} key you bought from us on the official ${brand.portalName} portal.`}
-        keywords={`${brand.name} activation, ${brand.name} activation service, ${brand.name} product key, independent reseller activation, ${brand.name} install`}
+        description={`${brand.name} activation service from Garnavo, an independent reseller. We walk you through activating the ${brand.name} license you bought from us on the official ${brand.portalName} portal.`}
+        keywords={`${brand.name} activation, ${brand.name} activation service, ${brand.name} activation code, independent reseller activation, ${brand.name} install`}
       />
 
       {/* Trust badges header strip */}
@@ -142,10 +142,10 @@ export default function ActivationBrand() {
               <Headset size={14} weight="fill" className="brand-text" /> Garnavo activation service
             </div>
             <h1 className="mt-5 font-display text-3xl font-black leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-              Activate your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> key
+              Activate your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-neutral-700">
-              We're an independent reseller. Send us your details and our team will walk you through activating the {brand.name} key you purchased — usually within 5–15 minutes.
+              We're an independent reseller. Send us your details and our team will walk you through activating the {brand.name} license you purchased — usually within 5–15 minutes.
             </p>
           </div>
         </div>
@@ -179,7 +179,7 @@ export default function ActivationBrand() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">Activation service</div>
-                  <div className="font-display text-xl font-bold">Activate your {brand.name} key</div>
+                  <div className="font-display text-xl font-bold">Activate your {brand.name} license</div>
                 </div>
               </div>
 
@@ -279,9 +279,9 @@ export default function ActivationBrand() {
               <div className="flex items-start gap-3">
                 <LockKey size={22} weight="duotone" className="mt-1 shrink-0 brand-text" />
                 <div>
-                  <div className="font-display font-semibold">Where do I find my {brand.name} key?</div>
+                  <div className="font-display font-semibold">Where do I find my {brand.name} activation code?</div>
                   <p className="mt-1 text-sm text-neutral-700">
-                    Your product key is in the email we sent after purchase. {brand.keyHint} If you can't find it, <Link to="/contact" className="font-semibold underline">contact us</Link>.
+                    Your activation code is in the email we sent after purchase. {brand.keyHint} If you can't find it, <Link to="/contact" className="font-semibold underline">contact us</Link>.
                   </p>
                 </div>
               </div>

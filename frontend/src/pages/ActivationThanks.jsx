@@ -50,18 +50,18 @@ export default function ActivationThanks() {
             Thanks for the details!
           </h1>
           <p className="mt-4 text-lg text-neutral-700">
-            We've received your activation request. Our team is verifying your product key and will email you the activation details shortly.
+            We've received your activation request. Our team is verifying your activation code and will email you the activation details shortly.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             <div className="rounded-xl border border-neutral-200 bg-white p-5 text-left">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#FFC220] text-neutral-900"><CheckCircle size={18} weight="duotone" /></div>
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#FF6B45] text-white"><CheckCircle size={18} weight="duotone" /></div>
               <div className="mt-3 font-semibold">Received</div>
               <div className="mt-1 text-xs text-neutral-600">Your request is queued for our activation team</div>
             </div>
             <div className="rounded-xl border border-neutral-200 bg-white p-5 text-left">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#101826] text-[#FFC220]"><Clock size={18} weight="duotone" /></div>
-              <div className="mt-3 font-semibold">Verifying key</div>
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#101826] text-[#FF9776]"><Clock size={18} weight="duotone" /></div>
+              <div className="mt-3 font-semibold">Verifying code</div>
               <div className="mt-1 text-xs text-neutral-600">Typically 5–15 minutes</div>
             </div>
             <div className="rounded-xl border border-neutral-200 bg-white p-5 text-left">
@@ -71,7 +71,7 @@ export default function ActivationThanks() {
             </div>
           </div>
 
-          <div className="mt-10 rounded-2xl border border-yellow-200 bg-yellow-50 p-6 text-left">
+          <div className="mt-10 rounded-2xl border border-orange-200 bg-orange-50 p-6 text-left">
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-3">
                 <ChatCircleDots size={28} weight="duotone" className="mt-1 shrink-0 text-neutral-900" />
@@ -97,7 +97,7 @@ export default function ActivationThanks() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Link to="/activation" data-testid="activation-thanks-back" className="btn-outline">Submit another key</Link>
+            <Link to="/activation" data-testid="activation-thanks-back" className="btn-outline">Submit another request</Link>
             <Link to="/" className="btn-dark">Back to store <ArrowRight size={16} /></Link>
           </div>
         </div>

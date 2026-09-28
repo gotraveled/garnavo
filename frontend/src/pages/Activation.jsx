@@ -8,9 +8,9 @@ export default function Activation() {
   return (
     <div className="bg-neutral-50">
       <SEO
-        title="Antivirus Activation Service — Norton, Webroot & McAfee | Garnavo"
-        description="Activation service for Norton, Webroot and McAfee license keys purchased from Garnavo, an independent reseller. Choose your brand for step-by-step activation."
-        keywords="antivirus activation, Norton activation, Webroot activation, McAfee activation, license key activation, independent reseller"
+        title="Antivirus Activation Service | Garnavo"
+        description="Activation service for antivirus licenses purchased from Garnavo, an independent reseller. Choose your brand for step-by-step activation."
+        keywords="antivirus activation, license activation, activation service, independent reseller"
       />
 
       {/* Hero */}
@@ -20,10 +20,10 @@ export default function Activation() {
             <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation service
           </div>
           <h1 className="mx-auto mt-5 max-w-2xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl">
-            Activate your license key
+            Activate your license
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-neutral-600">
-            Choose the brand of the license key you purchased from us. Our team will walk you through activation on the official portal — usually within 5–15 minutes.
+            Choose the brand of the license you purchased from us. Our team will walk you through activation on the official portal — usually within 5–15 minutes.
           </p>
           <p className="mx-auto mt-4 max-w-xl rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-600">
             Garnavo is an independent reseller — not affiliated with Norton, Webroot or McAfee. Activation is always completed on the brand's official website.
@@ -63,7 +63,7 @@ export default function Activation() {
         <div className="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-3">
           {[
             { icon: <Clock size={22} weight="duotone" className="text-neutral-900" />, t: "5–15 min response", d: "Our team replies promptly during business hours." },
-            { icon: <ShieldCheck size={22} weight="duotone" className="text-neutral-900" />, t: "Included with purchase", d: "Activation service is included for keys bought from us." },
+            { icon: <ShieldCheck size={22} weight="duotone" className="text-neutral-900" />, t: "Included with purchase", d: "Activation service is included for every license bought from us." },
             { icon: <Headset size={22} weight="duotone" className="text-neutral-900" />, t: "Guided setup", d: "Step-by-step guidance until you're protected." },
           ].map((x, i) => (
             <div key={i} className="rounded-xl border border-neutral-200 bg-white p-5 text-center">

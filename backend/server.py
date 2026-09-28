@@ -1002,8 +1002,8 @@ DEFAULT_COUPONS = [
 
 DEFAULT_BANNER = {
     "id": "site-banner",
-    "title": "Genuine license keys",
-    "message": "Genuine antivirus license keys delivered by email - secure checkout and a 30-day money-back guarantee",
+    "title": "Genuine antivirus licenses",
+    "message": "Genuine antivirus licenses delivered by email - secure checkout and a 30-day money-back guarantee",
     "coupon_code": "",
     "expires_at": (datetime.now(timezone.utc) + timedelta(days=365)).isoformat(),
     "is_active": True,
@@ -1160,15 +1160,15 @@ def order_confirmation_html(order: dict) -> str:
     ])
     return f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#f9fafb">
-      <div style="background:#0A0A0A;padding:24px;border-radius:8px 8px 0 0">
-        <h1 style="color:#FCE029;margin:0;font-size:24px">{STORE_NAME}</h1>
+      <div style="background:#101826;padding:24px;border-radius:8px 8px 0 0">
+        <h1 style="color:#FF9776;margin:0;font-size:24px">{STORE_NAME}</h1>
       </div>
       <div style="background:#fff;padding:32px;border-radius:0 0 8px 8px">
-        <h2 style="color:#0A0A0A">Order Confirmed!</h2>
+        <h2 style="color:#101826">Order Confirmed!</h2>
         <p>Hi {order['customer_name']}, thank you for your order.</p>
         <p><strong>Order Number:</strong> {order['order_number']}</p>
-        <div style="background:#FEF9C3;padding:16px;border-radius:6px;margin:16px 0;border-left:4px solid #FCE029">
-          <strong>Delivery in 5-15 minutes:</strong> Your Norton license key(s) will be emailed to you shortly after our team verifies your payment.
+        <div style="background:#FFF1EC;padding:16px;border-radius:6px;margin:16px 0;border-left:4px solid #FF6B45">
+          <strong>Delivery in 5-15 minutes:</strong> Your license(s) will be emailed to you shortly after our team verifies your payment.
         </div>
         <table style="width:100%;border-collapse:collapse;margin:24px 0">
           <thead><tr style="background:#F3F4F6"><th style="padding:8px;text-align:left">Product</th><th style="padding:8px">Qty</th><th style="padding:8px;text-align:right">Total</th></tr></thead>
@@ -1184,28 +1184,28 @@ def order_confirmation_html(order: dict) -> str:
 def license_delivery_html(order: dict) -> str:
     keys_html = "".join([
         f"<div style='background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;padding:16px;margin:12px 0'>"
-        f"<div style='font-weight:600;color:#0A0A0A'>{it['product_name']}</div>"
+        f"<div style='font-weight:600;color:#101826'>{it['product_name']}</div>"
         f"<div style='color:#6B7280;font-size:14px;margin-bottom:8px'>{it['variant_label']}</div>"
-        f"<div style='font-family:monospace;background:#0A0A0A;color:#FCE029;padding:12px;border-radius:4px;letter-spacing:2px;font-size:16px;word-break:break-all'>{it.get('license_key','[Key not yet assigned]')}</div>"
+        f"<div style='font-family:monospace;background:#101826;color:#FF9776;padding:12px;border-radius:4px;letter-spacing:2px;font-size:16px;word-break:break-all'>{it.get('license_key','[Not yet assigned]')}</div>"
         f"</div>"
         for it in order['items']
     ])
     return f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#f9fafb">
-      <div style="background:#0A0A0A;padding:24px;border-radius:8px 8px 0 0">
-        <h1 style="color:#FCE029;margin:0;font-size:24px">{STORE_NAME}</h1>
+      <div style="background:#101826;padding:24px;border-radius:8px 8px 0 0">
+        <h1 style="color:#FF9776;margin:0;font-size:24px">{STORE_NAME}</h1>
       </div>
       <div style="background:#fff;padding:32px;border-radius:0 0 8px 8px">
-        <h2 style="color:#10B981">Your Norton License Keys</h2>
-        <p>Hi {order['customer_name']}, your license keys are ready!</p>
+        <h2 style="color:#0D9488">Your Activation Codes</h2>
+        <p>Hi {order['customer_name']}, your activation codes are ready!</p>
         <p><strong>Order:</strong> {order['order_number']}</p>
         {keys_html}
         <h3 style="margin-top:32px">How to activate:</h3>
         <ol style="color:#374151;line-height:1.8">
-          <li>Go to <a href="https://my.norton.com">my.norton.com</a> and sign in (or create an account)</li>
-          <li>Click "Enter a new product key"</li>
-          <li>Paste your license key above and click "Next"</li>
-          <li>Download and install Norton on your device</li>
+          <li>Visit the official activation portal for the product you purchased (linked in our <a href="{STORE_URL}/activation">Activation Portal</a>) and sign in, or create an account</li>
+          <li>Choose the option to enter a new activation code</li>
+          <li>Paste the code shown above and continue</li>
+          <li>Download and install the software on your device</li>
         </ol>
         <p style="color:#6B7280;font-size:12px;margin-top:24px">Need help? Reply to this email.</p>
       </div>
@@ -1305,7 +1305,7 @@ async def create_order(body: OrderCreate):
                 coupon_code = code_up
                 await db.coupons.update_one({"code": code_up}, {"$inc": {"current_uses": 1}})
     total = round(max(0, subtotal - discount_amount), 2)
-    order_number = "BIK-" + datetime.now(timezone.utc).strftime("%Y%m%d") + "-" + uuid.uuid4().hex[:6].upper()
+    order_number = "GNV-" + datetime.now(timezone.utc).strftime("%Y%m%d") + "-" + uuid.uuid4().hex[:6].upper()
     order = Order(
         order_number=order_number, customer_name=body.customer_name,
         customer_email=body.customer_email,
@@ -1397,7 +1397,7 @@ async def capture_paypal_order(order_id: str, body: dict):
         }})
         updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
         await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
-        await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']}", f"<p>New paid order: {updated['order_number']} — ${updated['total']:.2f}</p><p>Login to admin panel to deliver keys.</p>")
+        await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']}", f"<p>New paid order: {updated['order_number']} — ${updated['total']:.2f}</p><p>Login to admin panel to deliver licenses.</p>")
     return {"status": cap.get("status"), "order_id": order_id}
 
 @api_router.post("/orders/{order_id}/simulate-payment")
@@ -1469,7 +1469,7 @@ async def admin_deliver(order_id: str, body: DeliverKeysBody, admin_email: str =
         "delivered_at": now_iso(), "admin_notes": body.admin_note,
     }})
     updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
-    await send_email(updated["customer_email"], f"Your Norton License Keys — Order {updated['order_number']}", license_delivery_html(updated))
+    await send_email(updated["customer_email"], f"Your Activation Codes — Order {updated['order_number']}", license_delivery_html(updated))
     return {"status": "delivered", "order_id": order_id}
 
 @api_router.post("/admin/orders/{order_id}/cancel")
@@ -1622,7 +1622,7 @@ def activation_admin_html(req: dict) -> str:
       <p><strong>Email:</strong> {req['customer_email']}</p>
       {phone_html}
       <p><strong>Brand:</strong> {req.get('brand', 'Norton')}</p>
-      <p><strong>Product Key:</strong> <code style="background:#f3f4f6;padding:6px 8px;border-radius:4px;font-family:monospace">{req['product_key']}</code></p>
+      <p><strong>Activation Code:</strong> <code style="background:#f3f4f6;padding:6px 8px;border-radius:4px;font-family:monospace">{req['product_key']}</code></p>
       <p><strong>Received:</strong> {req['created_at']}</p>
       <p>Please contact this customer to help complete their {req.get('brand', 'Norton')} activation.</p>
     </div>
@@ -1634,7 +1634,7 @@ def activation_customer_html(req: dict) -> str:
       <h2>Activation request received</h2>
       <p>Hi {req['customer_name']},</p>
       <p>We've received your {req.get('brand', 'Norton')} activation request. Our team will contact you within 12 hours to help complete the activation process.</p>
-      <p><strong>Your product key:</strong> <code style="background:#f3f4f6;padding:6px 8px;border-radius:4px;font-family:monospace">{req['product_key']}</code></p>
+      <p><strong>Your activation code:</strong> <code style="background:#f3f4f6;padding:6px 8px;border-radius:4px;font-family:monospace">{req['product_key']}</code></p>
       <p>If you have any questions, please reply to this email.</p>
       <p>Best regards,<br/>{STORE_NAME} Team</p>
     </div>
@@ -1673,7 +1673,7 @@ def contact_customer_html(req: dict) -> str:
 @api_router.post("/activations", response_model=ActivationRequest)
 async def create_activation(body: ActivationCreate):
     if not body.product_key.strip():
-        raise HTTPException(status_code=400, detail="Product key is required")
+        raise HTTPException(status_code=400, detail="Activation code is required")
     req = ActivationRequest(
         customer_name=body.customer_name.strip(),
         customer_email=body.customer_email.lower(),
@@ -1687,7 +1687,7 @@ async def create_activation(body: ActivationCreate):
     await send_email(
         to="hexkeyllc@gmail.com",
         cc=["info@garnavo.com"],
-        subject=f"[Activation] {req.customer_name} — key ****{req.product_key[-4:] if len(req.product_key) >= 4 else req.product_key}",
+        subject=f"[Activation] {req.customer_name} — code ****{req.product_key[-4:] if len(req.product_key) >= 4 else req.product_key}",
         html=activation_admin_html(doc),
     )
     # Confirmation to the customer
@@ -1758,7 +1758,7 @@ async def google_merchant_feed():
 
     SubElement(channel, "title").text = STORE_NAME
     SubElement(channel, "link").text = STORE_URL
-    SubElement(channel, "description").text = f"Genuine antivirus and security license keys with fast email delivery from {STORE_NAME}."
+    SubElement(channel, "description").text = f"Genuine antivirus and security software licenses with fast email delivery from {STORE_NAME}."
 
     def clean_desc(text: str) -> str:
         # Google wants plain text, no HTML, max 5000 chars.

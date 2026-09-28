@@ -38,15 +38,15 @@ export default function OrderSuccess() {
           </div>
           <div className="rounded-xl border border-neutral-200 bg-white p-6 text-left">
             <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#101826] text-[#FF9776]"><Envelope size={18} weight="duotone" /></div>
-            <div className="mt-3 font-semibold">Key delivered by email</div>
+            <div className="mt-3 font-semibold">License delivered by email</div>
             <div className="mt-1 text-xs text-neutral-600">Check inbox & spam</div>
           </div>
         </div>
 
-        <div className="mt-10 rounded-xl border border-yellow-200 bg-yellow-50 p-6 text-left">
+        <div className="mt-10 rounded-xl border border-orange-200 bg-orange-50 p-6 text-left">
           <div className="font-display font-semibold">What happens next?</div>
           <p className="mt-2 text-sm text-neutral-700">
-            Our team is verifying your payment and will email your genuine license key(s) to <span className="font-semibold">{order?.customer_email || "your email"}</span> within 5–15 minutes. If you don't see it, check your spam folder.
+            Our team is verifying your payment and will email your genuine license(s) to <span className="font-semibold">{order?.customer_email || "your email"}</span> within 5–15 minutes. If you don't see it, check your spam folder.
           </p>
         </div>
 

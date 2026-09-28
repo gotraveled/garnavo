@@ -27,12 +27,12 @@ export default function Terms() {
     <>
       <SEO
         title="Terms & Conditions | Garnavo"
-        description="Read Garnavo terms and conditions for license key purchases. Understand our refund policy, delivery terms, and customer rights."
+        description="Read Garnavo terms and conditions for digital license purchases. Understand our refund policy, delivery terms, and customer rights."
         keywords="Garnavo terms, license terms, refund policy terms, digital delivery terms, purchase conditions, terms and conditions"
       />
       <PolicyLayout
         title="Terms and Conditions"
-        subtitle="These Terms govern your use of Garnavo.com and the purchase of digital license keys through our platform."
+        subtitle="These Terms govern your use of Garnavo.com and the purchase of digital software licenses through our platform."
         lastUpdated="February 1, 2026"
         sections={SECTIONS}
       >
@@ -43,7 +43,7 @@ export default function Terms() {
 
       <Section id="definitions" title="2. Definitions">
         <ul className="list-disc pl-6">
-          <li><strong>"Product"</strong> — a digital license key or activation code for third-party software, primarily Norton, Webroot and McAfee security products.</li>
+          <li><strong>"Product"</strong> — a digital software license or activation code for third-party antivirus and internet security software.</li>
           <li><strong>"Order"</strong> — a request submitted by you through the Site to purchase one or more Products.</li>
           <li><strong>"License"</strong> — the right, granted by the software publisher, to use the Product for the term and conditions set out by the publisher.</li>
           <li><strong>"Publisher"</strong> — the original software vendor (e.g., Gen Digital Inc. for Norton, OpenText for Webroot, McAfee LLC for McAfee) whose end-user license agreement (EULA) governs your use of the software.</li>
@@ -55,7 +55,7 @@ export default function Terms() {
       </Section>
 
       <Section id="products" title="4. Products & services">
-        <p>Garnavo is an independent digital software reseller. We source authentic license keys from authorized channels and deliver them electronically to our customers via email. All Products are sold as digital license keys only — <strong>no physical goods are shipped</strong>.</p>
+        <p>Garnavo is an independent digital software reseller. We source authentic software licenses from authorized channels and deliver them electronically to our customers via email. All Products are sold as digital licenses only — <strong>no physical goods are shipped</strong>.</p>
         <p>The use of any Product is subject to the end-user license agreement (EULA) provided by the Publisher. It is your responsibility to review and accept the Publisher's EULA before using the software.</p>
         <p>Product descriptions, features, device counts, and subscription lengths are provided by us based on publicly available Publisher information. We do our best to ensure accuracy, but we do not warrant that all descriptions are current, complete, or error-free. In the event of a discrepancy, the Publisher's terms control.</p>
       </Section>
@@ -63,17 +63,17 @@ export default function Terms() {
       <Section id="pricing" title="5. Pricing & payment">
         <p>All prices are displayed in U.S. Dollars (USD) unless otherwise stated and are exclusive of applicable taxes, which will be calculated at checkout where required by law. Prices are subject to change without notice; however, once an Order is confirmed, the price displayed at the time of purchase will apply.</p>
         <p>Payment is processed securely through <strong>PayPal, Inc.</strong> We do not store or have access to your full payment card or bank account details. By submitting an Order, you authorize us and PayPal to charge your selected payment method for the total Order amount.</p>
-        <p>If a payment is declined, delayed, or reversed (including chargebacks), we reserve the right to suspend or cancel the corresponding Order and revoke any License keys already delivered.</p>
+        <p>If a payment is declined, delayed, or reversed (including chargebacks), we reserve the right to suspend or cancel the corresponding Order and revoke any Licenses already delivered.</p>
       </Section>
 
       <Section id="orders" title="6. Order process & digital delivery">
-        <p>After you complete checkout, your Order enters a "pending" state until payment is confirmed. Our activation team reviews each Order for fraud and payment verification. Once verified, we deliver your License key(s) via email to the address you provided.</p>
-        <p><strong>Expected delivery time: 5–15 minutes after payment confirmation.</strong> In rare cases — such as high-fraud-risk transactions, incomplete details, or outside business hours — delivery may take up to 24 hours. If your key has not arrived within 24 hours, please check your spam folder and then contact us.</p>
+        <p>After you complete checkout, your Order enters a "pending" state until payment is confirmed. Our activation team reviews each Order for fraud and payment verification. Once verified, we deliver your License(s) via email to the address you provided.</p>
+        <p><strong>Expected delivery time: 5–15 minutes after payment confirmation.</strong> In rare cases — such as high-fraud-risk transactions, incomplete details, or outside business hours — delivery may take up to 24 hours. If your License has not arrived within 24 hours, please check your spam folder and then contact us.</p>
         <p>It is your responsibility to provide a valid, accessible email address at checkout. We are not responsible for delivery failures caused by incorrect email addresses, aggressive spam filters, or full inboxes.</p>
       </Section>
 
       <Section id="activation" title="7. License activation & use">
-        <p>To activate your License, you must sign in to the Publisher's activation portal (e.g., my.norton.com, webroot.com/safe, or mcafee.com/activate) and enter the product key we deliver. Activation service is available through our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a>.</p>
+        <p>To activate your License, you must sign in to the Publisher's own activation portal and enter the activation code we deliver. Activation service is available through our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a>, which lists the correct portal for each brand we carry.</p>
         <p>You are responsible for complying with the Publisher's EULA, including all restrictions on the number of devices, geographic use, personal vs. commercial use, and prohibitions on transfer or resale of the License.</p>
       </Section>
 

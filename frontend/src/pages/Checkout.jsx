@@ -90,7 +90,7 @@ export default function Checkout() {
         <div className="lg:col-span-3">
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <h2 className="font-display text-lg font-semibold">Delivery details</h2>
-            <p className="mt-1 text-sm text-neutral-600">Your license key will be sent to this email within 5–15 minutes.</p>
+            <p className="mt-1 text-sm text-neutral-600">Your license will be sent to this email within 5–15 minutes.</p>
             <div className="mt-6 grid gap-4">
               <div>
                 <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Full name</label>
@@ -173,8 +173,8 @@ export default function Checkout() {
               </div>
             ) : (
               <div className="mt-6">
-                <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm text-neutral-800">
-                  <strong>Demo mode:</strong> PayPal keys are not yet configured. Use the button below to simulate a paid order. Add real PayPal credentials in <code className="rounded bg-white px-1 py-0.5 text-xs">/app/backend/.env</code> to enable live PayPal checkout.
+                <div className="rounded-lg border border-orange-200 bg-orange-50 p-4 text-sm text-neutral-800">
+                  <strong>Demo mode:</strong> PayPal credentials are not yet configured. Use the button below to simulate a paid order. Add real PayPal credentials in <code className="rounded bg-white px-1 py-0.5 text-xs">/app/backend/.env</code> to enable live PayPal checkout.
                 </div>
                 <button
                   data-testid="checkout-simulate-btn"
@@ -220,7 +220,7 @@ export default function Checkout() {
           </div>
           <div className="mt-4 space-y-2 rounded-xl border border-neutral-200 bg-white p-5 text-sm">
             <div className="flex items-center gap-2"><Envelope size={16} weight="duotone" /> Delivered to your inbox in 5–15 min</div>
-            <div className="flex items-center gap-2"><ShieldCheck size={16} weight="duotone" /> Genuine license keys</div>
+            <div className="flex items-center gap-2"><ShieldCheck size={16} weight="duotone" /> Genuine licenses</div>
             <div className="flex items-center gap-2"><CheckCircle size={16} weight="duotone" /> 30-day money-back guarantee</div>
           </div>
         </aside>

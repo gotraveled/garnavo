@@ -135,7 +135,7 @@ export default function Cart() {
           <button data-testid="cart-checkout-btn" onClick={() => nav("/checkout")} className="btn-primary mt-6 w-full">
             Proceed to checkout <ArrowRight size={18} weight="bold" />
           </button>
-          <div className="mt-4 text-center text-xs text-neutral-500">Secure PayPal checkout · Key delivered by email in 5–15 min</div>
+          <div className="mt-4 text-center text-xs text-neutral-500">Secure PayPal checkout · License delivered by email in 5–15 min</div>
         </aside>
       </div>
     </div>

@@ -92,8 +92,8 @@ export default function Contact() {
     <>
       <SEO
         title="Contact Us | Garnavo"
-        description="Reach the Garnavo team for order help, license key questions, or activation support on Norton, Webroot and McAfee — most messages answered within 12 hours."
-        keywords="Contact Garnavo, customer service, license key inquiries, order inquiry, activation service, contact"
+        description="Reach the Garnavo team for order help, license questions, or activation support — most messages answered within 12 hours."
+        keywords="Contact Garnavo, customer service, license inquiries, order inquiry, activation service, contact"
         schema={[contactSchema]}
       />
       <div className="container-page py-10 md:py-14">
@@ -160,12 +160,12 @@ export default function Contact() {
           
           <div className="mt-6 space-y-4 text-neutral-700">
             <p>
-              Our team specializes in antivirus activation and provides guidance for Norton, Webroot and McAfee products. Whether you're activating a key, installing the software, or have a subscription question, we're here for you.
+              Our team specializes in antivirus activation and provides guidance across the brands we carry. Whether you're activating a license, installing the software, or have a subscription question, we're here for you.
             </p>
             
             <h3 className="font-display text-lg font-semibold text-neutral-900">Common reasons to contact us:</h3>
             <ul className="list-disc list-inside space-y-2 text-sm">
-              <li>Product key activation service</li>
+              <li>License activation service</li>
               <li>Installation guidance for your security software</li>
               <li>Subscription questions</li>
               <li>Order status and delivery inquiries</li>
@@ -175,7 +175,7 @@ export default function Contact() {
             </ul>
             
             <p>
-              We respond to all inquiries within 12 hours, with most questions answered on the same day. Our team has extensive experience with Norton, Webroot and McAfee products and can get your devices protected quickly and efficiently.
+              We respond to all inquiries within 12 hours, with most questions answered on the same day. Our team has hands-on experience across the security brands we carry and can get your devices protected quickly and efficiently.
             </p>
           </div>
         </div>

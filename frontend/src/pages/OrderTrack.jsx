@@ -5,7 +5,7 @@ import { Package, Clock, Envelope } from "@phosphor-icons/react";
 
 const statusMeta = {
   pending: { label: "Awaiting payment", color: "bg-neutral-100 text-neutral-700" },
-  paid: { label: "Payment received — preparing keys", color: "bg-yellow-100 text-yellow-800" },
+  paid: { label: "Payment received — preparing your order", color: "bg-orange-100 text-orange-800" },
   delivered: { label: "Delivered — check your email", color: "bg-emerald-100 text-emerald-800" },
   cancelled: { label: "Cancelled", color: "bg-red-100 text-red-800" },
   refunded: { label: "Refunded", color: "bg-neutral-100 text-neutral-700" },
@@ -35,7 +35,7 @@ export default function OrderTrack() {
       <div className="mx-auto max-w-3xl">
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Order tracking</div>
         <h1 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Track your order</h1>
-        <p className="mt-3 text-neutral-600">Enter your order number and email to check status and view delivered license keys.</p>
+        <p className="mt-3 text-neutral-600">Enter your order number and email to check status and view your delivered licenses.</p>
 
         <form onSubmit={submit} className="mt-8 grid gap-4 rounded-xl border border-neutral-200 bg-white p-6 sm:grid-cols-2">
           <div>
@@ -111,7 +111,7 @@ export default function OrderTrack() {
                     </div>
                   ) : (
                     <div className="mt-3 flex items-center gap-2 text-xs text-neutral-600">
-                      <Clock size={14} weight="duotone" /> License key pending. Check your email in a few minutes.
+                      <Clock size={14} weight="duotone" /> License pending. Check your email in a few minutes.
                     </div>
                   )}
                 </div>
@@ -119,9 +119,9 @@ export default function OrderTrack() {
             </div>
 
             {order.status !== "delivered" && (
-              <div className="mt-6 rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm text-neutral-800">
+              <div className="mt-6 rounded-lg border border-orange-200 bg-orange-50 p-4 text-sm text-neutral-800">
                 <div className="flex items-center gap-2 font-semibold"><Envelope size={16} weight="duotone" /> Delivery in progress</div>
-                <p className="mt-1">Your license key will arrive by email within 5–15 minutes after payment is verified. Check spam too.</p>
+                <p className="mt-1">Your license will arrive by email within 5–15 minutes after payment is verified. Check spam too.</p>
               </div>
             )}
           </div>

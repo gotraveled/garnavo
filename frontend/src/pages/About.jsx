@@ -19,7 +19,7 @@ export default function About() {
       "@type": "Organization",
       "name": "Garnavo",
       "url": "https://garnavo.com",
-      "description": "An independent digital software reseller providing genuine Norton, Webroot and McAfee license keys — delivered fast, priced fairly, backed by responsive customer service.",
+      "description": "An independent digital software reseller providing genuine antivirus subscription licenses — delivered fast, priced fairly, backed by responsive customer service.",
       "foundingDate": "2024",
       "address": {
         "@type": "PostalAddress",
@@ -36,24 +36,24 @@ export default function About() {
     <>
       <SEO
         title="About Us | Garnavo - Independent Antivirus Reseller"
-        description="Learn about Garnavo - your trusted source for genuine Norton, Webroot and McAfee license keys. Independent reseller with fast delivery, fair prices, and responsive customer service."
-        keywords="About Garnavo, antivirus reseller, license keys company, genuine software seller, Norton Webroot McAfee keys"
+        description="Learn about Garnavo - your trusted source for genuine antivirus subscription licenses. Independent reseller with fast delivery, fair prices, and responsive customer service."
+        keywords="About Garnavo, antivirus reseller, subscription license company, genuine software seller"
         schema={[aboutSchema]}
       />
       <PolicyLayout
         title="About Garnavo"
-        subtitle="An independent digital software reseller providing genuine Norton, Webroot and McAfee license keys — delivered fast, priced fairly, backed by responsive customer service."
+        subtitle="An independent digital software reseller providing genuine antivirus subscription licenses — delivered fast, priced fairly, backed by responsive customer service."
         lastUpdated="February 1, 2026"
         sections={SECTIONS}
       >
       <Section id="mission" title="Our mission">
         <p>Here's the problem Garnavo exists to fix: <strong>real security software shouldn't cost more than it needs to, and buying it shouldn't feel like navigating a maze.</strong></p>
-        <p>Full-price antivirus renewals keep climbing, and publisher checkout flows are stuffed with add-ons you didn't ask for. Garnavo strips that down to the essentials — a genuine license key for a brand you already trust, a fair price, delivery to your inbox in minutes, and a real person to talk to if something goes wrong.</p>
+        <p>Full-price antivirus renewals keep climbing, and publisher checkout flows are stuffed with add-ons you didn't ask for. Garnavo strips that down to the essentials — a genuine license for a brand you already trust, a fair price, delivery to your inbox in minutes, and a real person to talk to if something goes wrong.</p>
       </Section>
 
       <Section id="story" title="Our story">
         <p>Garnavo started as a side project among a handful of resellers and support specialists based in Hayward, California, after one too many conversations with family members baffled by surprise renewal charges and clunky installers from the big security vendors.</p>
-        <p>We started with a single product line and a shared inbox. Since then we've expanded to carry Norton, Webroot and McAfee — covering everything from basic antivirus to full identity-protection suites — and now ship keys to customers across the country and beyond.</p>
+        <p>We started with a single product line and a shared inbox. Since then we've expanded our catalog to cover several trusted security brands — spanning basic antivirus through full identity-protection suites — and now ship to customers across the country and beyond.</p>
       </Section>
 
       <Section id="values" title="Our values">
@@ -61,7 +61,7 @@ export default function About() {
           <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
             <ShieldCheck size={22} weight="duotone" className="text-neutral-900" />
             <div className="mt-3 font-display font-semibold">No shortcuts on authenticity</div>
-            <p className="mt-1 text-sm text-neutral-700">We only stock keys sourced through vetted digital channels. Nothing grey-market, nothing pirated.</p>
+            <p className="mt-1 text-sm text-neutral-700">We only stock licenses sourced through vetted digital channels. Nothing grey-market, nothing pirated.</p>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
             <Users size={22} weight="duotone" className="text-neutral-900" />
@@ -82,19 +82,19 @@ export default function About() {
       </Section>
 
       <Section id="how-we-work" title="How we work">
-        <p>We run lean on purpose. Skipping big ad budgets and unnecessary overhead means more of what you pay goes toward keeping prices competitive. Day to day, our focus stays narrow: source keys we trust, keep checkout painless, and answer support requests in hours rather than days.</p>
-        <p>Before any key leaves our system, a member of our team manually reviews the order. That single check is what lets us stand behind every sale with a 30-day guarantee — if a key doesn't work, we make it right.</p>
+        <p>We run lean on purpose. Skipping big ad budgets and unnecessary overhead means more of what you pay goes toward keeping prices competitive. Day to day, our focus stays narrow: source licenses we trust, keep checkout painless, and answer support requests in hours rather than days.</p>
+        <p>Before any license leaves our system, a member of our team manually reviews the order. That single check is what lets us stand behind every sale with a 30-day guarantee — if something doesn't work, we make it right.</p>
       </Section>
 
       <Section id="why-us" title="Why choose Garnavo">
         <ul className="list-disc pl-6">
-          <li>Keys sourced only through vetted digital supply channels</li>
+          <li>Licenses sourced only through vetted digital supply channels</li>
           <li>Delivery to your email inbox, typically within 5–15 minutes of a confirmed payment</li>
           <li>Checkout runs through PayPal — your card details never touch our servers</li>
           <li>Free setup help through our <a href="/activation" className="underline">Activation Portal</a></li>
-          <li>30-day guarantee: replacement or refund if a key won't activate</li>
+          <li>30-day guarantee: replacement or refund if a license won't activate</li>
           <li>Real support at info@garnavo.com, not an auto-responder</li>
-          <li>Norton, Webroot and McAfee coverage spanning antivirus, VPN, and identity protection tiers</li>
+          <li>Coverage across several trusted security brands, spanning antivirus, VPN, and identity protection tiers</li>
         </ul>
       </Section>
 
