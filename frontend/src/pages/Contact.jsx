@@ -71,7 +71,6 @@ export default function Contact() {
       "url": "https://garnavo.com",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-510-555-0123",
         "contactType": "customer service",
         "email": "info@garnavo.com",
         "availableLanguage": "English",

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700;800&family=Roboto:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @layer base {
   :root {
@@ -34,17 +34,17 @@
   * { @apply border-border; }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Roboto', system-ui, sans-serif;
     font-feature-settings: 'ss01' on, 'cv11' on;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Roboto Condensed', sans-serif; letter-spacing: -0.01em; }
   code, pre { font-family: 'JetBrains Mono', monospace; }
 }
 
 @layer utilities {
-  .font-display { font-family: 'Sora', sans-serif; }
-  .font-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .font-display { font-family: 'Roboto Condensed', sans-serif; }
+  .font-body { font-family: 'Roboto', sans-serif; }
   .font-mono { font-family: 'JetBrains Mono', monospace; }
   .container-page { @apply mx-auto max-w-7xl px-6 md:px-8; }
   .grain-bg {
