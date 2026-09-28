@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ShieldCheck, ShoppingCart, Package, CaretDown, UserCircle, List } from "@phosphor-icons/react";
+import { ShoppingCart, Package, CaretDown, UserCircle, List } from "@phosphor-icons/react";
 import { useCart } from "@/lib/cart";
 import { useCustomer } from "@/lib/auth";
 import { BRAND_LIST } from "@/lib/brands";
@@ -29,11 +29,10 @@ export default function Navbar() {
   return (
     <header className="glass-header sticky top-0 z-40 border-b border-neutral-200">
       <div className="container-page flex h-16 items-center justify-between">
-        <Link to="/" data-testid="nav-logo" className="flex items-center gap-2">
-          <ShieldCheck size={26} weight="duotone" className="text-neutral-900" />
+        <Link to="/" data-testid="nav-logo" className="flex items-center gap-2.5">
+          <img src="/logo.svg" alt="Garnavo logo" className="h-9 w-9 rounded-lg" />
           <span className="font-display text-lg font-bold tracking-tight">
-            Gar<span className="text-neutral-900">na</span>
-            <span className="rounded bg-[#101826] px-1 text-white">vo</span>
+            Garnavo
           </span>
         </Link>
         <nav className="hidden items-center gap-7 md:flex">

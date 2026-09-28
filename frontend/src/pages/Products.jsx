@@ -12,6 +12,7 @@ export default function Products() {
   const [error, setError] = useState(false);
   const [params, setParams] = useSearchParams();
   const brand = params.get("brand");
+  const q = (params.get("q") || "").trim().toLowerCase();
 
   const load = () => {
     setLoading(true);
@@ -24,8 +25,16 @@ export default function Products() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(load, [brand]);
 
+  const visible = q
+    ? products.filter((p) =>
+        [p.name, p.brand, p.category, p.tagline, p.description]
+          .filter(Boolean)
+          .some((f) => f.toLowerCase().includes(q))
+      )
+    : products;
+
   const activeBrand = BRAND_LIST.find((b) => b.name === brand);
-  const pageTitle = activeBrand ? `${activeBrand.name} Products` : "All Antivirus Products";
+  const pageTitle = activeBrand ? `${activeBrand.name} Products` : q ? `Results for "${params.get("q")}"` : "All Antivirus Products";
   const pageDesc = activeBrand
     ? `Browse genuine ${activeBrand.name} security software with fast email delivery and a 30-day money-back guarantee.`
     : "Browse our full catalog of genuine antivirus license keys — Norton, Webroot and McAfee — with fast email delivery and a 30-day money-back guarantee.";
@@ -91,9 +100,9 @@ export default function Products() {
           </div>
         ) : error ? (
           <LoadError label="products" onRetry={load} />
-        ) : products.length > 0 ? (
+        ) : visible.length > 0 ? (
           <div data-testid="products-grid" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {products.map((p) => (<ProductCard key={p.id} product={p} />))}
+            {visible.map((p) => (<ProductCard key={p.id} product={p} />))}
           </div>
         ) : (
           <div className="rounded-xl border border-dashed border-neutral-300 p-16 text-center text-neutral-600">

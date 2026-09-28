@@ -13,26 +13,26 @@ export default function Activation() {
         keywords="antivirus activation, license activation, activation service, independent reseller"
       />
 
-      {/* Hero */}
+      {/* Hero — compact so brand cards are visible on open */}
       <section className="border-b border-neutral-200 bg-white">
-        <div className="container-page py-12 md:py-16 text-center">
+        <div className="container-page py-8 md:py-10 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700">
             <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation service
           </div>
-          <h1 className="mx-auto mt-5 max-w-2xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl">
+          <h1 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl">
             Activate your license
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-neutral-600">
-            Choose the brand of the license you purchased from us. Our team will walk you through activation on the official portal — usually within 5–15 minutes.
+          <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-neutral-600">
+            Pick the brand you purchased — our team walks you through activation on the official portal, usually within 5–15 minutes.
           </p>
-          <p className="mx-auto mt-4 max-w-xl rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-600">
-            Garnavo is an independent reseller — not affiliated with Norton, Webroot or McAfee. Activation is always completed on the brand's official website.
+          <p className="mx-auto mt-4 max-w-xl text-[11px] leading-relaxed text-neutral-400">
+            Garnavo is an independent reseller — not affiliated with the brands shown below. Activation is always completed on the brand's official website.
           </p>
         </div>
       </section>
 
       {/* Brand picker */}
-      <section className="container-page py-14 md:py-20">
+      <section className="container-page py-8 md:py-12">
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
           {BRAND_LIST.map((b) => (
             <Link
@@ -75,7 +75,7 @@ export default function Activation() {
         </div>
       </section>
 
-      <BrandDisclaimer />
+      <BrandDisclaimer variant="light" />
     </div>
   );
 }

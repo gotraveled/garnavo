@@ -46,8 +46,18 @@ export default function OrderSuccess() {
         <div className="mt-10 rounded-xl border border-orange-200 bg-orange-50 p-6 text-left">
           <div className="font-display font-semibold">What happens next?</div>
           <p className="mt-2 text-sm text-neutral-700">
-            Our team is verifying your payment and will email your genuine license(s) to <span className="font-semibold">{order?.customer_email || "your email"}</span> within 5–15 minutes. If you don't see it, check your spam folder.
+            Our team is verifying your payment and will email your license(s) to <span className="font-semibold">{order?.customer_email || "your email"}</span> within <strong>5–15 minutes</strong>.
           </p>
+          <p className="mt-3 text-sm text-neutral-700">
+            <strong>Haven't received it after 30 minutes?</strong> Please check your spam/junk folder first — automated delivery emails sometimes land there. If it's still missing, call your account manager directly:
+          </p>
+          <div className="mt-4 flex flex-col items-start gap-3 rounded-lg border border-orange-300 bg-white p-4 sm:flex-row sm:items-center">
+            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#101826] font-display text-sm font-bold text-[#FF9776]">KJ</div>
+            <div>
+              <div className="text-sm font-semibold text-neutral-900">Mr. Kevin Jense — Account Manager</div>
+              <a href="tel:+18449667866" data-testid="success-support-phone" className="font-display text-lg font-bold text-[#FF6B45] hover:underline">+1 (844) 966-7866</a>
+            </div>
+          </div>
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">

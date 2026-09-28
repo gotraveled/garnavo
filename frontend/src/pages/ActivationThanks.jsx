@@ -102,7 +102,7 @@ export default function ActivationThanks() {
           </div>
         </div>
       </section>
-      <BrandDisclaimer />
+      <BrandDisclaimer variant="light" />
     </div>
   );
 }

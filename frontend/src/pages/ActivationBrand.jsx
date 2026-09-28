@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
@@ -31,6 +31,15 @@ export default function ActivationBrand() {
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
   const [formStartTime] = useState(Date.now());
+  const formRef = useRef(null);
+
+  // Focus the activation form on load — landing page: form first, no scrolling needed
+  useEffect(() => {
+    const t = setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    }, 60);
+    return () => clearTimeout(t);
+  }, [brandSlug]);
 
   const loadProducts = () => {
     if (!brand) { setLoading(false); return; }
@@ -151,27 +160,23 @@ export default function ActivationBrand() {
         </div>
       </section>
 
-      {/* Prominent independence notice — required for ad/brand compliance */}
+      {/* Independence notice — kept light, compliance only */}
       <div className="border-b border-neutral-200 bg-white">
-        <div className="container-page py-4">
-          <div className="mx-auto flex max-w-3xl items-start gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4 text-left">
-            <ShieldCheck size={20} weight="duotone" className="mt-0.5 shrink-0 brand-text" />
-            <p className="text-sm text-neutral-700">
-              <strong className="font-semibold text-neutral-900">This is not the official {brand.name} website.</strong>{" "}
-              Garnavo is an independent reseller and is not affiliated with or endorsed by {brand.entity}.
-              Activation itself is always completed on the official {brand.name} portal at{" "}
-              <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline">{brand.portalName}</a>.
-              This page simply offers an optional activation service for that process.
-            </p>
-          </div>
+        <div className="container-page py-3">
+          <p className="mx-auto max-w-3xl text-center text-[11px] leading-relaxed text-neutral-400">
+            This is not the official {brand.name} website. Garnavo is an independent reseller and is not affiliated with or endorsed by {brand.entity}.
+            Activation is completed on the official {brand.name} portal at{" "}
+            <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-neutral-600">{brand.portalName}</a> —
+            this page simply offers an optional activation service for that process.
+          </p>
         </div>
       </div>
 
       {/* Main split: Form | Instructions */}
-      <section className="container-page py-10 md:py-14 lg:py-20">
+      <section className="container-page py-8 md:py-10 lg:py-14">
         <div className="grid gap-8 md:gap-10 lg:grid-cols-2 lg:gap-16">
           {/* LEFT: Activation form */}
-          <div id="activation-form" className="order-2 lg:order-1">
+          <div id="activation-form" ref={formRef} className="order-1 scroll-mt-32 lg:order-1">
             <div className="sticky top-24 rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.15)] sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="grid h-11 w-11 place-items-center rounded-lg brand-bg" style={{ color: brand.textOn }}>
@@ -228,16 +233,9 @@ export default function ActivationBrand() {
                   <ArrowRight size={18} weight="bold" />
                 </button>
 
-                <div className="mt-4 rounded-lg bg-neutral-50 p-3 text-xs text-neutral-600">
-                  <p className="font-semibold mb-1">Terms &amp; Conditions:</p>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>By submitting, you agree to receive activation service via email and phone</li>
-                    <li>We are an independent reseller and not affiliated with {brand.entity}</li>
-                    <li>{brand.name} is a trademark of {brand.entity}</li>
-                    <li>Your information is used solely for activation service</li>
-                    <li>We do not sell or share your personal data with third parties</li>
-                  </ul>
-                </div>
+                <p className="mt-4 text-[11px] leading-relaxed text-neutral-400">
+                  By submitting, you agree to receive activation service via email and phone. We are an independent reseller and not affiliated with {brand.entity}. {brand.name} is a trademark of {brand.entity}. Your information is used solely for activation service and is never sold or shared with third parties.
+                </p>
               </form>
 
               <div className="mt-6 flex items-center justify-center gap-4 border-t border-neutral-200 pt-4 text-xs text-neutral-600">
@@ -253,7 +251,7 @@ export default function ActivationBrand() {
           </div>
 
           {/* RIGHT: Instructions */}
-          <div className="order-1 lg:order-2">
+          <div className="order-2 lg:order-2">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">How activation works</div>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Activate on the official {brand.name} site</h2>
             <p className="mt-3 text-neutral-600">Activation always happens on {brand.name}'s official portal. Follow the steps below yourself, or submit your details and our team will guide you through them.</p>
@@ -333,7 +331,7 @@ export default function ActivationBrand() {
         </div>
       </section>
 
-      <BrandDisclaimer />
+      <BrandDisclaimer variant="light" />
     </div>
   );
 }

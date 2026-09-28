@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, MapPin, Envelope } from "@phosphor-icons/react";
+import { MapPin, Envelope } from "@phosphor-icons/react";
 import BrandDisclaimer from "@/components/BrandDisclaimer";
 import { BRAND_LIST } from "@/lib/brands";
 
@@ -8,8 +8,8 @@ export default function Footer() {
     <footer className="border-t border-neutral-200 bg-neutral-50">
       <div className="container-page grid gap-10 py-16 md:grid-cols-5">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2">
-            <ShieldCheck size={22} weight="duotone" />
+          <div className="flex items-center gap-2.5">
+            <img src="/logo.svg" alt="Garnavo logo" className="h-9 w-9 rounded-lg" />
             <span className="font-display text-lg font-bold">Garnavo</span>
           </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">

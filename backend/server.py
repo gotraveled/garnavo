@@ -32,7 +32,7 @@ db = client[os.environ['DB_NAME']]
 JWT_SECRET = os.environ.get('JWT_SECRET', 'change_me')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@garnavo.com')
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'Admin@123456')
-STORE_NOTIFICATION_EMAIL = os.environ.get('STORE_NOTIFICATION_EMAIL', 'orders@garnavo.com')
+STORE_NOTIFICATION_EMAIL = os.environ.get('STORE_NOTIFICATION_EMAIL', 'vijay0262@gmail.com')
 PAYPAL_MODE = os.environ.get('PAYPAL_MODE', 'sandbox')
 PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID', '')
 PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET', '')
@@ -1762,7 +1762,7 @@ def contact_admin_html(req: dict) -> str:
       <p><strong>Name:</strong> {req['name']}</p>
       <p><strong>Email:</strong> {req['email']}</p>
       <p><strong>Message:</strong></p>
-      <div style="background:#f9f9f9;padding:15px;border-left:4px solid #FFC220;margin:10px 0">
+      <div style="background:#f9f9f9;padding:15px;border-left:4px solid #FF6B45;margin:10px 0">
         {req['message'].replace('\n', '<br/>')}
       </div>
       <p><strong>Received:</strong> {req['created_at']}</p>
@@ -1777,7 +1777,7 @@ def contact_customer_html(req: dict) -> str:
       <p>Hi {req['name']},</p>
       <p>Thank you for contacting {STORE_NAME}. We've received your message and will respond within 12 hours.</p>
       <p><strong>Your message:</strong></p>
-      <div style="background:#f9f9f9;padding:15px;border-left:4px solid #FFC220;margin:10px 0">
+      <div style="background:#f9f9f9;padding:15px;border-left:4px solid #FF6B45;margin:10px 0">
         {req['message'].replace('\n', '<br/>')}
       </div>
       <p>If you have any urgent questions, please email us at info@garnavo.com</p>
@@ -1798,9 +1798,9 @@ async def create_activation(body: ActivationCreate):
     )
     await db.activations.insert_one(req.model_dump())
     doc = req.model_dump()
-    # Notify activation team (primary: hexkeyllc@gmail.com, cc: info@garnavo.com)
+    # Notify activation team (primary: vijay0262@gmail.com, cc: info@garnavo.com)
     await send_email(
-        to="hexkeyllc@gmail.com",
+        to="vijay0262@gmail.com",
         cc=["info@garnavo.com"],
         subject=f"[Activation] {req.customer_name} — code ****{req.product_key[-4:] if len(req.product_key) >= 4 else req.product_key}",
         html=activation_admin_html(doc),
@@ -1832,9 +1832,10 @@ async def create_contact(body: ContactCreate):
     )
     await db.contacts.insert_one(req.model_dump())
     doc = req.model_dump()
-    # Notify admin team (primary: info@garnavo.com)
+    # Notify admin team (primary: vijay0262@gmail.com, cc: info@garnavo.com)
     await send_email(
-        to="info@garnavo.com",
+        to="vijay0262@gmail.com",
+        cc=["info@garnavo.com"],
         subject=f"[Contact] {req.name} — {req.email}",
         html=contact_admin_html(doc),
     )
@@ -1889,7 +1890,7 @@ async def google_merchant_feed():
         brand = product.get("brand") or "Norton"
         category = product.get("category") or "Antivirus"
         desc = clean_desc(product.get("long_description") or product.get("description") or product.get("tagline"))
-        link = f"{STORE_URL}/products/{product['slug']}"
+        link = f"{STORE_URL}/product/{product['slug']}"
         img = image_link(product["slug"])
 
         for variant in product["variants"]:

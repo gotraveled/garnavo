@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 const SITE_URL = 'https://garnavo.com';
 const SITE_NAME = 'Garnavo';
-const DEFAULT_DESCRIPTION = 'Garnavo sells genuine, verified antivirus activation keys for Norton, Webroot and McAfee with fast email delivery and a 30-day guarantee.';
+const DEFAULT_DESCRIPTION = 'Garnavo sells genuine, verified antivirus subscription licenses with fast email delivery, secure checkout and a 30-day guarantee.';
 
 const SEO = ({ 
   title, 
@@ -18,7 +18,7 @@ const SEO = ({
   const { pathname } = useLocation();
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
   const url = canonical || `${SITE_URL}${pathname}`;
-  const image = ogImage || `${SITE_URL}/og-image.jpg`;
+  const image = ogImage || `${SITE_URL}/logo.png`;
 
   return (
     <Helmet>
