@@ -4,13 +4,6 @@ Allow: /
 # Sitemap
 Sitemap: https://garnavo.com/sitemap.xml
 
-# Disallow admin areas
+# Disallow admin area only — utility pages use noindex meta tags instead,
+# so crawlers can still see the directive.
 Disallow: /admin/
-Disallow: /cart
-Disallow: /checkout
-
-# Disallow tracking parameters
-Disallow: /*?*
-
-# Crawl-delay (optional, be respectful)
-Crawl-delay: 1

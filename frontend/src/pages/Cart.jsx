@@ -4,6 +4,7 @@ import { useCart } from "@/lib/cart";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
 import ProductBox from "@/components/ProductBox";
+import SEO from "@/components/SEO";
 import { Trash, Minus, Plus, ArrowRight, ShoppingBag, Tag, X } from "@phosphor-icons/react";
 
 export default function Cart() {
@@ -50,6 +51,7 @@ export default function Cart() {
 
   return (
     <div className="container-page py-14">
+      <SEO title="Your Cart | Garnavo" noindex />
       <h1 className="font-display text-3xl font-bold sm:text-4xl">Your cart</h1>
       <div className="mt-8 grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">

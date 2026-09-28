@@ -5,6 +5,7 @@ import { useCart } from "@/lib/cart";
 import { useCustomer } from "@/lib/auth";
 import { toast } from "sonner";
 import ProductBox from "@/components/ProductBox";
+import SEO from "@/components/SEO";
 import { LockKey, ShieldCheck, Envelope, CheckCircle, Tag, UserCircle } from "@phosphor-icons/react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
@@ -109,6 +110,7 @@ export default function Checkout() {
 
   return (
     <div className="container-page py-14">
+      <SEO title="Checkout | Garnavo" noindex />
       <h1 className="font-display text-3xl font-bold sm:text-4xl">Checkout</h1>
       <div className="mt-8 grid gap-10 lg:grid-cols-5">
         <div className="lg:col-span-3">

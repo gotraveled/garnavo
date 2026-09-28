@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { api } from "@/lib/api";
+import SEO from "@/components/SEO";
 import { CheckCircle, Envelope, Clock, Package } from "@phosphor-icons/react";
 
 export default function OrderSuccess() {
@@ -15,6 +16,7 @@ export default function OrderSuccess() {
 
   return (
     <div className="container-page py-20">
+      <SEO title="Order Confirmed | Garnavo" noindex />
       <div className="mx-auto max-w-2xl text-center">
         <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-100 text-emerald-700">
           <CheckCircle size={40} weight="duotone" />

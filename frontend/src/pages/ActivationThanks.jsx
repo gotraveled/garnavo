@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { CheckCircle, ChatCircleDots, Envelope, ShieldCheck, ArrowRight, Clock, Headset, LockKey } from "@phosphor-icons/react";
 import BrandDisclaimer from "@/components/BrandDisclaimer";
+import SEO from "@/components/SEO";
 
 export default function ActivationThanks() {
   const openChat = () => {
@@ -14,6 +15,7 @@ export default function ActivationThanks() {
 
   return (
     <div className="bg-neutral-50">
+      <SEO title="Activation Request Received | Garnavo" noindex />
       {/* Trust badges header strip */}
       <div className="border-b border-neutral-200 bg-white">
         <div className="container-page flex items-center justify-center py-4">

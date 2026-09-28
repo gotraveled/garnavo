@@ -30,6 +30,7 @@ import ActivationThanks from "@/pages/ActivationThanks";
 import CategoryPage from "@/pages/CategoryPage";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
+import NotFound from "@/pages/NotFound";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -83,6 +84,7 @@ function AppShell() {
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   );
