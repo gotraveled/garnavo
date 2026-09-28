@@ -5,7 +5,7 @@ import SEO from "@/components/SEO";
 import { Envelope, ChatCircle, MapPin, Phone } from "@phosphor-icons/react";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "", honeypot: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "", honeypot: "" });
   const [submitting, setSubmitting] = useState(false);
   const [formStartTime] = useState(Date.now());
   
@@ -52,9 +52,9 @@ export default function Contact() {
     
     setSubmitting(true);
     try {
-      await api.post("/contact", { name: form.name, email: form.email, message: form.message });
+      await api.post("/contact", { name: form.name, email: form.email, phone: form.phone, message: form.message });
       toast.success("Message sent!", { description: "We'll reply within 12 hours." });
-      setForm({ name: "", email: "", message: "", honeypot: "" });
+      setForm({ name: "", email: "", phone: "", message: "", honeypot: "" });
     } catch (error) {
       toast.error("Failed to send message", { description: "Please try again later." });
     } finally {
@@ -146,6 +146,10 @@ export default function Contact() {
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Email</label>
               <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} data-testid="contact-email-input" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
             </div>
+          </div>
+          <div>
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Phone number <span className="normal-case text-neutral-400">(optional)</span></label>
+            <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} data-testid="contact-phone-input" placeholder="+1 (555) 123-4567" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
           </div>
           <div>
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Message</label>

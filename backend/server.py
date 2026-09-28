@@ -1209,9 +1209,10 @@ async def send_email(to: str, subject: str, html: str, cc: Optional[List[str]] =
     except Exception as e:
         err = str(e)
         logger.error(f"Email send failed (to={to}, cc={cc}): {err}")
-        # Fallback: if failing because of unverified CC recipients (Resend testing mode),
-        # retry once without CC so the primary recipient still receives the email.
-        if cc and "verify a domain" in err.lower():
+        # Fallback: if failing because of unverified CC recipients or Resend testing
+        # mode restrictions, retry once without CC so the primary recipient still
+        # receives the email.
+        if cc and ("verify a domain" in err.lower() or "testing emails" in err.lower()):
             try:
                 params2 = {"from": SENDER_EMAIL, "to": [to], "subject": subject, "html": html}
                 result = await asyncio.to_thread(resend.Emails.send, params2)
@@ -1717,6 +1718,7 @@ class ActivationRequest(BaseModel):
 class ContactCreate(BaseModel):
     name: str
     email: str
+    phone: Optional[str] = None
     message: str
 
 class ContactRequest(BaseModel):
@@ -1724,6 +1726,7 @@ class ContactRequest(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
     email: str
+    phone: Optional[str] = None
     message: str
     status: str = "pending"  # pending, responded
     created_at: str = Field(default_factory=now_iso)
@@ -1756,11 +1759,13 @@ def activation_customer_html(req: dict) -> str:
     """
 
 def contact_admin_html(req: dict) -> str:
+    phone_html = f"<p><strong>Phone:</strong> {req['phone']}</p>" if req.get('phone') else ""
     return f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;padding:20px">
       <h2>New contact form submission</h2>
       <p><strong>Name:</strong> {req['name']}</p>
       <p><strong>Email:</strong> {req['email']}</p>
+      {phone_html}
       <p><strong>Message:</strong></p>
       <div style="background:#f9f9f9;padding:15px;border-left:4px solid #FF6B45;margin:10px 0">
         {req['message'].replace('\n', '<br/>')}
@@ -1828,6 +1833,7 @@ async def create_contact(body: ContactCreate):
     req = ContactRequest(
         name=body.name.strip(),
         email=body.email.lower(),
+        phone=body.phone.strip() if body.phone else None,
         message=body.message.strip(),
     )
     await db.contacts.insert_one(req.model_dump())
