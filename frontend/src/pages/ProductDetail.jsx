@@ -72,22 +72,22 @@ export default function ProductDetail() {
     "@type": "Product",
     "name": product.name,
     "description": product.description,
-    "image": product.image_url || "https://buyinstantkeys.com/products/default.jpg",
+    "image": product.image_url || "https://garnavo.com/products/default.jpg",
     "brand": {
       "@type": "Brand",
       "name": brandName
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://buyinstantkeys.com/product/${product.slug}`,
+      "url": `https://garnavo.com/product/${product.slug}`,
       "priceCurrency": "USD",
       "price": variant.price,
       "priceValidUntil": "2026-12-31",
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": "BuyInstantKeys",
-        "url": "https://buyinstantkeys.com"
+        "name": "Garnavo",
+        "url": "https://garnavo.com"
       }
     }
   };
@@ -139,19 +139,19 @@ export default function ProductDetail() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://buyinstantkeys.com"
+        "item": "https://garnavo.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Products",
-        "item": "https://buyinstantkeys.com/products"
+        "item": "https://garnavo.com/products"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": product.name,
-        "item": `https://buyinstantkeys.com/product/${product.slug}`
+        "item": `https://garnavo.com/product/${product.slug}`
       }
     ]
   };
@@ -159,7 +159,7 @@ export default function ProductDetail() {
   return (
     <>
       <SEO
-        title={`${product.name} - ${variant.label} | BuyInstantKeys`}
+        title={`${product.name} - ${variant.label} | Garnavo`}
         description={`${product.description} Buy ${product.name} with fast email delivery, a genuine ${brandName} license key, and a 30-day money-back guarantee.`}
         keywords={`${product.name}, ${product.category}, ${brandName} license key, ${product.tagline}, genuine ${brandName} software, buy ${product.name} online`}
         ogType="product"
@@ -400,7 +400,7 @@ export default function ProductDetail() {
       {/* Trust Badges Section */}
       <section className="mt-16">
         <div className="rounded-2xl bg-neutral-900 p-8 md:p-12 text-center">
-          <h2 className="font-display text-2xl font-bold text-white">Why Buy From BuyInstantKeys?</h2>
+          <h2 className="font-display text-2xl font-bold text-white">Why Buy From Garnavo?</h2>
           <p className="mt-3 text-neutral-300">Genuine keys, fast delivery, real service</p>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[

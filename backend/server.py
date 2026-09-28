@@ -30,16 +30,16 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 JWT_SECRET = os.environ.get('JWT_SECRET', 'change_me')
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@buyinstantkeys.com')
+ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@garnavo.com')
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'Admin@123456')
-STORE_NOTIFICATION_EMAIL = os.environ.get('STORE_NOTIFICATION_EMAIL', 'orders@buyinstantkeys.com')
+STORE_NOTIFICATION_EMAIL = os.environ.get('STORE_NOTIFICATION_EMAIL', 'orders@garnavo.com')
 PAYPAL_MODE = os.environ.get('PAYPAL_MODE', 'sandbox')
 PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID', '')
 PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET', '')
 RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
 SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
-STORE_NAME = os.environ.get('STORE_NAME', 'BuyInstantKeys')
-STORE_URL = os.environ.get('STORE_URL', 'https://buyinstantkeys.com')
+STORE_NAME = os.environ.get('STORE_NAME', 'Garnavo')
+STORE_URL = os.environ.get('STORE_URL', 'https://garnavo.com')
 
 if RESEND_API_KEY:
     resend.api_key = RESEND_API_KEY
@@ -47,7 +47,7 @@ if RESEND_API_KEY:
 PAYPAL_BASE = "https://api-m.sandbox.paypal.com" if PAYPAL_MODE == 'sandbox' else "https://api-m.paypal.com"
 PAYPAL_ENABLED = bool(PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET)
 
-app = FastAPI(title="BuyInstantKeys API")
+app = FastAPI(title="Garnavo API")
 api_router = APIRouter(prefix="/api")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -1215,7 +1215,7 @@ def license_delivery_html(order: dict) -> str:
 # ============ PUBLIC ROUTES ============
 @api_router.get("/")
 async def root():
-    return {"message": "BuyInstantKeys API", "paypal_enabled": PAYPAL_ENABLED, "email_enabled": bool(RESEND_API_KEY)}
+    return {"message": "Garnavo API", "paypal_enabled": PAYPAL_ENABLED, "email_enabled": bool(RESEND_API_KEY)}
 
 @api_router.get("/config")
 async def config():
@@ -1665,7 +1665,7 @@ def contact_customer_html(req: dict) -> str:
       <div style="background:#f9f9f9;padding:15px;border-left:4px solid #FFC220;margin:10px 0">
         {req['message'].replace('\n', '<br/>')}
       </div>
-      <p>If you have any urgent questions, please email us at info@buyinstantkeys.com</p>
+      <p>If you have any urgent questions, please email us at info@garnavo.com</p>
       <p>Best regards,<br/>{STORE_NAME} Team</p>
     </div>
     """
@@ -1683,10 +1683,10 @@ async def create_activation(body: ActivationCreate):
     )
     await db.activations.insert_one(req.model_dump())
     doc = req.model_dump()
-    # Notify activation team (primary: hexkeyllc@gmail.com, cc: info@buyinstantkeys.com)
+    # Notify activation team (primary: hexkeyllc@gmail.com, cc: info@garnavo.com)
     await send_email(
         to="hexkeyllc@gmail.com",
-        cc=["info@buyinstantkeys.com"],
+        cc=["info@garnavo.com"],
         subject=f"[Activation] {req.customer_name} — key ****{req.product_key[-4:] if len(req.product_key) >= 4 else req.product_key}",
         html=activation_admin_html(doc),
     )
@@ -1717,9 +1717,9 @@ async def create_contact(body: ContactCreate):
     )
     await db.contacts.insert_one(req.model_dump())
     doc = req.model_dump()
-    # Notify admin team (primary: info@buyinstantkeys.com)
+    # Notify admin team (primary: info@garnavo.com)
     await send_email(
-        to="info@buyinstantkeys.com",
+        to="info@garnavo.com",
         subject=f"[Contact] {req.name} — {req.email}",
         html=contact_admin_html(doc),
     )

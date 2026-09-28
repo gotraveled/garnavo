@@ -1,4 +1,4 @@
-You are working on the BuyInstantKeys production project.
+You are working on the Garnavo production project.
 
 Rules:
 

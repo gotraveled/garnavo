@@ -114,8 +114,8 @@ export default function ActivationBrand() {
   return (
     <div style={theme} className="bg-neutral-50">
       <SEO
-        title={`${brand.name} Activation Service — Independent Reseller | BuyInstantKeys`}
-        description={`${brand.name} activation service from BuyInstantKeys, an independent reseller. We walk you through activating the ${brand.name} key you bought from us on the official ${brand.portalName} portal.`}
+        title={`${brand.name} Activation Service — Independent Reseller | Garnavo`}
+        description={`${brand.name} activation service from Garnavo, an independent reseller. We walk you through activating the ${brand.name} key you bought from us on the official ${brand.portalName} portal.`}
         keywords={`${brand.name} activation, ${brand.name} activation service, ${brand.name} product key, independent reseller activation, ${brand.name} install`}
       />
 
@@ -139,7 +139,7 @@ export default function ActivationBrand() {
         <div className="container-page py-8 md:py-12">
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700 brand-border">
-              <Headset size={14} weight="fill" className="brand-text" /> BuyInstantKeys activation service
+              <Headset size={14} weight="fill" className="brand-text" /> Garnavo activation service
             </div>
             <h1 className="mt-5 font-display text-3xl font-black leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
               Activate your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> key
@@ -158,7 +158,7 @@ export default function ActivationBrand() {
             <ShieldCheck size={20} weight="duotone" className="mt-0.5 shrink-0 brand-text" />
             <p className="text-sm text-neutral-700">
               <strong className="font-semibold text-neutral-900">This is not the official {brand.name} website.</strong>{" "}
-              BuyInstantKeys is an independent reseller and is not affiliated with or endorsed by {brand.entity}.
+              Garnavo is an independent reseller and is not affiliated with or endorsed by {brand.entity}.
               Activation itself is always completed on the official {brand.name} portal at{" "}
               <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline">{brand.portalName}</a>.
               This page simply offers an optional activation service for that process.

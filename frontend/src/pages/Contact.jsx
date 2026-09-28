@@ -67,13 +67,13 @@ export default function Contact() {
     "@type": "ContactPage",
     "mainEntity": {
       "@type": "Organization",
-      "name": "BuyInstantKeys",
-      "url": "https://buyinstantkeys.com",
+      "name": "Garnavo",
+      "url": "https://garnavo.com",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+1-510-555-0123",
         "contactType": "customer service",
-        "email": "info@buyinstantkeys.com",
+        "email": "info@garnavo.com",
         "availableLanguage": "English",
         "areaServed": "US"
       },
@@ -91,9 +91,9 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Contact Us | BuyInstantKeys"
-        description="Get in touch with BuyInstantKeys for license key inquiries, order questions, and activation service for Norton, Webroot and McAfee. We respond within 12 hours."
-        keywords="Contact BuyInstantKeys, customer service, license key inquiries, order inquiry, activation service, contact"
+        title="Contact Us | Garnavo"
+        description="Get in touch with Garnavo for license key inquiries, order questions, and activation service for Norton, Webroot and McAfee. We respond within 12 hours."
+        keywords="Contact Garnavo, customer service, license key inquiries, order inquiry, activation service, contact"
         schema={[contactSchema]}
       />
       <div className="container-page py-10 md:py-14">
@@ -106,7 +106,7 @@ export default function Contact() {
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <Envelope size={22} weight="duotone" />
             <div className="mt-3 font-display font-semibold">Email us</div>
-            <a href="mailto:info@buyinstantkeys.com" className="text-sm text-neutral-600 hover:text-neutral-900">info@buyinstantkeys.com</a>
+            <a href="mailto:info@garnavo.com" className="text-sm text-neutral-600 hover:text-neutral-900">info@garnavo.com</a>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <MapPin size={22} weight="duotone" />

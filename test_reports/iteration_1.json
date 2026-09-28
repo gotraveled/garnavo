@@ -1,5 +1,5 @@
 {
-  "summary": "First-finish smoke tests for BuyInstantKeys Norton store. Backend (13 endpoints) and full frontend E2E (home → products → filter → product detail (variant switch) → cart → checkout (simulate payment) → order-success → track → admin login → admin deliver → re-track) all passed. Order lifecycle pending → paid → delivered validated end-to-end, license key surfaced on customer track page. One MEDIUM backend spec deviation found: delivering an already-delivered order returns 200 instead of 400.",
+  "summary": "First-finish smoke tests for Garnavo Norton store. Backend (13 endpoints) and full frontend E2E (home → products → filter → product detail (variant switch) → cart → checkout (simulate payment) → order-success → track → admin login → admin deliver → re-track) all passed. Order lifecycle pending → paid → delivered validated end-to-end, license key surfaced on customer track page. One MEDIUM backend spec deviation found: delivering an already-delivered order returns 200 instead of 400.",
   "tested_scope": ["backend", "frontend", "auth", "integration"],
   "passed": [
     "GET /api/config → paypal_enabled=false, paypal_client_id='', paypal_mode='sandbox'",

@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 
-const SITE_URL = 'https://buyinstantkeys.com';
-const SITE_NAME = 'BuyInstantKeys';
+const SITE_URL = 'https://garnavo.com';
+const SITE_NAME = 'Garnavo';
 const DEFAULT_DESCRIPTION = 'Buy genuine antivirus license keys — Norton, Webroot & McAfee. Fast email delivery, secure checkout, 30-day money-back guarantee.';
 
 const SEO = ({ 

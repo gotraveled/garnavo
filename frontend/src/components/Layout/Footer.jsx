@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
             <ShieldCheck size={22} weight="duotone" />
-            <span className="font-display text-lg font-bold">BuyInstantKeys</span>
+            <span className="font-display text-lg font-bold">Garnavo</span>
           </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
             An independent digital software reseller. Genuine Norton, Webroot and McAfee license keys with fast email delivery and a 30-day money-back guarantee.
@@ -22,7 +22,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <Envelope size={16} weight="duotone" className="text-neutral-500" />
-              <a href="mailto:info@buyinstantkeys.com" className="hover:text-neutral-900">info@buyinstantkeys.com</a>
+              <a href="mailto:info@garnavo.com" className="hover:text-neutral-900">info@garnavo.com</a>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function Footer() {
 
       <div className="border-t border-neutral-200 bg-neutral-100">
         <div className="container-page flex flex-col items-center justify-between gap-3 py-5 text-xs text-neutral-500 md:flex-row">
-          <div>© {new Date().getFullYear()} BuyInstantKeys. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} Garnavo. All rights reserved.</div>
           <div className="flex flex-wrap items-center gap-4">
             <Link to="/privacy-policy" className="hover:text-neutral-900">Privacy</Link>
             <Link to="/terms" className="hover:text-neutral-900">Terms</Link>

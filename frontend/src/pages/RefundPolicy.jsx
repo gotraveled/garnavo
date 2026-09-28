@@ -18,9 +18,9 @@ export default function RefundPolicy() {
   return (
     <>
       <SEO
-        title="Refund Policy | BuyInstantKeys - 30 Day Money Back Guarantee"
-        description="Read BuyInstantKeys refund policy. 30-day money-back guarantee for license keys. Easy refund process if your key doesn't work."
-        keywords="BuyInstantKeys refund policy, license key refund, 30 day money back guarantee, money back guarantee, refund process"
+        title="Refund Policy | Garnavo - 30 Day Money Back Guarantee"
+        description="Read Garnavo refund policy. 30-day money-back guarantee for license keys. Easy refund process if your key doesn't work."
+        keywords="Garnavo refund policy, license key refund, 30 day money back guarantee, money back guarantee, refund process"
       />
       <PolicyLayout
         title="Refund Policy"
@@ -29,7 +29,7 @@ export default function RefundPolicy() {
         sections={SECTIONS}
       >
       <Section id="overview" title="1. Overview">
-        <p>At BuyInstantKeys, customer satisfaction is our top priority. This Refund Policy explains when and how you may request a refund for digital License keys purchased through our website at buyinstantkeys.com. This policy is part of our <a href="/terms" className="underline">Terms and Conditions</a>.</p>
+        <p>At Garnavo, customer satisfaction is our top priority. This Refund Policy explains when and how you may request a refund for digital License keys purchased through our website at garnavo.com. This policy is part of our <a href="/terms" className="underline">Terms and Conditions</a>.</p>
         <p>Because Products sold on our Site are digital License keys (not physical goods), refund conditions are specific to the nature of software licenses. Please read this policy carefully before placing an Order.</p>
       </Section>
 
@@ -68,7 +68,7 @@ export default function RefundPolicy() {
       <Section id="process" title="5. How to request a refund">
         <p>To request a refund, follow these steps:</p>
         <ol className="list-decimal pl-6">
-          <li>Email us at <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a> with the subject line "Refund Request — [Order Number]"</li>
+          <li>Email us at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a> with the subject line "Refund Request — [Order Number]"</li>
           <li>Include your full name, the email used at checkout, and the Order number</li>
           <li>Describe the issue in detail. Attach screenshots if available (e.g., the error message from the activation page)</li>
           <li>Do NOT initiate a chargeback with your bank before contacting us — chargebacks make refund resolution slower and may result in account suspension</li>
@@ -105,9 +105,9 @@ export default function RefundPolicy() {
 
       <Section id="contact" title="10. Contact">
         <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>BuyInstantKeys — Refunds Team</strong><br />
+          <strong>Garnavo — Refunds Team</strong><br />
           Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>
+          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
       </Section>
     </PolicyLayout>

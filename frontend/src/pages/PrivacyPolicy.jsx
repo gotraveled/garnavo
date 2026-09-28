@@ -24,28 +24,28 @@ export default function PrivacyPolicy() {
   return (
     <>
       <SEO
-        title="Privacy Policy | BuyInstantKeys"
-        description="Read BuyInstantKeys privacy policy. Learn how we collect, use, and protect your personal information when purchasing license keys."
-        keywords="BuyInstantKeys privacy policy, data protection, personal information security, customer data protection"
+        title="Privacy Policy | Garnavo"
+        description="Read Garnavo privacy policy. Learn how we collect, use, and protect your personal information when purchasing license keys."
+        keywords="Garnavo privacy policy, data protection, personal information security, customer data protection"
       />
       <PolicyLayout
         title="Privacy Policy"
-        subtitle="How we collect, use, and protect your personal information when you purchase license keys from BuyInstantKeys."
+        subtitle="How we collect, use, and protect your personal information when you purchase license keys from Garnavo."
         lastUpdated="February 1, 2026"
         sections={SECTIONS}
       >
       <Section id="intro" title="1. Introduction">
-        <p>BuyInstantKeys ("we", "our", "us", "the Company") is committed to protecting the privacy of our customers, visitors, and users of our website located at buyinstantkeys.com (the "Site"). This Privacy Policy explains what personal information we collect, how we use and share that information, and the rights you have regarding your personal data.</p>
+        <p>Garnavo ("we", "our", "us", "the Company") is committed to protecting the privacy of our customers, visitors, and users of our website located at garnavo.com (the "Site"). This Privacy Policy explains what personal information we collect, how we use and share that information, and the rights you have regarding your personal data.</p>
         <p>By accessing or using the Site, submitting an order, or otherwise providing us with your personal information, you agree to the collection and use of information in accordance with this Privacy Policy. If you do not agree with our policies and practices, do not use the Site.</p>
       </Section>
 
       <Section id="who-we-are" title="2. Who we are">
-        <p>BuyInstantKeys is a digital software reseller registered in the United States. Our business address is:</p>
+        <p>Garnavo is a digital software reseller registered in the United States. Our business address is:</p>
         <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          BuyInstantKeys<br />
+          Garnavo<br />
           Westwood Street, Hayward, California, 94544<br />
           United States<br />
-          Email: <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>
+          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
         <p>We are the data controller responsible for your personal information collected through this Site.</p>
       </Section>
@@ -105,7 +105,7 @@ export default function PrivacyPolicy() {
           <li><strong>Email delivery:</strong> Resend, Inc. delivers our transactional emails (order confirmations, license keys, activation communications). See <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline">Resend's privacy policy</a></li>
           <li><strong>Hosting & infrastructure:</strong> our website is hosted on secure cloud servers with industry-standard access controls and encryption at rest</li>
           <li><strong>Analytics providers:</strong> we may use privacy-friendly analytics tools that aggregate anonymized usage data</li>
-          <li><strong>Legal & safety:</strong> we may disclose information to comply with a legal obligation, court order, subpoena, or to protect the rights, property, or safety of BuyInstantKeys, our customers, or others</li>
+          <li><strong>Legal & safety:</strong> we may disclose information to comply with a legal obligation, court order, subpoena, or to protect the rights, property, or safety of Garnavo, our customers, or others</li>
           <li><strong>Business transfers:</strong> in the event of a merger, acquisition, or sale of assets, customer information may be transferred as part of that transaction (you will be notified in advance)</li>
         </ul>
         <p><strong>We do NOT share your data with third-party advertisers for the purposes of targeted advertising without your explicit consent.</strong></p>
@@ -129,7 +129,7 @@ export default function PrivacyPolicy() {
           <li><strong>Marketing preferences:</strong> retained until you opt out</li>
           <li><strong>Website analytics:</strong> aggregated anonymized data may be retained indefinitely</li>
         </ul>
-        <p>You may request earlier deletion by contacting <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>. We will honor such requests unless we are required to retain the data by law.</p>
+        <p>You may request earlier deletion by contacting <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>. We will honor such requests unless we are required to retain the data by law.</p>
       </Section>
 
       <Section id="rights" title="9. Your privacy rights">
@@ -143,15 +143,15 @@ export default function PrivacyPolicy() {
           <li><strong>Withdraw consent:</strong> withdraw consent for processing based on consent at any time</li>
           <li><strong>Complain:</strong> lodge a complaint with a supervisory authority</li>
         </ul>
-        <p>To exercise these rights, email us at <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a> with the subject line "Privacy Request". We will respond within 30 days.</p>
+        <p>To exercise these rights, email us at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a> with the subject line "Privacy Request". We will respond within 30 days.</p>
       </Section>
 
       <Section id="children" title="10. Children's privacy">
-        <p>Our Site is not directed to individuals under the age of 18, and we do not knowingly collect personal information from children under 13 (or the equivalent minimum age in the relevant jurisdiction). If we learn that we have collected personal information from a child without verified parental consent, we will delete that information as quickly as possible. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>.</p>
+        <p>Our Site is not directed to individuals under the age of 18, and we do not knowingly collect personal information from children under 13 (or the equivalent minimum age in the relevant jurisdiction). If we learn that we have collected personal information from a child without verified parental consent, we will delete that information as quickly as possible. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>
       </Section>
 
       <Section id="international" title="11. International data transfers">
-        <p>BuyInstantKeys is located in the United States. If you access our Site from outside the U.S., your personal information may be transferred to, stored, and processed in the U.S. or other countries where our service providers operate. These countries may have data protection laws different from those in your country. Where required, we implement appropriate safeguards (such as Standard Contractual Clauses) to ensure your data receives adequate protection.</p>
+        <p>Garnavo is located in the United States. If you access our Site from outside the U.S., your personal information may be transferred to, stored, and processed in the U.S. or other countries where our service providers operate. These countries may have data protection laws different from those in your country. Where required, we implement appropriate safeguards (such as Standard Contractual Clauses) to ensure your data receives adequate protection.</p>
       </Section>
 
       <Section id="security" title="12. Data security">
@@ -163,7 +163,7 @@ export default function PrivacyPolicy() {
           <li>Password hashing with industry-standard algorithms (bcrypt)</li>
           <li>Regular security reviews and dependency updates</li>
         </ul>
-        <p>Despite these efforts, no system can be guaranteed 100% secure. If you believe your account or information has been compromised, please contact us immediately at <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>.</p>
+        <p>Despite these efforts, no system can be guaranteed 100% secure. If you believe your account or information has been compromised, please contact us immediately at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>
       </Section>
 
       <Section id="california" title="13. California residents (CCPA / CPRA)">
@@ -176,7 +176,7 @@ export default function PrivacyPolicy() {
           <li>The right to limit the use of sensitive personal information</li>
           <li>The right to non-discrimination for exercising these rights</li>
         </ul>
-        <p>To submit a CCPA/CPRA request, email <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a> with the subject "CCPA Request".</p>
+        <p>To submit a CCPA/CPRA request, email <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a> with the subject "CCPA Request".</p>
       </Section>
 
       <Section id="eu" title="14. EU/UK residents (GDPR)">
@@ -190,9 +190,9 @@ export default function PrivacyPolicy() {
       <Section id="contact" title="16. Contact us">
         <p>For any questions, concerns, or requests related to this Privacy Policy or your personal information, please contact us:</p>
         <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>BuyInstantKeys — Privacy Team</strong><br />
+          <strong>Garnavo — Privacy Team</strong><br />
           Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>
+          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
       </Section>
     </PolicyLayout>

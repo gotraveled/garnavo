@@ -30,8 +30,8 @@ export default function Navbar() {
         <Link to="/" data-testid="nav-logo" className="flex items-center gap-2">
           <ShieldCheck size={26} weight="duotone" className="text-neutral-900" />
           <span className="font-display text-lg font-bold tracking-tight">
-            Buy<span className="text-neutral-900">Instant</span>
-            <span className="rounded bg-neutral-900 px-1 text-white">Keys</span>
+            Gar<span className="text-neutral-900">na</span>
+            <span className="rounded bg-neutral-900 px-1 text-white">vo</span>
           </span>
         </Link>
         <nav className="hidden items-center gap-7 md:flex">

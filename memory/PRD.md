@@ -1,7 +1,7 @@
-# BuyInstantKeys — Norton License Store
+# Garnavo — Norton License Store
 
 ## Original Problem Statement
-> "i have website hosted on github /vercel domain name buyinstantkeys.com i want to create a online store to sell norton products and license key will be delivered using email delivery in 5-15 minutes after payment received, I need to create the complete online store with 10-15 norton products"
+> "i have website hosted on github /vercel domain name garnavo.com i want to create a online store to sell norton products and license key will be delivered using email delivery in 5-15 minutes after payment received, I need to create the complete online store with 10-15 norton products"
 
 ## User Choices
 - Payment: PayPal
@@ -41,7 +41,7 @@
 - Reseed via `SEED_VERSION` bump (currently 2026-02-v3)
 
 ## Admin Credentials
-- Email: `admin@buyinstantkeys.com`
+- Email: `admin@garnavo.com`
 - Password: `Admin@123456`
 
 ## Coupon Codes (seeded)

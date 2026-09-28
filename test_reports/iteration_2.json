@@ -38,7 +38,7 @@
   ],
   "updated_files": ["/app/backend/tests/backend_test.py"],
   "success_rate": {"backend": "100% (15/15)", "frontend": "100% (all requested testids and flows verified)"},
-  "test_credentials": "admin@buyinstantkeys.com / Admin@123456",
+  "test_credentials": "admin@garnavo.com / Admin@123456",
   "seed_data_creation": "Test orders created with customer_email TEST_coupon@example.com and TEST_buyer/x/y@e.com; admin coupon TEST10 create/delete cycle self-cleans.",
   "retest_needed": false,
   "main_agent_can_self_test": true,

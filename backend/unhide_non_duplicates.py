@@ -25,7 +25,7 @@ MONGO_URL = os.environ.get("MONGO_URL") or os.environ.get("MONGODB_URL")
 if not MONGO_URL:
     raise SystemExit("Set MONGO_URL or MONGODB_URL environment variable.")
 
-db_name = "buyinstantkeys"
+db_name = "garnavo"
 if MONGO_URL.startswith("mongodb+srv://") or MONGO_URL.startswith("mongodb://"):
     try:
         from urllib.parse import urlparse

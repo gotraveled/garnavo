@@ -4,7 +4,7 @@ import pytest
 import requests
 
 BASE_URL = os.environ.get("REACT_APP_BACKEND_URL", "").rstrip("/") or "https://norton-keys-shop.preview.emergentagent.com"
-ADMIN_EMAIL = "admin@buyinstantkeys.com"
+ADMIN_EMAIL = "admin@garnavo.com"
 ADMIN_PASSWORD = "Admin@123456"
 
 

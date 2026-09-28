@@ -9,7 +9,7 @@ export default function ActivationThanks() {
       if (window.Tawk_API && window.Tawk_API.maximize) { window.Tawk_API.maximize(); return; }
       if (window.Intercom) { window.Intercom("show"); return; }
     } catch (e) { /* ignore */ }
-    window.location.href = "mailto:info@buyinstantkeys.com?subject=Activation%20service&body=Hi%20BuyInstantKeys%20team%2C%0A%0AI%20need%20assistance%20activating%20my%20subscription.";
+    window.location.href = "mailto:info@garnavo.com?subject=Activation%20service&body=Hi%20Garnavo%20team%2C%0A%0AI%20need%20assistance%20activating%20my%20subscription.";
   };
 
   return (

@@ -100,5 +100,5 @@
     "Component Reuse: Prioritize Shadcn components. Create custom components matching Shadcn patterns when necessary.",
     "Toasts: Use Sonner for instant delivery notifications and cart updates."
   ],
-  "instructions_to_main_agent": "Implement a full e-commerce flow for BuyInstantKeys. Start with the marketing homepage featuring hero, trust badges, featured products, and how-it-works. Create product catalog, detailed product pages (with 1/3/5 device tiers), a shopping cart, and a secure checkout page. Also build an order tracking page and an admin dashboard for managing product keys. Ensure high contrast, professional typography (Outfit + IBM Plex Sans), and a secure, trustworthy aesthetic. The project uses .js files, so write React code without TypeScript annotations."
+  "instructions_to_main_agent": "Implement a full e-commerce flow for Garnavo. Start with the marketing homepage featuring hero, trust badges, featured products, and how-it-works. Create product catalog, detailed product pages (with 1/3/5 device tiers), a shopping cart, and a secure checkout page. Also build an order tracking page and an admin dashboard for managing product keys. Ensure high contrast, professional typography (Outfit + IBM Plex Sans), and a secure, trustworthy aesthetic. The project uses .js files, so write React code without TypeScript annotations."
 }

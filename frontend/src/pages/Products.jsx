@@ -34,8 +34,8 @@ export default function Products() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://buyinstantkeys.com" },
-      { "@type": "ListItem", "position": 2, "name": pageTitle, "item": `https://buyinstantkeys.com/products${brand ? "?brand=" + brand : ""}` },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://garnavo.com" },
+      { "@type": "ListItem", "position": 2, "name": pageTitle, "item": `https://garnavo.com/products${brand ? "?brand=" + brand : ""}` },
     ],
   };
 

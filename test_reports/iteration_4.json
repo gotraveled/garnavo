@@ -11,7 +11,7 @@
   "test_report_links": ["/app/backend/tests/test_activation.py", "/app/test_reports/pytest/activation_results.xml"],
   "action_items": [
     "Optional: Decide whether to keep HTML5 'required' (browser-native validation) or remove it to allow the 'Please complete all fields' toast to fire. Current UX is safe either way.",
-    "Optional: On thanks page 'Chat now' has no chat widget wired — falls back to mailto:info@buyinstantkeys.com. Working as designed."
+    "Optional: On thanks page 'Chat now' has no chat widget wired — falls back to mailto:info@garnavo.com. Working as designed."
   ],
   "critical_code_review_comments": [
     "server.py is now 1059 lines — consider splitting into routers (orders, admin, activation, coupons, banner) for maintainability.",
@@ -20,7 +20,7 @@
   ],
   "updated_files": ["/app/backend/tests/test_activation.py"],
   "success_rate": {"backend": "100% (8/8)", "frontend": "100% for critical flows"},
-  "test_credentials": "admin@buyinstantkeys.com / Admin@123456",
+  "test_credentials": "admin@garnavo.com / Admin@123456",
   "seed_data_creation": "Created a few TEST_* activation records via API (not cleaned; harmless).",
   "retest_needed": false,
   "main_agent_can_self_test": true,

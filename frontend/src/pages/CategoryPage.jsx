@@ -55,9 +55,9 @@ export default function CategoryPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://buyinstantkeys.com" },
-      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://buyinstantkeys.com/products" },
-      { "@type": "ListItem", "position": 3, "name": brand.heroTitle, "item": `https://buyinstantkeys.com/category/${brand.slug}` },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://garnavo.com" },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://garnavo.com/products" },
+      { "@type": "ListItem", "position": 3, "name": brand.heroTitle, "item": `https://garnavo.com/category/${brand.slug}` },
     ],
   };
 
@@ -69,7 +69,7 @@ export default function CategoryPage() {
       "@type": "ListItem",
       "position": i + 1,
       "name": p.name,
-      "url": `https://buyinstantkeys.com/product/${p.slug}`,
+      "url": `https://garnavo.com/product/${p.slug}`,
     })),
   };
 
@@ -131,7 +131,7 @@ export default function CategoryPage() {
               <Info size={20} weight="duotone" className="mt-0.5 shrink-0 brand-text" />
               <p className="text-sm text-neutral-700">
                 <strong className="font-semibold text-neutral-900">Independent reseller.</strong>{" "}
-                BuyInstantKeys is not affiliated with or endorsed by {brand.entity}. {brand.name} is a trademark of its respective owner,
+                Garnavo is not affiliated with or endorsed by {brand.entity}. {brand.name} is a trademark of its respective owner,
                 used here only to identify the genuine product being sold. Your license is activated on the official {brand.name} portal at{" "}
                 <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline">{brand.portalName}</a>.
               </p>
@@ -170,7 +170,7 @@ export default function CategoryPage() {
         <section className="border-t border-neutral-200 bg-white py-16">
           <div className="container-page">
             <div className="mx-auto max-w-2xl text-center">
-              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Why BuyInstantKeys</div>
+              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Why Garnavo</div>
               <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Why buy your {brand.name} key from us</h2>
               <p className="mt-3 text-neutral-600">We're an independent reseller focused on one thing: genuine keys, delivered fast, at a fair price.</p>
             </div>

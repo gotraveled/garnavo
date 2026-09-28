@@ -18,16 +18,16 @@ export default function Disclaimer() {
   return (
     <PolicyLayout
       title="Disclaimer"
-      subtitle="Important legal notices about BuyInstantKeys, brand relationships, product information, and FTC compliance."
+      subtitle="Important legal notices about Garnavo, brand relationships, product information, and FTC compliance."
       lastUpdated="February 1, 2026"
       sections={SECTIONS}
     >
       <Section id="general" title="1. General disclaimer">
-        <p>The information provided on buyinstantkeys.com (the "Site") is intended for general informational and commercial purposes only. Use of the Site and any purchase made through it is at your own risk. BuyInstantKeys, its owners, employees, and agents make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the Site or the information, products, services, or related graphics contained on the Site.</p>
+        <p>The information provided on garnavo.com (the "Site") is intended for general informational and commercial purposes only. Use of the Site and any purchase made through it is at your own risk. Garnavo, its owners, employees, and agents make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the Site or the information, products, services, or related graphics contained on the Site.</p>
       </Section>
 
       <Section id="affiliation" title="2. No brand affiliation — we are an independent reseller">
-        <p><strong>BuyInstantKeys is an independent digital software reseller.</strong> We are <strong>not affiliated with, endorsed by, sponsored by, or in any way officially connected to</strong>:</p>
+        <p><strong>Garnavo is an independent digital software reseller.</strong> We are <strong>not affiliated with, endorsed by, sponsored by, or in any way officially connected to</strong>:</p>
         <ul className="list-disc pl-6">
           <li>NortonLifeLock / Gen Digital Inc. (Norton, LifeLock)</li>
           <li>Webroot / OpenText Corporation</li>
@@ -35,7 +35,7 @@ export default function Disclaimer() {
           <li>Any of the above entities' parents, subsidiaries, affiliates, or brands</li>
           <li>Any other software publisher, manufacturer, distributor, or brand referenced on this Site</li>
         </ul>
-        <p>Any use of brand names, product names, logos, or trademarks on this Site is solely for the identification of products offered for resale. This does not imply any partnership, endorsement, sponsorship, or affiliation with the trademark owner. BuyInstantKeys is a trusted reseller of digital license keys and is not licensed to represent or make statements on behalf of any brand.</p>
+        <p>Any use of brand names, product names, logos, or trademarks on this Site is solely for the identification of products offered for resale. This does not imply any partnership, endorsement, sponsorship, or affiliation with the trademark owner. Garnavo is a trusted reseller of digital license keys and is not licensed to represent or make statements on behalf of any brand.</p>
       </Section>
 
       <Section id="trademarks" title="3. Trademarks & intellectual property">
@@ -63,18 +63,18 @@ export default function Disclaimer() {
       </Section>
 
       <Section id="third-party" title="5. Third-party links & content">
-        <p>Our Site may contain links to third-party websites (such as the publishers' activation portals, PayPal, or product pages) that are not owned or controlled by BuyInstantKeys. We have no control over — and assume no responsibility for — the content, privacy policies, terms of use, or practices of any third-party websites. Accessing linked third-party sites is at your own risk.</p>
+        <p>Our Site may contain links to third-party websites (such as the publishers' activation portals, PayPal, or product pages) that are not owned or controlled by Garnavo. We have no control over — and assume no responsibility for — the content, privacy policies, terms of use, or practices of any third-party websites. Accessing linked third-party sites is at your own risk.</p>
       </Section>
 
       <Section id="no-warranty" title="6. No warranty for third-party software">
-        <p>The software License keys we sell are for third-party products created and maintained by other companies. BuyInstantKeys does not develop, host, update, patch, or provide direct assistance for the software itself. Any warranties relating to the software — including but not limited to malware detection accuracy, feature performance, uptime, or compatibility — are provided <strong>solely by the software publisher</strong> under its End-User License Agreement (EULA).</p>
+        <p>The software License keys we sell are for third-party products created and maintained by other companies. Garnavo does not develop, host, update, patch, or provide direct assistance for the software itself. Any warranties relating to the software — including but not limited to malware detection accuracy, feature performance, uptime, or compatibility — are provided <strong>solely by the software publisher</strong> under its End-User License Agreement (EULA).</p>
         <p>You are strongly encouraged to review the publisher's EULA before installation and activation. If the software fails to activate, we will assist you or issue a refund under our <a href="/refund-policy" className="underline">Refund Policy</a>. If the software has bugs, missing features, or fails to protect against a specific threat, that is a matter between you and the publisher.</p>
       </Section>
 
       <Section id="ftc" title="7. FTC compliance & material connections">
         <p>In accordance with the U.S. Federal Trade Commission's 16 CFR § 255 "Guides Concerning the Use of Endorsements and Testimonials in Advertising", we disclose the following:</p>
         <ul className="list-disc pl-6">
-          <li>BuyInstantKeys receives revenue from the sale of digital license keys featured on this Site. Every product page therefore represents a potential financial interest in your purchase decision.</li>
+          <li>Garnavo receives revenue from the sale of digital license keys featured on this Site. Every product page therefore represents a potential financial interest in your purchase decision.</li>
           <li>Product features and comparisons are based on the publisher's published information and are provided for identification and comparison only.</li>
           <li>Prices shown are our actual selling prices. We do not display inflated "compare-at" or percentage-off claims.</li>
           <li>We may offer promotional codes from time to time. Any savings apply to eligible orders and may not stack with other offers.</li>
@@ -90,14 +90,14 @@ export default function Disclaimer() {
       </Section>
 
       <Section id="eou" title="10. Errors, omissions & updates">
-        <p>While we strive to keep the Site up to date, we do not guarantee that all content is current or error-free. We reserve the right to add, modify, remove, or discontinue any content, product, or service at any time without prior notice. If you identify an error, we welcome feedback at <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>.</p>
+        <p>While we strive to keep the Site up to date, we do not guarantee that all content is current or error-free. We reserve the right to add, modify, remove, or discontinue any content, product, or service at any time without prior notice. If you identify an error, we welcome feedback at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>
       </Section>
 
       <Section id="contact" title="11. Contact">
         <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>BuyInstantKeys</strong><br />
+          <strong>Garnavo</strong><br />
           Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>
+          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
       </Section>
     </PolicyLayout>

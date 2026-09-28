@@ -13,7 +13,7 @@ export const api = axios.create({ baseURL: API });
 // Helps diagnose "products not loading": check the console for the resolved base.
 if (typeof window !== "undefined") {
   // eslint-disable-next-line no-console
-  console.info(`[BuyInstantKeys] API base: ${API || "/api (same-origin)"}`);
+  console.info(`[Garnavo] API base: ${API || "/api (same-origin)"}`);
 }
 
 api.interceptors.request.use((config) => {

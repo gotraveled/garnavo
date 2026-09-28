@@ -17,7 +17,7 @@ export default function DigitalDelivery() {
   return (
     <PolicyLayout
       title="How Digital Delivery Works"
-      subtitle="Everything you need to know about how BuyInstantKeys delivers license keys electronically — quickly and safely."
+      subtitle="Everything you need to know about how Garnavo delivers license keys electronically — quickly and safely."
       lastUpdated="February 1, 2026"
       sections={SECTIONS}
     >
@@ -59,7 +59,7 @@ export default function DigitalDelivery() {
           <li>Clear <strong>step-by-step activation instructions</strong> for Windows, macOS, iOS, and Android</li>
           <li>Our contact for any questions or activation service</li>
         </ul>
-        <p>All keys sold by BuyInstantKeys are <strong>genuine, unused, and legally acquired from trusted channels</strong>. Each key is verified before delivery.</p>
+        <p>All keys sold by Garnavo are <strong>genuine, unused, and legally acquired from trusted channels</strong>. Each key is verified before delivery.</p>
       </Section>
 
       <Section id="activation" title="5. Activating your license">
@@ -70,7 +70,7 @@ export default function DigitalDelivery() {
           <li><strong>McAfee</strong> — go to <a href="https://www.mcafee.com/activate" target="_blank" rel="noopener noreferrer" className="underline">mcafee.com/activate</a> and enter your activation code.</li>
         </ul>
         <p>In every case you'll sign in (or create an account), enter your key, and follow the on-screen prompts to download and install on your devices.</p>
-        <p>Questions? Our Activation Portal at <a href="/activation" className="underline">buyinstantkeys.com/activation</a> gives you step-by-step guidance, and our team is available at <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>.</p>
+        <p>Questions? Our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a> gives you step-by-step guidance, and our team is available at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>
       </Section>
 
       <Section id="no-shipping" title="6. No physical shipping">
@@ -81,16 +81,16 @@ export default function DigitalDelivery() {
         <p>If you don't see your delivery email within 24 hours after payment:</p>
         <ol className="list-decimal pl-6">
           <li><strong>Check your spam / junk / promotions folder.</strong> Email from an unfamiliar sender often lands there.</li>
-          <li><strong>Search your inbox</strong> for "BuyInstantKeys" or your order number (starts with BIK-).</li>
+          <li><strong>Search your inbox</strong> for "Garnavo" or your order number (starts with BIK-).</li>
           <li><strong>Whitelist</strong> our sending domain to prevent future emails from being filtered.</li>
           <li><strong>Track your order</strong> on our <a href="/track" className="underline">Track Order</a> page — you'll see current status and the license key if it has been delivered.</li>
-          <li><strong>Contact us</strong> at <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a> with your order number — we will resend or issue a full refund if needed.</li>
+          <li><strong>Contact us</strong> at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a> with your order number — we will resend or issue a full refund if needed.</li>
         </ol>
         <p>We will never share your license key with anyone other than the email address on your order. This is why entering the correct email at checkout is important.</p>
       </Section>
 
       <Section id="international" title="8. International customers">
-        <p>Because delivery is digital, BuyInstantKeys serves customers worldwide. Your license is region-appropriate and works on your device wherever you are. All prices are displayed in USD. Your bank or PayPal will convert the amount to your local currency at the current exchange rate; conversion fees may apply, depending on your card issuer.</p>
+        <p>Because delivery is digital, Garnavo serves customers worldwide. Your license is region-appropriate and works on your device wherever you are. All prices are displayed in USD. Your bank or PayPal will convert the amount to your local currency at the current exchange rate; conversion fees may apply, depending on your card issuer.</p>
       </Section>
 
       <Section id="environment" title="9. Environmental impact">
@@ -99,9 +99,9 @@ export default function DigitalDelivery() {
 
       <Section id="contact" title="10. Contact">
         <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>BuyInstantKeys — Delivery Team</strong><br />
+          <strong>Garnavo — Delivery Team</strong><br />
           Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>
+          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
       </Section>
     </PolicyLayout>

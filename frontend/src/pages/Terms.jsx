@@ -26,18 +26,18 @@ export default function Terms() {
   return (
     <>
       <SEO
-        title="Terms & Conditions | BuyInstantKeys"
-        description="Read BuyInstantKeys terms and conditions for license key purchases. Understand our refund policy, delivery terms, and customer rights."
-        keywords="BuyInstantKeys terms, license terms, refund policy terms, digital delivery terms, purchase conditions, terms and conditions"
+        title="Terms & Conditions | Garnavo"
+        description="Read Garnavo terms and conditions for license key purchases. Understand our refund policy, delivery terms, and customer rights."
+        keywords="Garnavo terms, license terms, refund policy terms, digital delivery terms, purchase conditions, terms and conditions"
       />
       <PolicyLayout
         title="Terms and Conditions"
-        subtitle="These Terms govern your use of BuyInstantKeys.com and the purchase of digital license keys through our platform."
+        subtitle="These Terms govern your use of Garnavo.com and the purchase of digital license keys through our platform."
         lastUpdated="February 1, 2026"
         sections={SECTIONS}
       >
       <Section id="acceptance" title="1. Acceptance of terms">
-        <p>Welcome to BuyInstantKeys ("we", "us", "our", or "the Company"). These Terms and Conditions ("Terms") constitute a legally binding agreement between you ("Customer", "you", "your") and BuyInstantKeys governing your access to and use of the website located at <strong>buyinstantkeys.com</strong> (the "Site") and any purchases you make through it.</p>
+        <p>Welcome to Garnavo ("we", "us", "our", or "the Company"). These Terms and Conditions ("Terms") constitute a legally binding agreement between you ("Customer", "you", "your") and Garnavo governing your access to and use of the website located at <strong>garnavo.com</strong> (the "Site") and any purchases you make through it.</p>
         <p>By accessing the Site, creating an account, submitting an order, or using any of our services, you acknowledge that you have read, understood, and agree to be bound by these Terms and by our Privacy Policy, Refund Policy, and Disclaimer, which are incorporated herein by reference. If you do not agree to these Terms, you must not use the Site.</p>
       </Section>
 
@@ -55,7 +55,7 @@ export default function Terms() {
       </Section>
 
       <Section id="products" title="4. Products & services">
-        <p>BuyInstantKeys is an independent digital software reseller. We source authentic license keys from authorized channels and deliver them electronically to our customers via email. All Products are sold as digital license keys only — <strong>no physical goods are shipped</strong>.</p>
+        <p>Garnavo is an independent digital software reseller. We source authentic license keys from authorized channels and deliver them electronically to our customers via email. All Products are sold as digital license keys only — <strong>no physical goods are shipped</strong>.</p>
         <p>The use of any Product is subject to the end-user license agreement (EULA) provided by the Publisher. It is your responsibility to review and accept the Publisher's EULA before using the software.</p>
         <p>Product descriptions, features, device counts, and subscription lengths are provided by us based on publicly available Publisher information. We do our best to ensure accuracy, but we do not warrant that all descriptions are current, complete, or error-free. In the event of a discrepancy, the Publisher's terms control.</p>
       </Section>
@@ -73,7 +73,7 @@ export default function Terms() {
       </Section>
 
       <Section id="activation" title="7. License activation & use">
-        <p>To activate your License, you must sign in to the Publisher's activation portal (e.g., my.norton.com, webroot.com/safe, or mcafee.com/activate) and enter the product key we deliver. Activation service is available through our Activation Portal at <a href="/activation" className="underline">buyinstantkeys.com/activation</a>.</p>
+        <p>To activate your License, you must sign in to the Publisher's activation portal (e.g., my.norton.com, webroot.com/safe, or mcafee.com/activate) and enter the product key we deliver. Activation service is available through our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a>.</p>
         <p>You are responsible for complying with the Publisher's EULA, including all restrictions on the number of devices, geographic use, personal vs. commercial use, and prohibitions on transfer or resale of the License.</p>
       </Section>
 
@@ -82,8 +82,8 @@ export default function Terms() {
       </Section>
 
       <Section id="ip" title="9. Intellectual property & trademarks">
-        <p>All content on the Site — including text, logos, images, graphics, and code — belongs to BuyInstantKeys or is used with permission, and is protected by copyright, trademark, and other intellectual property laws.</p>
-        <p><strong>Norton® and LifeLock® are registered trademarks of Gen Digital Inc. Webroot® is a registered trademark of OpenText Corporation. McAfee® is a registered trademark of McAfee LLC.</strong> BuyInstantKeys is not affiliated with, endorsed by, sponsored by, or in any way officially connected to any of these companies or their subsidiaries. All third-party product names, logos, and brands are property of their respective owners and are used solely for identification purposes.</p>
+        <p>All content on the Site — including text, logos, images, graphics, and code — belongs to Garnavo or is used with permission, and is protected by copyright, trademark, and other intellectual property laws.</p>
+        <p><strong>Norton® and LifeLock® are registered trademarks of Gen Digital Inc. Webroot® is a registered trademark of OpenText Corporation. McAfee® is a registered trademark of McAfee LLC.</strong> Garnavo is not affiliated with, endorsed by, sponsored by, or in any way officially connected to any of these companies or their subsidiaries. All third-party product names, logos, and brands are property of their respective owners and are used solely for identification purposes.</p>
       </Section>
 
       <Section id="prohibited" title="10. Prohibited uses">
@@ -105,12 +105,12 @@ export default function Terms() {
       </Section>
 
       <Section id="liability" title="12. Limitation of liability">
-        <p>To the maximum extent permitted by law, BuyInstantKeys and its officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation loss of profits, data, use, goodwill, or other intangible losses, arising out of or in connection with your use of the Site or any Product.</p>
+        <p>To the maximum extent permitted by law, Garnavo and its officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation loss of profits, data, use, goodwill, or other intangible losses, arising out of or in connection with your use of the Site or any Product.</p>
         <p>Our total aggregate liability to you for any claim arising out of or in connection with these Terms shall not exceed the amount you paid to us for the specific Order giving rise to the claim.</p>
       </Section>
 
       <Section id="indemnification" title="13. Indemnification">
-        <p>You agree to indemnify, defend, and hold harmless BuyInstantKeys and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorneys' fees) arising out of or in any way connected with (i) your access to or use of the Site, (ii) your violation of these Terms, (iii) your violation of any third-party right, or (iv) any content you submit through the Site.</p>
+        <p>You agree to indemnify, defend, and hold harmless Garnavo and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorneys' fees) arising out of or in any way connected with (i) your access to or use of the Site, (ii) your violation of these Terms, (iii) your violation of any third-party right, or (iv) any content you submit through the Site.</p>
       </Section>
 
       <Section id="termination" title="14. Termination">
@@ -122,7 +122,7 @@ export default function Terms() {
       </Section>
 
       <Section id="disputes" title="16. Dispute resolution">
-        <p>Before filing a claim, you agree to attempt to resolve any dispute informally by contacting <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>. We will respond within 30 days. If the dispute is not resolved within 60 days, either party may pursue formal legal action.</p>
+        <p>Before filing a claim, you agree to attempt to resolve any dispute informally by contacting <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>. We will respond within 30 days. If the dispute is not resolved within 60 days, either party may pursue formal legal action.</p>
         <p>Any dispute not resolved informally shall be settled by binding arbitration administered by the American Arbitration Association ("AAA") under its Consumer Arbitration Rules, in Alameda County, California. You waive any right to a jury trial and to participate in a class action.</p>
       </Section>
 
@@ -132,9 +132,9 @@ export default function Terms() {
 
       <Section id="contact" title="18. Contact">
         <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>BuyInstantKeys</strong><br />
+          <strong>Garnavo</strong><br />
           Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@buyinstantkeys.com" className="underline">info@buyinstantkeys.com</a>
+          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
       </Section>
     </PolicyLayout>

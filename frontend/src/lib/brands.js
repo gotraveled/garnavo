@@ -34,7 +34,7 @@ export const BRANDS = {
     ],
     about: [
       "Norton is one of the most recognized names in consumer cybersecurity, offering layered protection against viruses, malware, ransomware and online threats. Norton 360 plans add a Secure VPN, Password Manager, Dark Web Monitoring and cloud backup on top of core antivirus.",
-      "When you buy a Norton license key from BuyInstantKeys, you receive a genuine activation code by email — usually within 5–15 minutes. Enter it at my.norton.com to register the subscription to your own Norton account and download the software directly from Norton.",
+      "When you buy a Norton license key from Garnavo, you receive a genuine activation code by email — usually within 5–15 minutes. Enter it at my.norton.com to register the subscription to your own Norton account and download the software directly from Norton.",
     ],
     faqs: [
       { q: "How do I activate my Norton key?", a: "Sign in at my.norton.com, choose 'Enter a product key', paste your 25-character key, then download and install Norton on your device." },
@@ -75,7 +75,7 @@ export const BRANDS = {
     ],
     about: [
       "Webroot is a cloud-based security platform known for being extremely lightweight — scans complete in seconds and the software uses a fraction of the system resources of traditional antivirus. It protects against viruses, malware, ransomware, phishing and identity theft.",
-      "When you buy a Webroot license key from BuyInstantKeys, you receive a genuine 20-character keycode by email — usually within 5–15 minutes. Enter it at webroot.com/safe or your Webroot account to activate and download the software directly from Webroot.",
+      "When you buy a Webroot license key from Garnavo, you receive a genuine 20-character keycode by email — usually within 5–15 minutes. Enter it at webroot.com/safe or your Webroot account to activate and download the software directly from Webroot.",
     ],
     faqs: [
       { q: "How do I activate my Webroot keycode?", a: "Go to webroot.com/safe, enter your 20-character keycode, then download and run the installer. Activation takes just a couple of minutes." },
@@ -116,7 +116,7 @@ export const BRANDS = {
     ],
     about: [
       "McAfee is a long-standing leader in consumer security, offering all-in-one protection that combines antivirus, a Secure VPN, identity monitoring, a password manager and privacy tools across PCs, Macs and mobile devices.",
-      "When you buy a McAfee license key from BuyInstantKeys, you receive a genuine 25-character activation code by email — usually within 5–15 minutes. Enter it at mcafee.com/activate to register the subscription to your own McAfee account and download the software directly from McAfee.",
+      "When you buy a McAfee license key from Garnavo, you receive a genuine 25-character activation code by email — usually within 5–15 minutes. Enter it at mcafee.com/activate to register the subscription to your own McAfee account and download the software directly from McAfee.",
     ],
     faqs: [
       { q: "How do I activate my McAfee code?", a: "Go to mcafee.com/activate, enter your 25-character code, sign in or create a McAfee account, then download and install." },

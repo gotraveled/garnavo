@@ -33,7 +33,7 @@ export default function FAQ() {
   return (
     <>
       <SEO
-        title="Frequently Asked Questions | BuyInstantKeys"
+        title="Frequently Asked Questions | Garnavo"
         description="Find answers to common questions about buying antivirus license keys — Norton, Webroot & McAfee — activation, refunds, and more."
         keywords="antivirus FAQ, license key questions, activation service, refund policy, Norton Webroot McAfee, how to activate antivirus, key not working"
         schema={[faqSchema]}

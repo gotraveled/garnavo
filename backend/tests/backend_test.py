@@ -6,7 +6,7 @@ import requests
 BASE_URL = os.environ.get("REACT_APP_BACKEND_URL", "https://norton-keys-shop.preview.emergentagent.com").rstrip("/")
 API = f"{BASE_URL}/api"
 
-ADMIN_EMAIL = "admin@buyinstantkeys.com"
+ADMIN_EMAIL = "admin@garnavo.com"
 ADMIN_PASS = "Admin@123456"
 
 EXPECTED_NEW_SLUGS = [

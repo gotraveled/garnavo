@@ -26,12 +26,12 @@ export default function Home() {
   const homeSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "BuyInstantKeys",
-    "url": "https://buyinstantkeys.com",
+    "name": "Garnavo",
+    "url": "https://garnavo.com",
     "description": "Buy genuine antivirus license keys — Norton, Webroot & McAfee. Fast email delivery, secure checkout, 30-day money-back guarantee.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://buyinstantkeys.com/products?q={search_term_string}",
+      "target": "https://garnavo.com/products?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -39,9 +39,9 @@ export default function Home() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "BuyInstantKeys",
-    "url": "https://buyinstantkeys.com",
-    "logo": "https://buyinstantkeys.com/logo.png",
+    "name": "Garnavo",
+    "url": "https://garnavo.com",
+    "logo": "https://garnavo.com/logo.png",
     "description": "Independent digital software reseller specializing in genuine antivirus license keys — Norton, Webroot and McAfee — with fast email delivery.",
     "address": {
       "@type": "PostalAddress",
@@ -54,7 +54,7 @@ export default function Home() {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "info@buyinstantkeys.com",
+      "email": "info@garnavo.com",
       "availableLanguage": "English"
     }
   };
@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Buy Antivirus License Keys — Norton, Webroot & McAfee | BuyInstantKeys"
+        title="Buy Antivirus License Keys — Norton, Webroot & McAfee | Garnavo"
         description="Buy genuine antivirus license keys for Norton, Webroot & McAfee. Norton 360, Webroot Internet Security & McAfee Total Protection with fast email delivery and a 30-day money-back guarantee."
         keywords="antivirus license key, Norton key, Webroot keycode, McAfee activation code, buy antivirus online, genuine license keys, email delivery"
         schema={[homeSchema, organizationSchema]}
@@ -237,7 +237,7 @@ export default function Home() {
 
             <div className="mt-8 space-y-6 text-neutral-700">
               <p>
-                BuyInstantKeys is an independent digital software reseller. We sell genuine activation keys for leading antivirus brands — <strong>Norton</strong>, <strong>Webroot</strong> and <strong>McAfee</strong>. Every key is sourced from trusted channels, verified before delivery, and emailed to you within minutes of checkout.
+                Garnavo is an independent digital software reseller. We sell genuine activation keys for leading antivirus brands — <strong>Norton</strong>, <strong>Webroot</strong> and <strong>McAfee</strong>. Every key is sourced from trusted channels, verified before delivery, and emailed to you within minutes of checkout.
               </p>
 
               <h3 className="font-display text-xl font-semibold text-neutral-900">Norton — layered device & identity protection</h3>
@@ -255,7 +255,7 @@ export default function Home() {
                 McAfee Total Protection and McAfee+ plans cover everything from antivirus and VPN to identity monitoring and parental controls — with options for unlimited devices so the whole family stays protected.
               </p>
 
-              <h3 className="font-display text-xl font-semibold text-neutral-900">Why buy from BuyInstantKeys?</h3>
+              <h3 className="font-display text-xl font-semibold text-neutral-900">Why buy from Garnavo?</h3>
               <p>
                 We keep it simple: genuine keys, fast email delivery, secure PayPal checkout, and a 30-day money-back guarantee. If a key ever fails to activate, we'll replace it or refund you. Every order also includes our activation service to get you set up quickly.
               </p>
@@ -266,7 +266,7 @@ export default function Home() {
                   <div>
                     <div className="font-display font-semibold">Independent reseller — not affiliated with the brands</div>
                     <p className="mt-1 text-sm text-neutral-700">
-                      BuyInstantKeys is an independent reseller and is not affiliated with, endorsed by, or sponsored by Norton/Gen Digital, Webroot/OpenText, or McAfee. All trademarks belong to their respective owners and are used here only to identify the genuine products we sell.
+                      Garnavo is an independent reseller and is not affiliated with, endorsed by, or sponsored by Norton/Gen Digital, Webroot/OpenText, or McAfee. All trademarks belong to their respective owners and are used here only to identify the genuine products we sell.
                     </p>
                   </div>
                 </div>

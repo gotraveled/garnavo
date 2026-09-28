@@ -1,5 +1,5 @@
 {
-  "summary": "Iteration 3 testing: Order model phone+address, PayPal LIVE mode config, ProductBox hero on Home, product cards SVG, variant chip → box tier badge update, Checkout 4-field form, Footer & Contact address/email. Backend: 4/4 new pytest cases green (+ 15/15 iteration_2 unchanged). Frontend: all requested testids present; hero uses SVG ProductBox (no Unsplash); variant switch updates tier badge from '1 Year | 3 Devices' to '2 Years | 5 Devices'; footer and Contact contain 'Westwood Street, Hayward, California, 94544' and 'info@buyinstantkeys.com' mailto link; simulate-btn correctly hidden in PayPal LIVE mode.",
+  "summary": "Iteration 3 testing: Order model phone+address, PayPal LIVE mode config, ProductBox hero on Home, product cards SVG, variant chip → box tier badge update, Checkout 4-field form, Footer & Contact address/email. Backend: 4/4 new pytest cases green (+ 15/15 iteration_2 unchanged). Frontend: all requested testids present; hero uses SVG ProductBox (no Unsplash); variant switch updates tier badge from '1 Year | 3 Devices' to '2 Years | 5 Devices'; footer and Contact contain 'Westwood Street, Hayward, California, 94544' and 'info@garnavo.com' mailto link; simulate-btn correctly hidden in PayPal LIVE mode.",
   "tested_scope": ["backend", "frontend", "integration"],
   "backend_issues": {"critical": [], "minor": []},
   "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
@@ -16,8 +16,8 @@
     "/product/norton-360-deluxe: clicking variant chip[2] changes SVG tier badge text from '1 Year | 3 Devices' to '2 Years | 5 Devices'",
     "/checkout: has checkout-name-input, checkout-email-input, checkout-phone-input, checkout-address-input",
     "In LIVE PayPal mode: checkout-simulate-btn hidden; live PayPal buttons render (not clicked per instructions)",
-    "Footer on / contains 'Westwood Street', 'Hayward', 'California, 94544', 'info@buyinstantkeys.com'",
-    "/contact: 'Visit us' card shows full address incl. 'United States'; 'Email us' card links via mailto:info@buyinstantkeys.com"
+    "Footer on / contains 'Westwood Street', 'Hayward', 'California, 94544', 'info@garnavo.com'",
+    "/contact: 'Visit us' card shows full address incl. 'United States'; 'Email us' card links via mailto:info@garnavo.com"
   ],
   "test_report_links": ["/app/backend/tests/test_iteration3.py", "/app/test_reports/pytest/iter3_results.xml"],
   "action_items": [],
@@ -28,7 +28,7 @@
   ],
   "updated_files": ["/app/backend/tests/test_iteration3.py"],
   "success_rate": {"backend": "100% (4/4 new + 15/15 regression)", "frontend": "100% (all iteration-3 testids and flows verified)"},
-  "test_credentials": "admin@buyinstantkeys.com / Admin@123456",
+  "test_credentials": "admin@garnavo.com / Admin@123456",
   "seed_data_creation": "Test orders TEST_i3phone@example.com, TEST_i3nophone@example.com, TEST_i3paypal@example.com created; harmless.",
   "retest_needed": false,
   "main_agent_can_self_test": true,

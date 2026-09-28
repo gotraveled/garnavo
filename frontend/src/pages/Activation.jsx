@@ -8,8 +8,8 @@ export default function Activation() {
   return (
     <div className="bg-neutral-50">
       <SEO
-        title="Antivirus Activation Service — Norton, Webroot & McAfee | BuyInstantKeys"
-        description="Activation service for Norton, Webroot and McAfee license keys purchased from BuyInstantKeys, an independent reseller. Choose your brand for step-by-step activation."
+        title="Antivirus Activation Service — Norton, Webroot & McAfee | Garnavo"
+        description="Activation service for Norton, Webroot and McAfee license keys purchased from Garnavo, an independent reseller. Choose your brand for step-by-step activation."
         keywords="antivirus activation, Norton activation, Webroot activation, McAfee activation, license key activation, independent reseller"
       />
 
@@ -17,7 +17,7 @@ export default function Activation() {
       <section className="border-b border-neutral-200 bg-white">
         <div className="container-page py-12 md:py-16 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700">
-            <Headset size={14} weight="fill" className="text-neutral-900" /> BuyInstantKeys activation service
+            <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation service
           </div>
           <h1 className="mx-auto mt-5 max-w-2xl font-display text-4xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl">
             Activate your license key
@@ -26,7 +26,7 @@ export default function Activation() {
             Choose the brand of the license key you purchased from us. Our team will walk you through activation on the official portal — usually within 5–15 minutes.
           </p>
           <p className="mx-auto mt-4 max-w-xl rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-600">
-            BuyInstantKeys is an independent reseller — not affiliated with Norton, Webroot or McAfee. Activation is always completed on the brand's official website.
+            Garnavo is an independent reseller — not affiliated with Norton, Webroot or McAfee. Activation is always completed on the brand's official website.
           </p>
         </div>
       </section>
