@@ -136,6 +136,7 @@ class OrderCreate(BaseModel):
     customer_address: Optional[str] = None
     items: List[OrderItem]
     coupon_code: Optional[str] = None
+    account_password: Optional[str] = None  # if set, creates/links a customer account
 
 class Order(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -170,12 +171,36 @@ class OrderTrackQuery(BaseModel):
     email: EmailStr
     order_number: str
 
+class CustomerRegister(BaseModel):
+    name: str
+    email: EmailStr
+    password: str
+    phone: Optional[str] = None
+    address: Optional[str] = None
+
+class CustomerLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+class CustomerUpdate(BaseModel):
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    address: Optional[str] = None
+
 # ============ AUTH ============
 def create_token(email: str) -> str:
     payload = {
         "sub": email,
         "role": "admin",
         "exp": datetime.now(timezone.utc) + timedelta(days=7),
+    }
+    return pyjwt.encode(payload, JWT_SECRET, algorithm="HS256")
+
+def create_customer_token(email: str) -> str:
+    payload = {
+        "sub": email,
+        "role": "customer",
+        "exp": datetime.now(timezone.utc) + timedelta(days=30),
     }
     return pyjwt.encode(payload, JWT_SECRET, algorithm="HS256")
 
@@ -190,6 +215,52 @@ def verify_admin(authorization: Optional[str] = Header(None)) -> str:
         return payload["sub"]
     except pyjwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
+
+def verify_customer(authorization: Optional[str] = Header(None)) -> str:
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Missing token")
+    token = authorization.split(" ", 1)[1]
+    try:
+        payload = pyjwt.decode(token, JWT_SECRET, algorithms=["HS256"])
+        if payload.get("role") != "customer":
+            raise HTTPException(status_code=403, detail="Forbidden")
+        return payload["sub"]
+    except pyjwt.PyJWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+def _customer_public(doc: dict) -> dict:
+    return {
+        "id": doc["id"],
+        "name": doc["name"],
+        "email": doc["email"],
+        "phone": doc.get("phone"),
+        "address": doc.get("address"),
+        "created_at": doc.get("created_at"),
+    }
+
+async def _upsert_customer(email: str, name: str, password: str, phone: Optional[str] = None, address: Optional[str] = None):
+    """Create a customer account if one doesn't exist for this email. Existing
+    accounts keep their password; contact details are refreshed."""
+    email = email.lower().strip()
+    existing = await db.customers.find_one({"email": email})
+    if existing:
+        await db.customers.update_one({"email": email}, {"$set": {
+            "name": name or existing["name"],
+            "phone": phone or existing.get("phone"),
+            "address": address or existing.get("address"),
+        }})
+        return existing
+    doc = {
+        "id": str(uuid.uuid4()),
+        "name": name.strip(),
+        "email": email,
+        "password_hash": bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode(),
+        "phone": phone,
+        "address": address,
+        "created_at": now_iso(),
+    }
+    await db.customers.insert_one(doc)
+    return doc
 
 # ============ SEED DATA ============
 SEED_VERSION = "2026-09-v14-official-content"
@@ -1315,6 +1386,12 @@ async def create_order(body: OrderCreate):
         total=total,
     )
     await db.orders.insert_one(order.model_dump())
+    if body.account_password and len(body.account_password) >= 8:
+        await _upsert_customer(
+            email=body.customer_email, name=body.customer_name,
+            password=body.account_password,
+            phone=body.customer_phone, address=body.customer_address,
+        )
     return order
 
 @api_router.get("/orders/{order_id}", response_model=Order)
@@ -1416,6 +1493,44 @@ async def simulate_payment(order_id: str):
     await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
     await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']}", f"<p>Order {updated['order_number']} — ${updated['total']:.2f}</p>")
     return {"status": "paid", "order_id": order_id}
+
+# ============ CUSTOMER AUTH ============
+@api_router.post("/auth/register")
+async def customer_register(body: CustomerRegister):
+    email = body.email.lower().strip()
+    if len(body.password) < 8:
+        raise HTTPException(status_code=400, detail="Password must be at least 8 characters")
+    if await db.customers.find_one({"email": email}):
+        raise HTTPException(status_code=409, detail="An account already exists for this email. Sign in instead.")
+    doc = await _upsert_customer(email, body.name, body.password, body.phone, body.address)
+    return {"token": create_customer_token(email), "customer": _customer_public(doc)}
+
+@api_router.post("/auth/login")
+async def customer_login(body: CustomerLogin):
+    doc = await db.customers.find_one({"email": body.email.lower().strip()})
+    if not doc or not bcrypt.checkpw(body.password.encode(), doc["password_hash"].encode()):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    return {"token": create_customer_token(doc["email"]), "customer": _customer_public(doc)}
+
+@api_router.get("/auth/me")
+async def customer_me(email: str = Depends(verify_customer)):
+    doc = await db.customers.find_one({"email": email}, {"_id": 0, "password_hash": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Account not found")
+    return doc
+
+@api_router.patch("/auth/me")
+async def customer_update(body: CustomerUpdate, email: str = Depends(verify_customer)):
+    updates = {k: v for k, v in body.model_dump(exclude_unset=True).items() if v is not None}
+    if updates:
+        await db.customers.update_one({"email": email}, {"$set": updates})
+    doc = await db.customers.find_one({"email": email}, {"_id": 0, "password_hash": 0})
+    return doc
+
+@api_router.get("/auth/orders", response_model=List[Order])
+async def customer_orders(email: str = Depends(verify_customer)):
+    docs = await db.orders.find({"customer_email": email.lower()}, {"_id": 0}).sort("created_at", -1).to_list(200)
+    return [Order(**d) for d in docs]
 
 # ============ ADMIN ============
 @api_router.post("/admin/login")

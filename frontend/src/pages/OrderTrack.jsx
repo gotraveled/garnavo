@@ -45,7 +45,7 @@ export default function OrderTrack() {
               value={form.order_number}
               onChange={(e) => setForm({ ...form, order_number: e.target.value })}
               required
-              placeholder="BIK-20260201-ABC123"
+              placeholder="GNV-20260201-ABC123"
               className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40"
             />
           </div>

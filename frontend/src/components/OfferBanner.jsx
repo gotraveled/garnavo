@@ -1,68 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { api } from "@/lib/api";
-import { Lightning, Tag, X } from "@phosphor-icons/react";
-
-function useCountdown(expiresAt) {
-  const [remaining, setRemaining] = useState(computeRemaining(expiresAt));
-  useEffect(() => {
-    const t = setInterval(() => setRemaining(computeRemaining(expiresAt)), 1000);
-    return () => clearInterval(t);
-  }, [expiresAt]);
-  return remaining;
-}
-
-function computeRemaining(expiresAt) {
-  if (!expiresAt) return null;
-  const end = new Date(expiresAt).getTime();
-  const diff = Math.max(0, end - Date.now());
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  return { d, h, m, s, expired: diff === 0 };
-}
+import { ShieldCheck, Envelope, Headset, X } from "@phosphor-icons/react";
 
 export default function OfferBanner() {
-  const [banner, setBanner] = useState(null);
   const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    api.get("/banner").then((r) => setBanner(r.data)).catch(() => {});
-  }, []);
-
-  const remaining = useCountdown(banner?.expires_at);
-
-  if (!banner || dismissed) return null;
-
-  const digit = (n) => String(n).padStart(2, "0");
+  if (dismissed) return null;
 
   return (
     <div data-testid="offer-banner" className="relative bg-[#101826] text-white">
-      <div className="container-page flex flex-wrap items-center justify-center gap-4 py-3 text-sm md:justify-between">
-        <div className="flex items-center gap-3">
-          <div className="grid h-8 w-8 place-items-center rounded-md bg-[#FF9776] text-neutral-900">
-            <Lightning size={16} weight="fill" />
-          </div>
-          <div className="min-w-0">
-            <span className="mr-2 rounded bg-[#FF9776] px-2 py-0.5 font-display text-xs font-bold uppercase tracking-[0.18em] text-neutral-900">{banner.title}</span>
-            <span className="text-neutral-100">{banner.message}</span>
-          </div>
+      <div className="container-page flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 py-2.5 text-xs md:justify-between">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5">
+          <span className="inline-flex items-center gap-1.5 text-neutral-200">
+            <ShieldCheck size={14} weight="duotone" className="text-[#FF9776]" />
+            Independent reseller — every license verified before delivery
+          </span>
+          <span className="hidden items-center gap-1.5 text-neutral-200 sm:inline-flex">
+            <Envelope size={14} weight="duotone" className="text-[#FF9776]" />
+            Email delivery in 5–15 minutes
+          </span>
+          <Link to="/contact" className="hidden items-center gap-1.5 text-neutral-200 hover:text-white md:inline-flex">
+            <Headset size={14} weight="duotone" className="text-[#FF9776]" />
+            Real human support, replies within 12h
+          </Link>
         </div>
         <div className="flex items-center gap-3">
-          {banner.coupon_code && (
-            <Link to="/products" className="hidden items-center gap-1.5 rounded-md border border-[#FF9776] px-3 py-1 text-xs font-semibold text-[#FF9776] hover:bg-[#FF9776] hover:text-neutral-900 md:inline-flex">
-              <Tag size={12} weight="fill" /> Code: <span className="font-mono">{banner.coupon_code}</span>
-            </Link>
-          )}
-          {remaining && !remaining.expired && (
-            <div data-testid="offer-countdown" className="flex items-center gap-1.5 font-mono text-xs">
-              <span className="rounded bg-white/10 px-1.5 py-0.5">{digit(remaining.d)}d</span>
-              <span className="rounded bg-white/10 px-1.5 py-0.5">{digit(remaining.h)}h</span>
-              <span className="rounded bg-white/10 px-1.5 py-0.5">{digit(remaining.m)}m</span>
-              <span className="rounded bg-[#FF9776] px-1.5 py-0.5 text-neutral-900">{digit(remaining.s)}s</span>
-            </div>
-          )}
+          <Link to="/track" className="rounded border border-white/20 px-2.5 py-1 font-semibold text-white hover:bg-white/10">
+            Track order
+          </Link>
           <button
             data-testid="offer-banner-close"
             onClick={() => setDismissed(true)}

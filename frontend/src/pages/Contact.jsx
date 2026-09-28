@@ -96,30 +96,34 @@ export default function Contact() {
         schema={[contactSchema]}
       />
       <div className="container-page py-10 md:py-14">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Contact</div>
         <h1 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Talk to a real person</h1>
-        <p className="mt-3 text-neutral-600">Order hiccup, activation question, or just curious about a plan? Drop us a line and we'll get back to you, usually same day.</p>
+        <p className="mt-3 max-w-2xl text-neutral-600">Order hiccup, activation question, or just curious about a plan? Drop us a line and we'll get back to you, usually same day.</p>
 
-        <div className="mt-8 grid gap-4 sm:gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-neutral-200 bg-white p-6">
-            <Envelope size={22} weight="duotone" />
-            <div className="mt-3 font-display font-semibold">Email us</div>
-            <a href="mailto:info@garnavo.com" className="text-sm text-neutral-600 hover:text-neutral-900">info@garnavo.com</a>
+        <div className="mt-10 grid gap-8 lg:grid-cols-5">
+          {/* Left column: contact channels */}
+          <div className="space-y-4 lg:col-span-2">
+            <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-[#FF6B45]/10 text-[#FF6B45]"><Envelope size={20} weight="duotone" /></div>
+              <div className="mt-3 font-display font-semibold">Email us</div>
+              <a href="mailto:info@garnavo.com" className="text-sm font-medium text-neutral-900 hover:underline">info@garnavo.com</a>
+              <p className="mt-1 text-xs text-neutral-500">Fastest way to reach us — include your order number if you have one.</p>
+            </div>
+            <div className="rounded-xl border border-neutral-200 bg-white p-6">
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-[#FF6B45]/10 text-[#FF6B45]"><MapPin size={20} weight="duotone" /></div>
+              <div className="mt-3 font-display font-semibold">Registered address</div>
+              <div className="text-sm text-neutral-600">Westwood Street,<br />Hayward, California, 94544<br />United States</div>
+            </div>
+            <div className="rounded-xl border border-neutral-200 bg-[#101826] p-6 text-white">
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-[#FF9776]"><ChatCircle size={20} weight="duotone" /></div>
+              <div className="mt-3 font-display font-semibold">Response time</div>
+              <div className="text-sm text-neutral-300">Most messages answered same day — under 12 hours guaranteed.</div>
+            </div>
           </div>
-          <div className="rounded-xl border border-neutral-200 bg-white p-6">
-            <MapPin size={22} weight="duotone" />
-            <div className="mt-3 font-display font-semibold">Visit us</div>
-            <div className="text-sm text-neutral-600">Westwood Street,<br />Hayward, California, 94544<br />United States</div>
-          </div>
-          <div className="rounded-xl border border-neutral-200 bg-[#101826] p-6 text-white">
-            <div className="text-[#FF9776]"><ChatCircle size={22} weight="duotone" /></div>
-            <div className="mt-3 font-display font-semibold">Response time</div>
-            <div className="text-sm text-neutral-300">Under 12 hours guaranteed. Live chat Mon–Fri 9am–9pm UTC.</div>
-          </div>
-        </div>
 
-        <form onSubmit={submit} className="mt-10 space-y-4 rounded-xl border border-neutral-200 bg-white p-6">
+          {/* Right column: form */}
+          <form onSubmit={submit} className="space-y-4 rounded-xl border border-neutral-200 bg-white p-6 md:p-8 lg:col-span-3">
           {/* Honeypot field - hidden from users but visible to bots */}
           <div style={{ display: 'none' }}>
             <label htmlFor="honeypot">Leave this field empty</label>
@@ -150,8 +154,10 @@ export default function Contact() {
           <button data-testid="contact-submit-btn" type="submit" className="btn-primary" disabled={submitting}>
             {submitting ? "Sending..." : "Send message"}
           </button>
+          <p className="text-xs text-neutral-500">By contacting us you agree to our <a href="/privacy-policy" className="underline">Privacy Policy</a>. We only use your details to reply to your inquiry.</p>
         </form>
-        
+        </div>
+
         {/* SEO Content */}
         <div className="mt-16 rounded-xl border border-neutral-200 bg-neutral-50 p-8">
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Why Contact Us?</div>

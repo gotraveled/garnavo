@@ -46,6 +46,7 @@ export default function Footer() {
         <div>
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Resources</div>
           <ul className="mt-4 space-y-2 text-sm">
+            <li><Link to="/account" className="text-neutral-700 hover:text-neutral-900">My Account</Link></li>
             <li><Link to="/track" className="text-neutral-700 hover:text-neutral-900">Track Order</Link></li>
             <li><Link to="/digital-delivery" className="text-neutral-700 hover:text-neutral-900">How Digital Delivery Works</Link></li>
             <li><Link to="/faq" className="text-neutral-700 hover:text-neutral-900">FAQ</Link></li>

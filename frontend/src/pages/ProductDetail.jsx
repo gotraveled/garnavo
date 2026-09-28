@@ -72,7 +72,8 @@ export default function ProductDetail() {
     "@type": "Product",
     "name": product.name,
     "description": product.description,
-    "image": product.image_url || "https://garnavo.com/products/default.jpg",
+    "sku": product.slug,
+    "image": product.image_url || `https://garnavo.com/images/products/${product.slug}.png`,
     "brand": {
       "@type": "Brand",
       "name": brandName
@@ -84,6 +85,15 @@ export default function ProductDetail() {
       "price": variant.price,
       "priceValidUntil": "2026-12-31",
       "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "US",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "refundType": "https://schema.org/FullRefund",
+        "returnFees": "https://schema.org/FreeReturn"
+      },
       "seller": {
         "@type": "Organization",
         "name": "Garnavo",
@@ -178,11 +188,21 @@ export default function ProductDetail() {
             {[<ShieldCheck size={20} weight="duotone" />, <Envelope size={20} weight="duotone" />, <LockKey size={20} weight="duotone" />].map((icon, i) => (
               <div key={i} className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-white p-3 text-xs font-medium text-neutral-700">
                 <div className="text-neutral-900">{icon}</div>
-                {["Genuine key", "Fast delivery", "Secure checkout"][i]}
+                {["Genuine license", "Fast delivery", "Secure checkout"][i]}
               </div>
             ))}
           </div>
 
+          <div className="mt-8 rounded-xl border border-neutral-200 bg-white p-6">
+            <h3 className="font-display text-lg font-semibold">What's included</h3>
+            <ul className="mt-3 grid gap-2">
+              {product.features.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm text-neutral-700">
+                  <Check size={16} weight="bold" className="mt-0.5 shrink-0 text-emerald-600" /> {f}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div>
@@ -191,7 +211,8 @@ export default function ProductDetail() {
           <h1 data-testid="product-name" className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">{product.name}</h1>
           <p className="mt-3 text-lg text-neutral-600">{product.tagline}</p>
 
-          <div className="mt-8">
+          {/* Sticky purchase card */}
+          <div className="mt-8 rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_14px_36px_-18px_rgba(16,24,38,0.25)] lg:sticky lg:top-24">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Select plan</div>
             <div className="mt-3 space-y-2">
               {product.variants.map((v) => {
@@ -202,11 +223,11 @@ export default function ProductDetail() {
                     data-testid={`variant-${v.id}`}
                     onClick={() => setVariantId(v.id)}
                     className={`flex w-full items-center justify-between rounded-lg border p-4 text-left transition-colors ${
-                      active ? "border-neutral-900 bg-yellow-50" : "border-neutral-200 bg-white hover:border-neutral-400"
+                      active ? "border-[#FF6B45] bg-[#FF6B45]/10" : "border-neutral-200 bg-white hover:border-neutral-400"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`grid h-5 w-5 place-items-center rounded-full border-2 ${active ? "border-neutral-900 bg-[#101826] text-[#FF9776]" : "border-neutral-300"}`}>
+                      <div className={`grid h-5 w-5 place-items-center rounded-full border-2 ${active ? "border-[#FF6B45] bg-[#101826] text-[#FF9776]" : "border-neutral-300"}`}>
                         {active && <Check size={12} weight="bold" />}
                       </div>
                       <div>
@@ -218,36 +239,30 @@ export default function ProductDetail() {
                 );
               })}
             </div>
-          </div>
 
-          <div className="mt-8 flex items-baseline gap-3">
-            <span data-testid="product-price" className="font-display text-4xl font-bold">${variant.price.toFixed(2)}</span>
-            <span className="text-sm text-neutral-500">one-time · {variant.years} yr{variant.years > 1 ? 's' : ''}</span>
-          </div>
-          {variant.original_price > variant.price && (
-            <div className="mt-1.5 text-sm text-neutral-500">
-              Retail price <span className="line-through">${variant.original_price.toFixed(2)}</span>
+            <div className="mt-6 flex items-baseline gap-3">
+              <span data-testid="product-price" className="font-display text-4xl font-bold">${variant.price.toFixed(2)}</span>
+              <span className="text-sm text-neutral-500">one-time · {variant.years} yr{variant.years > 1 ? 's' : ''}</span>
             </div>
-          )}
+            {variant.original_price > variant.price && (
+              <div className="mt-1.5 text-sm text-neutral-500">
+                Retail price <span className="line-through">${variant.original_price.toFixed(2)}</span>
+              </div>
+            )}
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button data-testid="add-to-cart-btn" onClick={() => handleAdd(false)} className="btn-outline">Add to cart</button>
-            <button data-testid="buy-now-btn" onClick={() => handleAdd(true)} className="btn-primary">
-              Buy now <ArrowRight size={18} weight="bold" />
-            </button>
+            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
+              <button data-testid="add-to-cart-btn" onClick={() => handleAdd(false)} className="btn-outline flex-1 justify-center">Add to cart</button>
+              <button data-testid="buy-now-btn" onClick={() => handleAdd(true)} className="btn-primary flex-1 justify-center">
+                Buy now <ArrowRight size={18} weight="bold" />
+              </button>
+            </div>
+
+            <div className="mt-5 space-y-2 border-t border-neutral-100 pt-4 text-xs text-neutral-600">
+              <div className="flex items-center gap-2"><Envelope size={14} weight="duotone" className="text-neutral-900" /> Activation code emailed within 5–15 min</div>
+              <div className="flex items-center gap-2"><LockKey size={14} weight="duotone" className="text-neutral-900" /> Secure PayPal checkout</div>
+              <div className="flex items-center gap-2"><ShieldCheck size={14} weight="duotone" className="text-neutral-900" /> 30-day replace-or-refund guarantee</div>
+            </div>
           </div>
-
-          <div className="mt-10">
-            <h3 className="font-display text-lg font-semibold">What's included</h3>
-            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-              {product.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm text-neutral-700">
-                  <Check size={16} weight="bold" className="mt-0.5 shrink-0 text-emerald-600" /> {f}
-                </li>
-              ))}
-            </ul>
-          </div>
-
         </div>
       </div>
 

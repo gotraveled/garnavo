@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "sonner";
 import { CartProvider } from "@/lib/cart";
+import { CustomerProvider } from "@/lib/auth";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import OfferBanner from "@/components/OfferBanner";
@@ -14,6 +15,7 @@ import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import OrderSuccess from "@/pages/OrderSuccess";
 import OrderTrack from "@/pages/OrderTrack";
+import Account from "@/pages/Account";
 import FAQ from "@/pages/FAQ";
 import Contact from "@/pages/Contact";
 import RefundPolicy from "@/pages/RefundPolicy";
@@ -62,6 +64,8 @@ function AppShell() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/track" element={<OrderTrack />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/login" element={<Account />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
@@ -88,11 +92,13 @@ function App() {
   return (
     <HelmetProvider>
       <CartProvider>
+        <CustomerProvider>
         <BrowserRouter>
           <ScrollToTop />
           <AppShell />
           <Toaster position="top-right" richColors />
         </BrowserRouter>
+        </CustomerProvider>
       </CartProvider>
     </HelmetProvider>
   );

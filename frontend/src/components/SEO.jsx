@@ -12,7 +12,8 @@ const SEO = ({
   ogImage,
   ogType = 'website',
   schema,
-  canonical
+  canonical,
+  noindex = false
 }) => {
   const { pathname } = useLocation();
   const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
@@ -45,9 +46,9 @@ const SEO = ({
       <meta name="twitter:image" content={image} />
       
       {/* Additional SEO */}
-      <meta name="robots" content="index, follow" />
-      <meta name="googlebot" content="index, follow" />
-      <meta name="bingbot" content="index, follow" />
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+      <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
+      <meta name="bingbot" content={noindex ? "noindex, nofollow" : "index, follow"} />
       
       {/* Schema.org JSON-LD */}
       {schema && (

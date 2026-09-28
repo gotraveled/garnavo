@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "@/lib/api";
 import { useCart } from "@/lib/cart";
+import { useCustomer } from "@/lib/auth";
 import { toast } from "sonner";
 import ProductBox from "@/components/ProductBox";
-import { LockKey, ShieldCheck, Envelope, CheckCircle, Tag } from "@phosphor-icons/react";
+import { LockKey, ShieldCheck, Envelope, CheckCircle, Tag, UserCircle } from "@phosphor-icons/react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function Checkout() {
   const nav = useNavigate();
   const { items, subtotal, coupon, clearCart } = useCart();
+  const { customer, ready, login } = useCustomer();
   const [config, setConfig] = useState({ paypal_enabled: false });
   const [form, setForm] = useState({ customer_name: "", customer_email: "", customer_phone: "", customer_address: "" });
+  const [createAccount, setCreateAccount] = useState(false);
+  const [accountPassword, setAccountPassword] = useState("");
   const [order, setOrder] = useState(null);
   const [creating, setCreating] = useState(false);
   const [paying, setPaying] = useState(false);
@@ -19,6 +23,18 @@ export default function Checkout() {
   useEffect(() => {
     api.get("/config").then((r) => setConfig(r.data));
   }, []);
+
+  // Prefill delivery details for signed-in customers
+  useEffect(() => {
+    if (ready && customer) {
+      setForm({
+        customer_name: customer.name || "",
+        customer_email: customer.email || "",
+        customer_phone: customer.phone || "",
+        customer_address: customer.address || "",
+      });
+    }
+  }, [ready, customer]);
 
   useEffect(() => {
     if (items.length === 0 && !order) nav("/cart");
@@ -36,6 +52,10 @@ export default function Checkout() {
       toast.error("Please fill in name, email, phone and address.");
       return null;
     }
+    if (createAccount && accountPassword.length < 8) {
+      toast.error("Account password must be at least 8 characters.");
+      return null;
+    }
     setCreating(true);
     try {
       const payload = {
@@ -44,6 +64,7 @@ export default function Checkout() {
         customer_phone: form.customer_phone.trim(),
         customer_address: form.customer_address.trim(),
         coupon_code: coupon?.code || null,
+        account_password: createAccount ? accountPassword : null,
         items: items.map((i) => ({
           product_id: i.product_id, product_name: i.product_name,
           variant_id: i.variant_id, variant_label: i.variant_label,
@@ -62,7 +83,10 @@ export default function Checkout() {
     }
   };
 
-  const finalizeOrder = (orderId, orderNumber) => {
+  const finalizeOrder = async (orderId, orderNumber) => {
+    if (createAccount && accountPassword) {
+      try { await login(form.customer_email.trim().toLowerCase(), accountPassword); } catch { /* account exists or login hiccup — order still complete */ }
+    }
     clearCart();
     toast.success("Payment successful!");
     nav(`/order-success?id=${orderId}&num=${orderNumber}`);
@@ -75,7 +99,7 @@ export default function Checkout() {
     if (!o) { setPaying(false); return; }
     try {
       await api.post(`/orders/${o.id}/simulate-payment`);
-      finalizeOrder(o.id, o.order_number);
+      await finalizeOrder(o.id, o.order_number);
     } catch (e) {
       toast.error(e?.response?.data?.detail || "Payment failed");
     } finally {
@@ -91,6 +115,11 @@ export default function Checkout() {
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <h2 className="font-display text-lg font-semibold">Delivery details</h2>
             <p className="mt-1 text-sm text-neutral-600">Your license will be sent to this email within 5–15 minutes.</p>
+            {customer && (
+              <div className="mt-3 flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs font-medium text-neutral-700">
+                <UserCircle size={15} weight="duotone" /> Ordering as {customer.name} ({customer.email})
+              </div>
+            )}
             <div className="mt-6 grid gap-4">
               <div>
                 <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Full name</label>
@@ -141,6 +170,38 @@ export default function Checkout() {
                   className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
                 />
               </div>
+              {!customer && (
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4">
+                  <label className="flex cursor-pointer items-start gap-3">
+                    <input
+                      type="checkbox"
+                      data-testid="checkout-create-account"
+                      checked={createAccount}
+                      onChange={(e) => setCreateAccount(e.target.checked)}
+                      disabled={!!order}
+                      className="mt-0.5 h-4 w-4 accent-[#101826]"
+                    />
+                    <span>
+                      <span className="flex items-center gap-1.5 text-sm font-semibold"><UserCircle size={15} weight="duotone" /> Create a Garnavo account</span>
+                      <span className="mt-0.5 block text-xs text-neutral-500">Optional — track this order and access delivered licenses anytime.</span>
+                    </span>
+                  </label>
+                  {createAccount && (
+                    <div className="mt-3">
+                      <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Choose a password</label>
+                      <input
+                        data-testid="checkout-account-password"
+                        type="password"
+                        value={accountPassword}
+                        onChange={(e) => setAccountPassword(e.target.value)}
+                        placeholder="At least 8 characters"
+                        disabled={!!order}
+                        className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -165,7 +226,7 @@ export default function Checkout() {
                       const o = order;
                       if (!o) return;
                       await api.post(`/orders/${o.id}/paypal/capture`, { paypal_order_id: data.orderID });
-                      finalizeOrder(o.id, o.order_number);
+                      await finalizeOrder(o.id, o.order_number);
                     }}
                     onError={(err) => { console.error(err); toast.error("PayPal payment failed"); }}
                   />

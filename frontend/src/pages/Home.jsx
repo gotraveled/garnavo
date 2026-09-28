@@ -89,7 +89,7 @@ export default function Home() {
               <Link to="/products" data-testid="hero-shop-btn" className="btn-dark">
                 Browse the catalog <ArrowRight size={18} weight="bold" />
               </Link>
-              <Link to="/activation" data-testid="hero-activate-btn" className="btn-outline">Already purchased?</Link>
+              <Link to="/activation" data-testid="hero-activate-btn" className="btn-outline">Activate Your License</Link>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
               <div className="flex items-center gap-1.5 text-sm text-neutral-700"><CheckCircle size={16} weight="fill" className="text-teal-600" /> 30-day replacement guarantee</div>

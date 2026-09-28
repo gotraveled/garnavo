@@ -17,9 +17,14 @@ if (typeof window !== "undefined") {
 }
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("bik_admin_token");
-  if (token && config.url && config.url.startsWith("/admin")) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const adminToken = localStorage.getItem("bik_admin_token");
+  if (adminToken && config.url && config.url.startsWith("/admin")) {
+    config.headers.Authorization = `Bearer ${adminToken}`;
+    return config;
+  }
+  const customerToken = localStorage.getItem("gnv_customer_token");
+  if (customerToken && config.url && config.url.startsWith("/auth")) {
+    config.headers.Authorization = `Bearer ${customerToken}`;
   }
   return config;
 });
