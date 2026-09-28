@@ -60,7 +60,7 @@ export default function Products() {
             data-testid="filter-all"
             onClick={() => setParams({})}
             className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-              !brand ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900"
+              !brand ? "border-neutral-900 bg-[#101826] text-white" : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900"
             }`}
           >
             All
@@ -73,7 +73,7 @@ export default function Products() {
                 data-testid={`filter-${b.slug}`}
                 onClick={() => setParams({ brand: b.name })}
                 className={`flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-                  active ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900"
+                  active ? "border-neutral-900 bg-[#101826] text-white" : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900"
                 }`}
               >
                 <span className="h-2 w-2 rounded-full" style={{ backgroundColor: active ? "#fff" : b.color }} />

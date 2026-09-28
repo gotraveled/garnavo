@@ -46,7 +46,7 @@ export default function AdminDashboard() {
 
   const StatCard = ({ icon, label, value, testId }) => (
     <div data-testid={testId} className="rounded-xl border border-neutral-200 bg-white p-5">
-      <div className="grid h-9 w-9 place-items-center rounded-lg bg-neutral-900 text-[#FCE029]">{icon}</div>
+      <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#101826] text-[#FF9776]">{icon}</div>
       <div className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{label}</div>
       <div className="mt-1 font-display text-2xl font-bold">{value}</div>
     </div>
@@ -97,7 +97,7 @@ export default function AdminDashboard() {
                 key={s || "all"}
                 data-testid={`admin-filter-${s || "all"}`}
                 onClick={() => setFilter(s)}
-                className={`rounded-full border px-3 py-1 text-xs font-semibold ${filter === s ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900"}`}
+                className={`rounded-full border px-3 py-1 text-xs font-semibold ${filter === s ? "border-neutral-900 bg-[#101826] text-white" : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900"}`}
               >
                 {s || "All"}
               </button>
@@ -187,13 +187,13 @@ function OrderRow({ order, onChange }) {
                 onChange={(e) => setKeys(keys.map((k, idx) => idx === i ? e.target.value : k))}
                 placeholder="Paste license key here"
                 disabled={order.status === "delivered"}
-                className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 font-mono text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400 disabled:bg-neutral-100"
+                className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 font-mono text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
               />
             </div>
           ))}
           {order.status !== "delivered" && (
             <>
-              <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Internal note (optional)" rows={2} className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400" />
+              <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Internal note (optional)" rows={2} className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
               <div className="mt-3">
                 <button onClick={deliver} disabled={saving} data-testid={`admin-deliver-btn-${order.order_number}`} className="btn-primary">
                   {saving ? "Sending..." : "Send keys via email"}

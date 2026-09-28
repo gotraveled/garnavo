@@ -52,7 +52,7 @@ export default function ProductBox({ product, variant, size = "md", showRibbon =
       )}
 
       {showRibbon && product?.badge && (
-        <span className="absolute right-2 top-2 rounded-full bg-neutral-900 px-2 py-0.5 font-display text-[9px] font-bold uppercase tracking-[0.08em] text-[#FCE029]">
+        <span className="absolute right-2 top-2 rounded-full bg-[#101826] px-2 py-0.5 font-display text-[9px] font-bold uppercase tracking-[0.08em] text-[#FF9776]">
           {product.badge}
         </span>
       )}

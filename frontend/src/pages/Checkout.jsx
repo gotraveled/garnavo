@@ -100,7 +100,7 @@ export default function Checkout() {
                   onChange={(e) => setForm({ ...form, customer_name: e.target.value })}
                   placeholder="John Smith"
                   disabled={!!order}
-                  className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400 disabled:bg-neutral-100"
+                  className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
                 />
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -113,7 +113,7 @@ export default function Checkout() {
                     onChange={(e) => setForm({ ...form, customer_email: e.target.value })}
                     placeholder="you@example.com"
                     disabled={!!order}
-                    className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400 disabled:bg-neutral-100"
+                    className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
                   />
                 </div>
                 <div>
@@ -125,7 +125,7 @@ export default function Checkout() {
                     onChange={(e) => setForm({ ...form, customer_phone: e.target.value })}
                     placeholder="+1 (555) 123-4567"
                     disabled={!!order}
-                    className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400 disabled:bg-neutral-100"
+                    className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
                   />
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function Checkout() {
                   onChange={(e) => setForm({ ...form, customer_address: e.target.value })}
                   placeholder="123 Main Street, City, State, ZIP, Country"
                   disabled={!!order}
-                  className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400 disabled:bg-neutral-100"
+                  className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
                 />
               </div>
             </div>

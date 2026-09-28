@@ -38,20 +38,20 @@ export default function OfferBanner() {
   const digit = (n) => String(n).padStart(2, "0");
 
   return (
-    <div data-testid="offer-banner" className="relative bg-neutral-900 text-white">
+    <div data-testid="offer-banner" className="relative bg-[#101826] text-white">
       <div className="container-page flex flex-wrap items-center justify-center gap-4 py-3 text-sm md:justify-between">
         <div className="flex items-center gap-3">
-          <div className="grid h-8 w-8 place-items-center rounded-md bg-[#FCE029] text-neutral-900">
+          <div className="grid h-8 w-8 place-items-center rounded-md bg-[#FF9776] text-neutral-900">
             <Lightning size={16} weight="fill" />
           </div>
           <div className="min-w-0">
-            <span className="mr-2 rounded bg-[#FCE029] px-2 py-0.5 font-display text-xs font-bold uppercase tracking-[0.18em] text-neutral-900">{banner.title}</span>
+            <span className="mr-2 rounded bg-[#FF9776] px-2 py-0.5 font-display text-xs font-bold uppercase tracking-[0.18em] text-neutral-900">{banner.title}</span>
             <span className="text-neutral-100">{banner.message}</span>
           </div>
         </div>
         <div className="flex items-center gap-3">
           {banner.coupon_code && (
-            <Link to="/products" className="hidden items-center gap-1.5 rounded-md border border-[#FCE029] px-3 py-1 text-xs font-semibold text-[#FCE029] hover:bg-[#FCE029] hover:text-neutral-900 md:inline-flex">
+            <Link to="/products" className="hidden items-center gap-1.5 rounded-md border border-[#FF9776] px-3 py-1 text-xs font-semibold text-[#FF9776] hover:bg-[#FF9776] hover:text-neutral-900 md:inline-flex">
               <Tag size={12} weight="fill" /> Code: <span className="font-mono">{banner.coupon_code}</span>
             </Link>
           )}
@@ -60,7 +60,7 @@ export default function OfferBanner() {
               <span className="rounded bg-white/10 px-1.5 py-0.5">{digit(remaining.d)}d</span>
               <span className="rounded bg-white/10 px-1.5 py-0.5">{digit(remaining.h)}h</span>
               <span className="rounded bg-white/10 px-1.5 py-0.5">{digit(remaining.m)}m</span>
-              <span className="rounded bg-[#FCE029] px-1.5 py-0.5 text-neutral-900">{digit(remaining.s)}s</span>
+              <span className="rounded bg-[#FF9776] px-1.5 py-0.5 text-neutral-900">{digit(remaining.s)}s</span>
             </div>
           )}
           <button

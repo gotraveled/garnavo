@@ -47,54 +47,54 @@ export default function About() {
         sections={SECTIONS}
       >
       <Section id="mission" title="Our mission">
-        <p>Garnavo was founded on a simple idea: <strong>cybersecurity should be affordable and easy to access for everyone.</strong></p>
-        <p>Retail-priced antivirus subscriptions have become expensive, and the checkout experience on many publisher sites is designed to upsell — not to serve. We built Garnavo to give consumers a straightforward alternative: legitimate license keys for leading antivirus brands, at fair prices, delivered by email within minutes, backed by responsive customer service if anything goes wrong.</p>
+        <p>Here's the problem Garnavo exists to fix: <strong>real security software shouldn't cost more than it needs to, and buying it shouldn't feel like navigating a maze.</strong></p>
+        <p>Full-price antivirus renewals keep climbing, and publisher checkout flows are stuffed with add-ons you didn't ask for. Garnavo strips that down to the essentials — a genuine license key for a brand you already trust, a fair price, delivery to your inbox in minutes, and a real person to talk to if something goes wrong.</p>
       </Section>
 
       <Section id="story" title="Our story">
-        <p>Garnavo was founded in Hayward, California by a small team of software resellers and customer-experience professionals who had spent years watching friends and family struggle with confusing renewal notices, surprise price increases, and overwhelming installer flows for major security products.</p>
-        <p>We sourced our first inventory of genuine keys from trusted digital channels and started small — one product, one delivery flow, one email contact inbox. Today, we carry three of the most trusted names in consumer security — Norton, Webroot and McAfee — spanning antivirus, internet security suites, VPN, identity protection and more, and we serve customers worldwide.</p>
+        <p>Garnavo started as a side project among a handful of resellers and support specialists based in Hayward, California, after one too many conversations with family members baffled by surprise renewal charges and clunky installers from the big security vendors.</p>
+        <p>We started with a single product line and a shared inbox. Since then we've expanded to carry Norton, Webroot and McAfee — covering everything from basic antivirus to full identity-protection suites — and now ship keys to customers across the country and beyond.</p>
       </Section>
 
       <Section id="values" title="Our values">
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
             <ShieldCheck size={22} weight="duotone" className="text-neutral-900" />
-            <div className="mt-3 font-display font-semibold">Authenticity</div>
-            <p className="mt-1 text-sm text-neutral-700">Every key we sell is genuine and sourced from trusted digital channels — never grey-market or stolen.</p>
+            <div className="mt-3 font-display font-semibold">No shortcuts on authenticity</div>
+            <p className="mt-1 text-sm text-neutral-700">We only stock keys sourced through vetted digital channels. Nothing grey-market, nothing pirated.</p>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
             <Users size={22} weight="duotone" className="text-neutral-900" />
-            <div className="mt-3 font-display font-semibold">Real service</div>
-            <p className="mt-1 text-sm text-neutral-700">A real person answers every inquiry. We reply within 12 hours and stay with you until your key is activated.</p>
+            <div className="mt-3 font-display font-semibold">A person, not a bot</div>
+            <p className="mt-1 text-sm text-neutral-700">Every message gets a reply from an actual team member, usually inside 12 hours, until your issue's resolved.</p>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
             <Handshake size={22} weight="duotone" className="text-neutral-900" />
-            <div className="mt-3 font-display font-semibold">Transparency</div>
-            <p className="mt-1 text-sm text-neutral-700">Clear pricing, clear refund policy, and a public independent-reseller disclaimer on every page.</p>
+            <div className="mt-3 font-display font-semibold">Nothing hidden</div>
+            <p className="mt-1 text-sm text-neutral-700">Pricing is upfront, our refund terms are posted in plain language, and our reseller status is disclosed on every page — not buried in fine print.</p>
           </div>
           <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-5">
             <Trophy size={22} weight="duotone" className="text-neutral-900" />
-            <div className="mt-3 font-display font-semibold">Fair value</div>
-            <p className="mt-1 text-sm text-neutral-700">We negotiate volume pricing with our supply partners and pass most of the savings on to you.</p>
+            <div className="mt-3 font-display font-semibold">Value that's actually fair</div>
+            <p className="mt-1 text-sm text-neutral-700">We buy in volume from our supply partners and pass the bulk of that discount straight through to you.</p>
           </div>
         </div>
       </Section>
 
       <Section id="how-we-work" title="How we work">
-        <p>We are a lean company. Every dollar we don't spend on advertising or overhead is a dollar we can pass back to customers as lower prices. Our operational focus is on three things: sourcing genuine license inventory, keeping the buying experience simple, and answering inquiries within hours (not days).</p>
-        <p>All orders are personally reviewed by our activation team before delivery. This step catches fraud early and ensures every customer receives a working key. It is why we can offer a 30-day money-back guarantee with confidence.</p>
+        <p>We run lean on purpose. Skipping big ad budgets and unnecessary overhead means more of what you pay goes toward keeping prices competitive. Day to day, our focus stays narrow: source keys we trust, keep checkout painless, and answer support requests in hours rather than days.</p>
+        <p>Before any key leaves our system, a member of our team manually reviews the order. That single check is what lets us stand behind every sale with a 30-day guarantee — if a key doesn't work, we make it right.</p>
       </Section>
 
       <Section id="why-us" title="Why choose Garnavo">
         <ul className="list-disc pl-6">
-          <li>Genuine license keys sourced from trusted digital channels</li>
-          <li>Digital delivery by email within 5–15 minutes of payment confirmation</li>
-          <li>Secure PayPal checkout — we never see or store your card details</li>
-          <li>Activation service through our <a href="/activation" className="underline">Activation Portal</a></li>
-          <li>30-day money-back guarantee</li>
-          <li>Responsive customer service (info@garnavo.com)</li>
-          <li>Three trusted brands — Norton, Webroot and McAfee — covering antivirus, internet security, VPN and identity protection</li>
+          <li>Keys sourced only through vetted digital supply channels</li>
+          <li>Delivery to your email inbox, typically within 5–15 minutes of a confirmed payment</li>
+          <li>Checkout runs through PayPal — your card details never touch our servers</li>
+          <li>Free setup help through our <a href="/activation" className="underline">Activation Portal</a></li>
+          <li>30-day guarantee: replacement or refund if a key won't activate</li>
+          <li>Real support at info@garnavo.com, not an auto-responder</li>
+          <li>Norton, Webroot and McAfee coverage spanning antivirus, VPN, and identity protection tiers</li>
         </ul>
       </Section>
 
@@ -106,7 +106,7 @@ export default function About() {
           <Envelope size={16} weight="duotone" className="mr-1 inline align-text-bottom" />
           <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
-        <p>For product questions, order inquiries, activation service, refund requests, media & press, or legal notices, please email us at the address above. We aim to respond to every message within 12 hours.</p>
+        <p>Order questions, activation help, refund requests, press inquiries, or legal notices — send it all to the address above and expect a reply within 12 hours.</p>
       </Section>
     </PolicyLayout>
     </>

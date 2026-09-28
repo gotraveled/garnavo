@@ -111,9 +111,9 @@ export default function Cart() {
                   value={code}
                   onChange={(e) => setCode(e.target.value.toUpperCase())}
                   placeholder="WELCOME10"
-                  className="flex-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400"
+                  className="flex-1 rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40"
                 />
-                <button data-testid="cart-coupon-apply" onClick={apply} disabled={applying} className="rounded-md bg-neutral-900 px-3 py-2 text-sm font-semibold text-white hover:bg-neutral-800 disabled:opacity-60">
+                <button data-testid="cart-coupon-apply" onClick={apply} disabled={applying} className="rounded-md bg-[#101826] px-3 py-2 text-sm font-semibold text-white hover:bg-[#1b2536] disabled:opacity-60">
                   Apply
                 </button>
               </div>

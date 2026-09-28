@@ -60,7 +60,7 @@ export default function ActivationThanks() {
               <div className="mt-1 text-xs text-neutral-600">Your request is queued for our activation team</div>
             </div>
             <div className="rounded-xl border border-neutral-200 bg-white p-5 text-left">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-neutral-900 text-[#FFC220]"><Clock size={18} weight="duotone" /></div>
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-[#101826] text-[#FFC220]"><Clock size={18} weight="duotone" /></div>
               <div className="mt-3 font-semibold">Verifying key</div>
               <div className="mt-1 text-xs text-neutral-600">Typically 5–15 minutes</div>
             </div>

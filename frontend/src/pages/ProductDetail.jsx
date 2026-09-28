@@ -206,7 +206,7 @@ export default function ProductDetail() {
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`grid h-5 w-5 place-items-center rounded-full border-2 ${active ? "border-neutral-900 bg-neutral-900 text-[#FCE029]" : "border-neutral-300"}`}>
+                      <div className={`grid h-5 w-5 place-items-center rounded-full border-2 ${active ? "border-neutral-900 bg-[#101826] text-[#FF9776]" : "border-neutral-300"}`}>
                         {active && <Check size={12} weight="bold" />}
                       </div>
                       <div>
@@ -332,7 +332,7 @@ export default function ProductDetail() {
             { n: "04", icon: <Lightning size={24} weight="duotone" />, title: "Activate & Protect", desc: `Activate your key at ${portal} and enjoy full protection.` },
           ].map((step, i) => (
             <div key={i} className="text-center">
-              <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-neutral-900 text-[#FCE029] font-mono text-sm font-bold">{step.n}</div>
+              <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-[#101826] text-[#FF9776] font-mono text-sm font-bold">{step.n}</div>
               <div className="mt-4 mx-auto grid h-10 w-10 place-items-center rounded-full bg-neutral-100 text-neutral-900">{step.icon}</div>
               <h3 className="mt-3 font-semibold">{step.title}</h3>
               <p className="mt-2 text-sm text-neutral-600">{step.desc}</p>
@@ -399,7 +399,7 @@ export default function ProductDetail() {
 
       {/* Trust Badges Section */}
       <section className="mt-16">
-        <div className="rounded-2xl bg-neutral-900 p-8 md:p-12 text-center">
+        <div className="rounded-2xl bg-[#101826] p-8 md:p-12 text-center">
           <h2 className="font-display text-2xl font-bold text-white">Why Buy From Garnavo?</h2>
           <p className="mt-3 text-neutral-300">Genuine keys, fast delivery, real service</p>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -410,7 +410,7 @@ export default function ProductDetail() {
               { icon: <Users size={32} weight="duotone" />, title: "Customer Service", desc: "Responsive service on every order" },
             ].map((badge, i) => (
               <div key={i} className="text-white">
-                <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-neutral-800 text-[#FCE029]">{badge.icon}</div>
+                <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-neutral-800 text-[#FF9776]">{badge.icon}</div>
                 <h3 className="mt-4 font-semibold">{badge.title}</h3>
                 <p className="mt-2 text-sm text-neutral-400">{badge.desc}</p>
               </div>

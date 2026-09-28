@@ -2,20 +2,20 @@ import { ShieldCheck, LockKey, Envelope, CreditCard, CheckCircle } from "@phosph
 
 export function TrustMarquee() {
   const items = [
-    "Genuine license keys",
-    "Email delivery in 5–15 min",
-    "Secure PayPal checkout",
-    "30-day money-back guarantee",
-    "Independent reseller",
-    "Activation service included",
+    "Keys verified before sale",
+    "Inbox delivery in 5–15 min",
+    "Encrypted PayPal checkout",
+    "30-day replacement guarantee",
+    "Independently operated",
+    "Free activation walkthrough",
   ];
   const doubled = [...items, ...items];
   return (
-    <div className="border-y border-neutral-200 bg-neutral-900 py-3">
+    <div className="border-y border-neutral-200 bg-[#101826] py-3">
       <div className="marquee-container">
         <div className="marquee-track">
           {doubled.map((t, i) => (
-            <div key={i} className="flex shrink-0 items-center gap-2 text-sm font-medium text-[#FCE029]">
+            <div key={i} className="flex shrink-0 items-center gap-2 text-sm font-medium text-[#FF9776]">
               <ShieldCheck size={16} weight="fill" /> <span className="text-neutral-100">{t}</span>
             </div>
           ))}
@@ -27,10 +27,10 @@ export function TrustMarquee() {
 
 export function TrustBadges() {
   const badges = [
-    { icon: <ShieldCheck size={22} weight="duotone" />, title: "Genuine Keys", desc: "Verified, unused license keys from trusted channels." },
-    { icon: <Envelope size={22} weight="duotone" />, title: "Fast Delivery", desc: "License keys emailed after payment." },
-    { icon: <LockKey size={22} weight="duotone" />, title: "Secure Checkout", desc: "Encrypted PayPal transaction." },
-    { icon: <CheckCircle size={22} weight="duotone" />, title: "Money-back", desc: "30-day refund if activation fails." },
+    { icon: <ShieldCheck size={22} weight="duotone" />, title: "Checked before it's listed", desc: "Every key is verified unused before it ever reaches the catalog." },
+    { icon: <Envelope size={22} weight="duotone" />, title: "Straight to your inbox", desc: "No download portal to hunt for — the key just arrives by email." },
+    { icon: <LockKey size={22} weight="duotone" />, title: "PayPal-only checkout", desc: "Your payment details stay with PayPal, never with us." },
+    { icon: <CheckCircle size={22} weight="duotone" />, title: "30-day backup plan", desc: "Doesn't activate? We replace it or refund you, no hassle." },
   ];
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -46,7 +46,7 @@ export function TrustBadges() {
 }
 
 export function IconBadge({ children }) {
-  return <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-900 text-[#FCE029]">{children}</div>;
+  return <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#101826] text-[#FF9776]">{children}</div>;
 }
 
 export { CreditCard };

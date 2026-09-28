@@ -46,7 +46,7 @@ export default function OrderTrack() {
               onChange={(e) => setForm({ ...form, order_number: e.target.value })}
               required
               placeholder="BIK-20260201-ABC123"
-              className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400"
+              className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40"
             />
           </div>
           <div>
@@ -58,7 +58,7 @@ export default function OrderTrack() {
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
               placeholder="you@example.com"
-              className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400"
+              className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40"
             />
           </div>
           <div className="sm:col-span-2">
@@ -106,7 +106,7 @@ export default function OrderTrack() {
                     <div className="text-sm font-semibold">${it.subtotal.toFixed(2)}</div>
                   </div>
                   {it.license_key ? (
-                    <div className="mt-3 rounded-md bg-neutral-900 p-3 font-mono text-sm tracking-wider text-[#FCE029]">
+                    <div className="mt-3 rounded-md bg-[#101826] p-3 font-mono text-sm tracking-wider text-[#FF9776]">
                       {it.license_key}
                     </div>
                   ) : (

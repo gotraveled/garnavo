@@ -31,7 +31,7 @@ export default function Navbar() {
           <ShieldCheck size={26} weight="duotone" className="text-neutral-900" />
           <span className="font-display text-lg font-bold tracking-tight">
             Gar<span className="text-neutral-900">na</span>
-            <span className="rounded bg-neutral-900 px-1 text-white">vo</span>
+            <span className="rounded bg-[#101826] px-1 text-white">vo</span>
           </span>
         </Link>
         <nav className="hidden items-center gap-7 md:flex">
@@ -72,7 +72,7 @@ export default function Navbar() {
             <ShoppingCart size={18} weight="duotone" />
             <span>Cart</span>
             {count > 0 && (
-              <span data-testid="nav-cart-count" className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-xs font-bold text-white">
+              <span data-testid="nav-cart-count" className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[#101826] px-1.5 text-xs font-bold text-white">
                 {count}
               </span>
             )}

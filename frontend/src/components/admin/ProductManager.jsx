@@ -6,7 +6,7 @@ import { Plus, PencilSimple, Trash, X, ArrowLeft, Eye, EyeSlash, Star } from "@p
 const BRANDS = ["Norton", "Webroot", "McAfee"];
 const BOX_VARIANTS = ["gold", "amber", "black", "green", "red", "purple"];
 
-const INP = "w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400 disabled:bg-neutral-100";
+const INP = "w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100";
 
 const slugify = (s) =>
   s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");

@@ -1,7 +1,7 @@
 export default function PolicyLayout({ title, subtitle, lastUpdated, sections = [], children }) {
   return (
     <div className="bg-white">
-      <section className="border-b border-neutral-200 bg-gradient-to-b from-yellow-50/60 to-white">
+      <section className="border-b border-neutral-200 bg-gradient-to-b from-orange-50/60 to-white">
         <div className="container-page py-16">
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-neutral-500">Legal</div>
           <h1 className="mt-2 font-display text-4xl font-black tracking-tight text-neutral-900 sm:text-5xl">{title}</h1>
@@ -21,7 +21,7 @@ export default function PolicyLayout({ title, subtitle, lastUpdated, sections = 
               <div className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">On this page</div>
               <nav className="mt-3 flex flex-col gap-2 text-sm">
                 {sections.map((s) => (
-                  <a key={s.id} href={`#${s.id}`} className="border-l-2 border-transparent pl-3 text-neutral-600 hover:border-yellow-500 hover:text-neutral-900">
+                  <a key={s.id} href={`#${s.id}`} className="border-l-2 border-transparent pl-3 text-neutral-600 hover:border-[#FF6B45] hover:text-neutral-900">
                     {s.title}
                   </a>
                 ))}

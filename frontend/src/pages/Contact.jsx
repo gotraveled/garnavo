@@ -92,15 +92,15 @@ export default function Contact() {
     <>
       <SEO
         title="Contact Us | Garnavo"
-        description="Get in touch with Garnavo for license key inquiries, order questions, and activation service for Norton, Webroot and McAfee. We respond within 12 hours."
+        description="Reach the Garnavo team for order help, license key questions, or activation support on Norton, Webroot and McAfee — most messages answered within 12 hours."
         keywords="Contact Garnavo, customer service, license key inquiries, order inquiry, activation service, contact"
         schema={[contactSchema]}
       />
       <div className="container-page py-10 md:py-14">
       <div className="mx-auto max-w-4xl">
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Contact</div>
-        <h1 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Get in touch</h1>
-        <p className="mt-3 text-neutral-600">Have a question about your order or our products? Send us a message — we usually reply within 12 hours.</p>
+        <h1 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Talk to a real person</h1>
+        <p className="mt-3 text-neutral-600">Order hiccup, activation question, or just curious about a plan? Drop us a line and we'll get back to you, usually same day.</p>
 
         <div className="mt-8 grid gap-4 sm:gap-6 md:grid-cols-3">
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
@@ -113,8 +113,8 @@ export default function Contact() {
             <div className="mt-3 font-display font-semibold">Visit us</div>
             <div className="text-sm text-neutral-600">Westwood Street,<br />Hayward, California, 94544<br />United States</div>
           </div>
-          <div className="rounded-xl border border-neutral-200 bg-neutral-900 p-6 text-white">
-            <div className="text-[#FCE029]"><ChatCircle size={22} weight="duotone" /></div>
+          <div className="rounded-xl border border-neutral-200 bg-[#101826] p-6 text-white">
+            <div className="text-[#FF9776]"><ChatCircle size={22} weight="duotone" /></div>
             <div className="mt-3 font-display font-semibold">Response time</div>
             <div className="text-sm text-neutral-300">Under 12 hours guaranteed. Live chat Mon–Fri 9am–9pm UTC.</div>
           </div>
@@ -137,16 +137,16 @@ export default function Contact() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Name</label>
-              <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} data-testid="contact-name-input" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400" />
+              <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} data-testid="contact-name-input" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
             </div>
             <div>
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Email</label>
-              <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} data-testid="contact-email-input" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400" />
+              <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} data-testid="contact-email-input" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
             </div>
           </div>
           <div>
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Message</label>
-            <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} data-testid="contact-message-input" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400" />
+            <textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} data-testid="contact-message-input" className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
           </div>
           <button data-testid="contact-submit-btn" type="submit" className="btn-primary" disabled={submitting}>
             {submitting ? "Sending..." : "Send message"}

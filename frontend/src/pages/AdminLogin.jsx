@@ -38,11 +38,11 @@ export default function AdminLogin() {
         <form onSubmit={submit} className="mt-6 space-y-4">
           <div>
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Email</label>
-            <input data-testid="admin-login-email" required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400" />
+            <input data-testid="admin-login-email" required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
           </div>
           <div>
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Password</label>
-            <input data-testid="admin-login-password" required type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400" />
+            <input data-testid="admin-login-password" required type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="mt-1 w-full rounded-md border border-neutral-300 px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
           </div>
           <button data-testid="admin-login-submit" type="submit" disabled={loading} className="btn-primary w-full">
             <LockKey size={18} weight="duotone" /> {loading ? "Signing in..." : "Sign in"}

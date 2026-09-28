@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 const SITE_URL = 'https://garnavo.com';
 const SITE_NAME = 'Garnavo';
-const DEFAULT_DESCRIPTION = 'Buy genuine antivirus license keys — Norton, Webroot & McAfee. Fast email delivery, secure checkout, 30-day money-back guarantee.';
+const DEFAULT_DESCRIPTION = 'Garnavo sells genuine, verified antivirus activation keys for Norton, Webroot and McAfee with fast email delivery and a 30-day guarantee.';
 
 const SEO = ({ 
   title, 
