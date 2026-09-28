@@ -22,10 +22,10 @@ export const BRANDS = {
     keyHint: "Format: 25 alphanumeric characters, usually shown with dashes.",
     tagline: "Award-winning device security, VPN, and identity protection",
     heroTitle: "Norton Security Products",
-    heroSub: "Genuine Norton license keys delivered to your email within minutes of checkout.",
-    seoTitle: "Norton License Keys — Norton 360, AntiVirus & LifeLock",
-    seoDesc: "Buy genuine Norton license keys. Norton 360 Deluxe, Premium, AntiVirus Plus & LifeLock with fast email delivery and a 30-day money-back guarantee.",
-    seoKeywords: "Norton license key, Norton 360 Deluxe, Norton AntiVirus Plus, Norton 360 Premium, Norton LifeLock, buy Norton key, genuine Norton software",
+    heroSub: "Genuine Norton licenses delivered to your email within minutes of checkout.",
+    seoTitle: "Norton Licenses — Norton 360, AntiVirus & LifeLock",
+    seoDesc: "Buy genuine Norton licenses. Norton 360 Deluxe, Premium, AntiVirus Plus & LifeLock with fast email delivery and a 30-day money-back guarantee.",
+    seoKeywords: "Norton license, Norton 360 Deluxe, Norton AntiVirus Plus, Norton 360 Premium, Norton LifeLock, buy Norton online, genuine Norton software",
     steps: [
       { title: "Sign in to your Norton account", desc: "Go to my.norton.com and sign in. Create a Norton account if you don't have one yet." },
       { title: "Enter your 25-character product key", desc: "On your Norton dashboard choose 'Enter a product key' and paste the key we emailed you." },
@@ -34,7 +34,7 @@ export const BRANDS = {
     ],
     about: [
       "Norton is one of the most recognized names in consumer cybersecurity, offering layered protection against viruses, malware, ransomware and online threats. Norton 360 plans add a Secure VPN, Password Manager, Dark Web Monitoring and cloud backup on top of core antivirus.",
-      "When you buy a Norton license key from Garnavo, you receive a genuine activation code by email — usually within 5–15 minutes. Enter it at my.norton.com to register the subscription to your own Norton account and download the software directly from Norton.",
+      "When you buy a Norton license from Garnavo, you receive a genuine activation code by email — usually within 5–15 minutes. Enter it at my.norton.com to register the subscription to your own Norton account and download the software directly from Norton.",
     ],
     faqs: [
       { q: "How do I activate my Norton code?", a: "Sign in at my.norton.com, choose 'Enter a product key', paste your 25-character activation code, then download and install Norton on your device." },
@@ -63,10 +63,10 @@ export const BRANDS = {
     keyHint: "Format: 20-character activation code found in your delivery email.",
     tagline: "Lightning-fast, cloud-based security that never slows you down",
     heroTitle: "Webroot Security Products",
-    heroSub: "Genuine Webroot license keys delivered to your email within minutes of checkout.",
-    seoTitle: "Webroot License Keys — Internet Security & AntiVirus",
-    seoDesc: "Buy genuine Webroot license keys. Webroot Internet Security Complete, Plus & AntiVirus with fast email delivery and a 30-day money-back guarantee.",
-    seoKeywords: "Webroot license key, Webroot Internet Security Complete, Webroot AntiVirus, Webroot keycode, buy Webroot key, genuine Webroot software",
+    heroSub: "Genuine Webroot licenses delivered to your email within minutes of checkout.",
+    seoTitle: "Webroot Licenses — Internet Security & AntiVirus",
+    seoDesc: "Buy genuine Webroot licenses. Webroot Internet Security Complete, Plus & AntiVirus with fast email delivery and a 30-day money-back guarantee.",
+    seoKeywords: "Webroot license, Webroot Internet Security Complete, Webroot AntiVirus, Webroot keycode, buy Webroot online, genuine Webroot software",
     steps: [
       { title: "Go to the Webroot install page", desc: "Visit webroot.com/safe on the device you want to protect, or sign in at my.webrootanywhere.com." },
       { title: "Enter your 20-character keycode", desc: "Type or paste the Webroot keycode we emailed you when prompted during setup." },
@@ -75,7 +75,7 @@ export const BRANDS = {
     ],
     about: [
       "Webroot is a cloud-based security platform known for being extremely lightweight — scans complete in seconds and the software uses a fraction of the system resources of traditional antivirus. It protects against viruses, malware, ransomware, phishing and identity theft.",
-      "When you buy a Webroot license key from Garnavo, you receive a genuine 20-character keycode by email — usually within 5–15 minutes. Enter it at webroot.com/safe or your Webroot account to activate and download the software directly from Webroot.",
+      "When you buy a Webroot license from Garnavo, you receive a genuine 20-character keycode by email — usually within 5–15 minutes. Enter it at webroot.com/safe or your Webroot account to activate and download the software directly from Webroot.",
     ],
     faqs: [
       { q: "How do I activate my Webroot code?", a: "Go to webroot.com/safe, enter your 20-character activation code, then download and run the installer. Activation takes just a couple of minutes." },
@@ -104,10 +104,10 @@ export const BRANDS = {
     keyHint: "Format: 25-character activation code from your delivery email.",
     tagline: "All-in-one protection for every device you own",
     heroTitle: "McAfee Security Products",
-    heroSub: "Genuine McAfee license keys delivered to your email within minutes of checkout.",
-    seoTitle: "McAfee License Keys — Total Protection & McAfee+",
-    seoDesc: "Buy genuine McAfee license keys. McAfee Total Protection, McAfee+ Premium & AntiVirus with fast email delivery and a 30-day money-back guarantee.",
-    seoKeywords: "McAfee license key, McAfee Total Protection, McAfee+ Premium, McAfee AntiVirus, McAfee activation code, buy McAfee key, genuine McAfee software",
+    heroSub: "Genuine McAfee licenses delivered to your email within minutes of checkout.",
+    seoTitle: "McAfee Licenses — Total Protection & McAfee+",
+    seoDesc: "Buy genuine McAfee licenses. McAfee Total Protection, McAfee+ Premium & AntiVirus with fast email delivery and a 30-day money-back guarantee.",
+    seoKeywords: "McAfee license, McAfee Total Protection, McAfee+ Premium, McAfee AntiVirus, McAfee activation code, buy McAfee online, genuine McAfee software",
     steps: [
       { title: "Go to the McAfee activation page", desc: "Visit mcafee.com/activate or sign in to your account at home.mcafee.com." },
       { title: "Enter your 25-character activation code", desc: "Paste the McAfee activation code we emailed you and sign in or create a McAfee account." },
@@ -116,7 +116,7 @@ export const BRANDS = {
     ],
     about: [
       "McAfee is a long-standing leader in consumer security, offering all-in-one protection that combines antivirus, a Secure VPN, identity monitoring, a password manager and privacy tools across PCs, Macs and mobile devices.",
-      "When you buy a McAfee license key from Garnavo, you receive a genuine 25-character activation code by email — usually within 5–15 minutes. Enter it at mcafee.com/activate to register the subscription to your own McAfee account and download the software directly from McAfee.",
+      "When you buy a McAfee license from Garnavo, you receive a genuine 25-character activation code by email — usually within 5–15 minutes. Enter it at mcafee.com/activate to register the subscription to your own McAfee account and download the software directly from McAfee.",
     ],
     faqs: [
       { q: "How do I activate my McAfee code?", a: "Go to mcafee.com/activate, enter your 25-character code, sign in or create a McAfee account, then download and install." },

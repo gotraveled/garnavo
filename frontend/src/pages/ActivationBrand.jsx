@@ -151,10 +151,16 @@ export default function ActivationBrand() {
               <Headset size={14} weight="fill" className="brand-text" /> Garnavo activation service
             </div>
             <h1 className="mt-5 font-display text-3xl font-black leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-              Activate your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license
+              Need help activating, setting up or installing your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license?
             </h1>
+            <div className="mt-3 font-display text-xl font-semibold text-neutral-800 sm:text-2xl">
+              Activate your {brand.name} license
+            </div>
             <p className="mt-4 text-lg leading-relaxed text-neutral-700">
               We're an independent reseller. Send us your details and our team will walk you through activating the {brand.name} license you purchased — usually within 5–15 minutes.
+            </p>
+            <p className="mt-3 text-xs leading-relaxed text-neutral-400">
+              We assist with activation, setup and installation for products purchased on our website.
             </p>
           </div>
         </div>

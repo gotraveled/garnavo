@@ -92,7 +92,7 @@ export default function CategoryPage() {
             </div>
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700 brand-border">
-                <ShieldCheck size={14} weight="fill" className="brand-text" /> Genuine {brand.name} keys
+                <ShieldCheck size={14} weight="fill" className="brand-text" /> Secure online checkout · Delivery in 5–15 min
               </div>
               <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl">
                 {brand.heroTitle}
@@ -102,7 +102,7 @@ export default function CategoryPage() {
               <p className="mt-2 text-sm text-neutral-500">{brand.tagline}.</p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link to={`/activation/${brand.slug}`} className="btn-brand">
-                  Activate a {brand.name} key <ArrowRight size={18} weight="bold" />
+                  Activate Your License <ArrowRight size={18} weight="bold" />
                 </Link>
                 <Link to="/products" className="btn-outline">All products</Link>
               </div>
@@ -114,7 +114,7 @@ export default function CategoryPage() {
         <section className="border-b border-neutral-200 bg-white">
           <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-4 text-sm">
             {[
-              { icon: <ShieldCheck size={16} weight="duotone" className="brand-text" />, t: "100% genuine keys" },
+              { icon: <ShieldCheck size={16} weight="duotone" className="brand-text" />, t: "100% genuine licenses" },
               { icon: <Envelope size={16} weight="duotone" className="brand-text" />, t: "Email delivery in 5–15 min" },
               { icon: <LockKey size={16} weight="duotone" className="brand-text" />, t: "Secure checkout" },
               { icon: <Headset size={16} weight="duotone" className="brand-text" />, t: "Activation service included" },
@@ -171,13 +171,13 @@ export default function CategoryPage() {
           <div className="container-page">
             <div className="mx-auto max-w-2xl text-center">
               <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Why Garnavo</div>
-              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Why buy your {brand.name} key from us</h2>
-              <p className="mt-3 text-neutral-600">We're an independent reseller focused on one thing: genuine keys, delivered fast, at a fair price.</p>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Why buy your {brand.name} license from us</h2>
+              <p className="mt-3 text-neutral-600">We're an independent reseller focused on one thing: genuine licenses, delivered fast, at a fair price.</p>
             </div>
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { icon: <Certificate size={24} weight="duotone" className="brand-text" />, t: "Genuine & verified", d: "Every key is sourced from authorized channels and checked before it's sent to you." },
-                { icon: <Lightning size={24} weight="duotone" className="brand-text" />, t: "5–15 min delivery", d: "Your license key is emailed to you within minutes of a successful checkout." },
+                { icon: <Certificate size={24} weight="duotone" className="brand-text" />, t: "Genuine & verified", d: "Every license is sourced from authorized channels and checked before it's sent to you." },
+                { icon: <Lightning size={24} weight="duotone" className="brand-text" />, t: "5–15 min delivery", d: "Your activation code is emailed to you within minutes of a successful checkout." },
                 { icon: <CreditCard size={24} weight="duotone" className="brand-text" />, t: "Secure checkout", d: "Pay safely with PayPal. We never see or store your card details." },
                 { icon: <Headset size={24} weight="duotone" className="brand-text" />, t: "Activation service", d: "Step-by-step activation service and a 30-day money-back guarantee on every order." },
               ].map((c, i) => (
@@ -202,8 +202,8 @@ export default function CategoryPage() {
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 md:grid-cols-3">
               {[
                 { n: "1", icon: <Package size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Pick your plan", d: `Choose the ${brand.name} product and device count that fits your needs, then check out securely with PayPal.` },
-                { n: "2", icon: <Envelope size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Get your key by email", d: "We verify your order and email your genuine license key — usually within 5–15 minutes." },
-                { n: "3", icon: <DownloadSimple size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Activate on the official site", d: `Enter your key at ${brand.portalName} to register the subscription to your own account and download the software.` },
+                { n: "2", icon: <Envelope size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Get your license by email", d: "We verify your order and email your activation code — usually within 5–15 minutes." },
+                { n: "3", icon: <DownloadSimple size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Activate on the official site", d: `Enter your code at ${brand.portalName} to register the subscription to your own account and download the software.` },
               ].map((s, i) => (
                 <div key={i} className="relative rounded-2xl border bg-white p-6 brand-border">
                   <div className="flex items-center justify-between">
@@ -232,12 +232,12 @@ export default function CategoryPage() {
                 <div className="font-display font-semibold text-neutral-900">What you get with every order</div>
                 <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                   {[
-                    "A genuine, unused license key",
+                    "A genuine, unused activation code",
                     "Delivery to your email in 5–15 min",
                     "Activation on the official brand site",
                     "Step-by-step activation service",
                     "30-day money-back guarantee",
-                    "Replacement if your key doesn't work",
+                    "Replacement if your code doesn't work",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-neutral-700">
                       <CheckCircle size={16} weight="fill" className="mt-0.5 shrink-0 text-emerald-600" /> {item}
@@ -264,7 +264,7 @@ export default function CategoryPage() {
                   <div>
                     <div className="font-display font-semibold">Activation service for {brand.name}</div>
                     <p className="mt-1 text-sm text-neutral-700">
-                      Every order includes our activation service for keys purchased from us.{" "}
+                      Every order includes our activation service for licenses purchased from us.{" "}
                       <Link to={`/activation/${brand.slug}`} className="font-semibold underline brand-text">
                         Go to {brand.name} activation
                       </Link>
