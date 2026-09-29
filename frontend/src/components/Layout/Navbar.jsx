@@ -45,7 +45,7 @@ export default function Navbar() {
               {BRAND_LIST.map((b) => (
                 <DropdownMenuItem key={b.slug} asChild>
                   <Link to={`/category/${b.slug}`} className="flex items-center gap-2.5">
-                    <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: b.color }} />
+                    <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: b.accent }} />
                     {b.name}
                   </Link>
                 </DropdownMenuItem>
@@ -97,7 +97,7 @@ export default function Navbar() {
               {BRAND_LIST.map((b) => (
                 <DropdownMenuItem key={b.slug} asChild>
                   <Link to={`/category/${b.slug}`} className="flex items-center gap-2.5">
-                    <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: b.color }} />
+                    <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: b.accent }} />
                     {b.name}
                   </Link>
                 </DropdownMenuItem>

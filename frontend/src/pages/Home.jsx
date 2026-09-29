@@ -107,12 +107,12 @@ export default function Home() {
                   className="group flex flex-col items-center rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
                   style={{ marginTop: i === 1 ? "0" : "1.5rem" }}
                 >
-                  <div className="grid h-14 w-14 place-items-center rounded-xl text-white" style={{ backgroundColor: b.color, color: b.textOn }}>
+                  <div className="grid h-14 w-14 place-items-center rounded-xl text-white" style={{ backgroundColor: b.accent, color: b.accentTextOn }}>
                     <ShieldCheck size={26} weight="fill" />
                   </div>
                   <div className="mt-3 font-display text-lg font-bold">{b.name}</div>
                   <div className="mt-1 text-xs text-neutral-500">Genuine licenses</div>
-                  <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold" style={{ color: b.color }}>
+                  <div className="mt-3 inline-flex items-center gap-1 text-xs font-semibold" style={{ color: b.accent }}>
                     Shop now <ArrowRight size={12} weight="bold" />
                   </div>
                 </Link>
@@ -143,16 +143,16 @@ export default function Home() {
               data-testid={`brand-card-${b.slug}`}
               className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_-18px_rgba(0,0,0,0.18)]"
             >
-              <div className="h-2 w-full" style={{ backgroundColor: b.color }} />
+              <div className="h-2 w-full" style={{ backgroundColor: b.accent }} />
               <div className="p-7">
                 <div className="flex items-center gap-3">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl text-white" style={{ backgroundColor: b.color, color: b.textOn }}>
+                  <div className="grid h-12 w-12 place-items-center rounded-xl text-white" style={{ backgroundColor: b.accent, color: b.accentTextOn }}>
                     <ShieldCheck size={24} weight="fill" />
                   </div>
                   <h3 className="font-display text-2xl font-bold tracking-tight">{b.name}</h3>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-neutral-600">{b.tagline}.</p>
-                <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold" style={{ color: b.color }}>
+                <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold" style={{ color: b.accent }}>
                   Browse {b.name} products <ArrowRight size={16} weight="bold" className="transition-transform group-hover:translate-x-1" />
                 </div>
               </div>

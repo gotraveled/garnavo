@@ -85,7 +85,7 @@ export default function Products() {
                   active ? "border-neutral-900 bg-[#101826] text-white" : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900"
                 }`}
               >
-                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: active ? "#fff" : b.color }} />
+                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: active ? "#fff" : b.accent }} />
                 {b.name}
               </button>
             );

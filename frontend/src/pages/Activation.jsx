@@ -60,7 +60,7 @@ export default function Activation() {
             >
               <div
                 className="mx-auto grid h-16 w-16 place-items-center rounded-2xl text-white"
-                style={{ backgroundColor: b.color, color: b.textOn }}
+                style={{ backgroundColor: b.accent, color: b.accentTextOn }}
               >
                 <ShieldCheck size={30} weight="fill" />
               </div>

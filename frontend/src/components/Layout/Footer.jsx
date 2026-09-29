@@ -33,7 +33,7 @@ export default function Footer() {
             {BRAND_LIST.map((b) => (
               <li key={b.slug}>
                 <Link to={`/category/${b.slug}`} className="flex items-center gap-2 text-neutral-700 hover:text-neutral-900">
-                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: b.color }} />
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: b.accent }} />
                   {b.name}
                 </Link>
               </li>
