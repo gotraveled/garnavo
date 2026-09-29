@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { api } from "@/lib/api";
 import SEO from "@/components/SEO";
@@ -6,7 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import LoadError from "@/components/LoadError";
 import BrandDisclaimer from "@/components/BrandDisclaimer";
 import { getBrand, BRAND_LIST } from "@/lib/brands";
-import { ShieldCheck, ArrowRight, CheckCircle, Envelope, LockKey, Headset, CreditCard, Lightning, DownloadSimple, Info, Certificate, Package } from "@phosphor-icons/react";
+import { ShieldCheck, ArrowRight, CheckCircle, Envelope, LockKey, Headset, CreditCard, Lightning, DownloadSimple, Certificate, Package } from "@phosphor-icons/react";
 
 export default function CategoryPage() {
   const { category } = useParams();
@@ -14,6 +14,9 @@ export default function CategoryPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const productsRef = useRef(null);
+
+  const scrollToProducts = () => productsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const load = () => {
     if (!brand) { setLoading(false); return; }
@@ -82,29 +85,30 @@ export default function CategoryPage() {
         schema={[breadcrumbSchema, itemListSchema]}
       />
       <div style={theme} className="bg-white">
-        {/* Hero */}
+        {/* Slim landing hero — products visible on open */}
         <section className="border-b border-neutral-200 brand-bg-softer">
-          <div className="container-page py-12 md:py-16">
-            <div className="mb-4 text-sm text-neutral-500">
-              <Link to="/products" className="hover:text-neutral-900">Products</Link>
-              <span className="mx-1.5">/</span>
-              <span className="text-neutral-900">{brand.name}</span>
-            </div>
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700 brand-border">
-                <ShieldCheck size={14} weight="fill" className="brand-text" /> Secure online checkout · Delivery in 5–15 min
+          <div className="container-page py-8 md:py-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="mb-3 text-sm text-neutral-500">
+                  <Link to="/products" className="hover:text-neutral-900">Products</Link>
+                  <span className="mx-1.5">/</span>
+                  <span className="text-neutral-900">{brand.name}</span>
+                </div>
+                <h1 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl">
+                  {brand.heroTitle}
+                </h1>
+                <div className="mt-2 h-1.5 w-20 rounded-full brand-underline" />
+                <p className="mt-3 text-base leading-relaxed text-neutral-700">{brand.heroSub}</p>
               </div>
-              <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl">
-                {brand.heroTitle}
-              </h1>
-              <div className="mt-3 h-1.5 w-24 rounded-full brand-underline" />
-              <p className="mt-5 text-lg leading-relaxed text-neutral-700">{brand.heroSub}</p>
-              <p className="mt-2 text-sm text-neutral-500">{brand.tagline}.</p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link to={`/activation/${brand.slug}`} className="btn-brand">
-                  Activate Your License <ArrowRight size={18} weight="bold" />
+              {/* Two paths matching the ad groups: buy vs redeem/activate */}
+              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
+                <button onClick={scrollToProducts} className="btn-brand">
+                  Shop {brand.name} Products <ArrowRight size={18} weight="bold" />
+                </button>
+                <Link to={`/activation/${brand.slug}`} className="btn-outline justify-center">
+                  {brand.ctaLabel}
                 </Link>
-                <Link to="/products" className="btn-outline">All products</Link>
               </div>
             </div>
           </div>
@@ -124,23 +128,17 @@ export default function CategoryPage() {
           </div>
         </section>
 
-        {/* Independence notice — compliance */}
-        <section className="border-b border-neutral-200 bg-white">
-          <div className="container-page py-4">
-            <div className="mx-auto flex max-w-3xl items-start gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
-              <Info size={20} weight="duotone" className="mt-0.5 shrink-0 brand-text" />
-              <p className="text-sm text-neutral-700">
-                <strong className="font-semibold text-neutral-900">Independent reseller.</strong>{" "}
-                Garnavo is not affiliated with or endorsed by {brand.entity}. {brand.name} is a trademark of its respective owner,
-                used here only to identify the genuine product being sold. Your license is activated on the official {brand.name} portal at{" "}
-                <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline">{brand.portalName}</a>.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* Independence notice — compliance, kept light */}
+        <div className="container-page py-3">
+          <p className="mx-auto max-w-3xl text-center text-[11px] leading-relaxed text-neutral-400">
+            Independent reseller — not affiliated with or endorsed by {brand.entity}. Activation is completed on the
+            official {brand.name} portal at{" "}
+            <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-neutral-600">{brand.portalName}</a>.
+          </p>
+        </div>
 
-        {/* Products */}
-        <section className="container-page py-14 md:py-20">
+        {/* Products — the landing target for the purchase ad group */}
+        <section ref={productsRef} className="container-page scroll-mt-24 py-8 md:py-12">
           <div className="mb-8 flex items-end justify-between">
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">{products.length} products</div>
