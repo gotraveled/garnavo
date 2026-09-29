@@ -30,7 +30,7 @@ export default function RefundPolicy() {
       >
       <Section id="overview" title="1. Overview">
         <p>At Garnavo, customer satisfaction is our top priority. This Refund Policy explains when and how you may request a refund for digital Licenses purchased through our website at garnavo.com. This policy is part of our <a href="/terms" className="underline">Terms and Conditions</a>.</p>
-        <p>Because Products sold on our Site are digital Licenses (not physical goods), refund conditions are specific to the nature of software licenses. Please read this policy carefully before placing an Order.</p>
+        <p>Because Products sold on our Site are digital Licenses (not physical goods), refund conditions are specific to the nature of software licenses. <strong>No physical return is required</strong> — everything is handled by email. Please read this policy carefully before placing an Order.</p>
       </Section>
 
       <Section id="guarantee" title="2. 30-day money-back guarantee">
@@ -83,6 +83,7 @@ export default function RefundPolicy() {
           <li><strong>Refund initiation:</strong> once approved, within 2 business days</li>
           <li><strong>Funds credited back:</strong> 3–10 business days depending on your bank / PayPal balance settlement</li>
         </ul>
+        <p>In most cases, an approved refund is fully processed within <strong>7 business days</strong> of your request.</p>
       </Section>
 
       <Section id="method" title="7. Refund method">
