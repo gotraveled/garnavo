@@ -2,7 +2,7 @@ import { ShieldCheck, LockKey, Envelope, CreditCard, CheckCircle } from "@phosph
 
 export function TrustMarquee() {
   const items = [
-    "Keys verified before sale",
+    "Licenses verified before sale",
     "Inbox delivery in 5–15 min",
     "Encrypted PayPal checkout",
     "30-day replacement guarantee",

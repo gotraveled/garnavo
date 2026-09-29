@@ -11,7 +11,7 @@ const faqs = [
   { q: "Is it safe to pay on this site?", a: "Payments run entirely through PayPal's encrypted platform. Your card number never passes through our servers at any point." },
   { q: "Do I have to make an account to buy something?", a: "No account needed — checkout as a guest. We just need a valid email address to send your license to." },
   { q: "What antivirus brands can I get here?", a: "We carry a curated set of trusted security brands, spanning basic antivirus up through full internet security suites, VPN, and identity protection plans, all delivered instantly by email. See the full lineup on our Products page." },
-  { q: "Can I bump my plan up to a bigger one later?", a: "Yes, upgrades happen directly through your account on the publisher's own site. Message us first if you want help picking the right tier." },
+  { q: "Can I bump my plan up to a bigger one later?", a: "Yes, upgrades happen directly through your account on the publisher's own site. Message us first if you want a hand picking the right tier." },
   { q: "Will this work if I'm outside the US?", a: "Yes, our licenses activate worldwide, though a handful of features can vary slightly by region depending on the publisher." },
   { q: "What can I pay with?", a: "PayPal balance, linked credit cards, or debit cards — all routed through PayPal's secure checkout, fully encrypted end to end." },
 ];

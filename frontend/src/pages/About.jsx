@@ -36,7 +36,7 @@ export default function About() {
     <>
       <SEO
         title="About Us | Garnavo - Independent Antivirus Reseller"
-        description="Learn about Garnavo - your trusted source for genuine antivirus subscription licenses. Independent reseller with fast delivery, fair prices, and responsive customer service."
+        description="Learn about Garnavo - an independent reseller of genuine antivirus subscription licenses with fast delivery, fair prices, and responsive customer service."
         keywords="About Garnavo, antivirus reseller, subscription license company, genuine software seller"
         schema={[aboutSchema]}
       />
@@ -106,7 +106,7 @@ export default function About() {
           <Envelope size={16} weight="duotone" className="mr-1 inline align-text-bottom" />
           <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
         </p>
-        <p>Order questions, activation help, refund requests, press inquiries, or legal notices — send it all to the address above and expect a reply within 12 hours.</p>
+        <p>Order questions, activation requests, refund requests, press inquiries, or legal notices — send it all to the address above and expect a reply within 12 hours.</p>
       </Section>
     </PolicyLayout>
     </>

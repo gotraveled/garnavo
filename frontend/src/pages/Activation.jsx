@@ -31,7 +31,7 @@ export default function Activation() {
             <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation service
           </div>
           <h1 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl">
-            Need help activating, setting up or installing your license?
+            Need your license activated, set up or installed?
           </h1>
           <div className="mx-auto mt-2 font-display text-lg font-semibold text-neutral-800 sm:text-xl">
             Activate your license

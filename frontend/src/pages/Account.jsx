@@ -251,7 +251,7 @@ function Dashboard() {
 
       <div className="mt-8 flex items-start gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-5 text-sm text-neutral-600">
         <ShieldCheck size={20} weight="duotone" className="mt-0.5 shrink-0" />
-        <p>Need help with an order or activation? <Link to="/contact" className="font-semibold text-neutral-900 underline">Contact us</Link> or visit the <Link to="/activation" className="font-semibold text-neutral-900 underline">activation portal</Link>.</p>
+        <p>Questions about an order or activation? <Link to="/contact" className="font-semibold text-neutral-900 underline">Contact us</Link> or visit the <Link to="/activation" className="font-semibold text-neutral-900 underline">activation portal</Link>.</p>
       </div>
     </div>
   );

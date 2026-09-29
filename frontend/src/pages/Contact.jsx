@@ -91,7 +91,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact Us | Garnavo"
-        description="Reach the Garnavo team for order help, license questions, or activation requests — most messages answered within 12 hours."
+        description="Reach the Garnavo team for order questions, license questions, or activation requests — most messages answered within 12 hours."
         keywords="Contact Garnavo, customer service, license inquiries, order inquiry, activation service, contact"
         schema={[contactSchema]}
       />
@@ -118,7 +118,7 @@ export default function Contact() {
             <div className="rounded-xl border border-neutral-200 bg-[#101826] p-6 text-white">
               <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-[#FF9776]"><ChatCircle size={20} weight="duotone" /></div>
               <div className="mt-3 font-display font-semibold">Response time</div>
-              <div className="text-sm text-neutral-300">Most messages answered same day — under 12 hours guaranteed.</div>
+              <div className="text-sm text-neutral-300">Most messages answered the same day — usually under 12 hours.</div>
             </div>
           </div>
 

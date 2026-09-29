@@ -127,7 +127,7 @@ export default function ProductDetail() {
         "name": `Is this a genuine ${brandName} license?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Yes, all our ${brandName} license keys are 100% genuine and legally acquired from trusted channels. Each key is verified before delivery to ensure validity.`
+          "text": `Yes, every ${brandName} license we sell is genuine and sourced from vetted channels. Each code is verified before delivery to ensure validity.`
         }
       },
       {
@@ -387,7 +387,7 @@ export default function ProductDetail() {
           {[
             { q: `What is included in ${product.name}?`, a: `${product.name} includes ${product.features.slice(0, 3).join(", ")}, and many more advanced security features to keep your devices and data protected.` },
             { q: `How do I activate my ${brandName} license key?`, a: `After purchase, you'll receive your license key via email within 5-15 minutes. Visit ${portal}, sign in or create an account, enter your product key, and follow the on-screen instructions to download and install.` },
-            { q: `Is this a genuine ${brandName} license?`, a: `Yes, all our ${brandName} license keys are 100% genuine and legally acquired from trusted channels. Each key is verified before delivery to ensure validity and proper activation.` },
+            { q: `Is this a genuine ${brandName} license?`, a: `Yes, every ${brandName} license we sell is genuine and sourced from vetted channels. Each code is verified before delivery to ensure validity and proper activation.` },
             { q: "What is your refund policy?", a: "We offer a 30-day money-back guarantee. If your license key cannot be activated or you received the wrong product, we'll issue a full refund or replacement within 30 days of purchase." },
             { q: "Can I use this on multiple devices?", a: `Yes, this plan covers ${variant.devices === 999 ? 'unlimited' : variant.devices} device(s) for ${variant.years} year(s). You can install and activate on the supported platforms listed above.` },
             { q: "How long does delivery take?", a: "License keys are delivered by email within 5-15 minutes after payment confirmation. In rare cases, it may take up to 24 hours for manual verification." },

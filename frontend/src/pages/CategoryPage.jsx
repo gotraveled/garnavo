@@ -114,7 +114,7 @@ export default function CategoryPage() {
         <section className="border-b border-neutral-200 bg-white">
           <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-4 text-sm">
             {[
-              { icon: <ShieldCheck size={16} weight="duotone" className="brand-text" />, t: "100% genuine licenses" },
+              { icon: <ShieldCheck size={16} weight="duotone" className="brand-text" />, t: "Genuine, verified licenses" },
               { icon: <Envelope size={16} weight="duotone" className="brand-text" />, t: "Email delivery in 5–15 min" },
               { icon: <LockKey size={16} weight="duotone" className="brand-text" />, t: "Secure checkout" },
               { icon: <Headset size={16} weight="duotone" className="brand-text" />, t: "Activation service included" },

@@ -1279,7 +1279,7 @@ def license_delivery_html(order: dict) -> str:
           <li>Paste the code shown above and continue</li>
           <li>Download and install the software on your device</li>
         </ol>
-        <p style="color:#6B7280;font-size:12px;margin-top:24px">Need help? Reply to this email.</p>
+        <p style="color:#6B7280;font-size:12px;margin-top:24px">Questions? Reply to this email.</p>
       </div>
     </div>
     """
@@ -1742,7 +1742,7 @@ def activation_admin_html(req: dict) -> str:
       <p><strong>Brand:</strong> {req.get('brand', 'Norton')}</p>
       <p><strong>Activation Code:</strong> <code style="background:#f3f4f6;padding:6px 8px;border-radius:4px;font-family:monospace">{req['product_key']}</code></p>
       <p><strong>Received:</strong> {req['created_at']}</p>
-      <p>Please contact this customer to help complete their {req.get('brand', 'Norton')} activation.</p>
+      <p>Please contact this customer to complete their {req.get('brand', 'Norton')} activation.</p>
     </div>
     """
 
@@ -1751,7 +1751,7 @@ def activation_customer_html(req: dict) -> str:
     <div style="font-family:Arial,sans-serif;max-width:600px;padding:20px">
       <h2>Activation request received</h2>
       <p>Hi {req['customer_name']},</p>
-      <p>We've received your {req.get('brand', 'Norton')} activation request. Our team will contact you within 12 hours to help complete the activation process.</p>
+      <p>We've received your {req.get('brand', 'Norton')} activation request. Our team will contact you within 12 hours to complete the activation process.</p>
       <p><strong>Your activation code:</strong> <code style="background:#f3f4f6;padding:6px 8px;border-radius:4px;font-family:monospace">{req['product_key']}</code></p>
       <p>If you have any questions, please reply to this email.</p>
       <p>Best regards,<br/>{STORE_NAME} Team</p>

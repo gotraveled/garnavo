@@ -39,7 +39,7 @@ export default function Footer() {
               </li>
             ))}
             <li><Link to="/products" className="text-neutral-700 hover:text-neutral-900">All Products</Link></li>
-            <li><Link to="/activation" className="text-neutral-700 hover:text-neutral-900">Activation Help</Link></li>
+            <li><Link to="/activation" className="text-neutral-700 hover:text-neutral-900">Activation Service</Link></li>
           </ul>
         </div>
 
