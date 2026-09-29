@@ -8,6 +8,7 @@ from starlette.middleware.gzip import GZipMiddleware
 from starlette.responses import Response
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import re
 import asyncio
 import logging
 from pathlib import Path
@@ -263,7 +264,7 @@ async def _upsert_customer(email: str, name: str, password: str, phone: Optional
     return doc
 
 # ============ SEED DATA ============
-SEED_VERSION = "2026-09-v14-official-content"
+SEED_VERSION = "2026-09-v15-mcafee-rename"
 
 PRODUCTS = [{'slug': 'norton-360-deluxe',
   'name': 'Norton 360 Deluxe',
@@ -1315,7 +1316,7 @@ async def list_products(category: Optional[str] = None, brand: Optional[str] = N
     if category:
         q["category"] = category
     if brand:
-        q["brand"] = brand
+        q["brand"] = {"$regex": f"^{re.escape(brand)}$", "$options": "i"}
     if featured is not None:
         q["is_featured"] = featured
     key = ("list", category, brand, featured)

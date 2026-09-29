@@ -142,7 +142,7 @@ export default function CategoryPage() {
           <div className="mb-8 flex items-end justify-between">
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">{products.length} products</div>
-              <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">Choose your plan</h2>
+              <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">Shop products</h2>
             </div>
           </div>
           {loading ? (
