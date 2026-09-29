@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import BrandDisclaimer from "@/components/BrandDisclaimer";
@@ -5,6 +6,16 @@ import { BRAND_LIST } from "@/lib/brands";
 import { ShieldCheck, ArrowRight, Clock, Headset } from "@phosphor-icons/react";
 
 export default function Activation() {
+  const pickerRef = useRef(null);
+
+  // Landing page: show the 3 brand cards immediately on open
+  useEffect(() => {
+    const t = setTimeout(() => {
+      pickerRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    }, 60);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div className="bg-neutral-50">
       <SEO
@@ -38,7 +49,7 @@ export default function Activation() {
       </section>
 
       {/* Brand picker */}
-      <section className="container-page py-8 md:py-12">
+      <section ref={pickerRef} className="container-page scroll-mt-24 py-8 md:py-12">
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
           {BRAND_LIST.map((b) => (
             <Link
