@@ -107,13 +107,9 @@
   /* ---- Brand-accent utilities (driven by a --brand CSS variable on the page) ---- */
   .btn-brand {
     @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-md px-6 py-3 font-semibold shadow-[0_1px_0_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
-    /* Two-tone gradient: lighter accent top-left -> darker accent bottom-right */
-    background: var(--brand, #0f172a);
-    background: linear-gradient(135deg,
-      color-mix(in srgb, var(--brand, #0f172a) 70%, #ffffff) 0%,
-      var(--brand, #0f172a) 45%,
-      var(--brand-dark, var(--brand, #0f172a)) 100%);
-    color: var(--brand-text, #ffffff);
+    /* Solid black/navy button with white text — brand accents stay elsewhere */
+    background: linear-gradient(135deg, #2b3648 0%, #101826 55%, #0c1420 100%);
+    color: #ffffff;
     transition: filter 0.2s ease, transform 0.15s ease;
   }
   /* Always-visible subtle sheen */

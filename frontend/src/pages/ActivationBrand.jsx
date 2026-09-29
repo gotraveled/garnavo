@@ -125,9 +125,9 @@ export default function ActivationBrand() {
   return (
     <div style={theme} className="bg-neutral-50">
       <SEO
-        title={`${brand.name} Activation Service — Independent Reseller | Garnavo`}
-        description={`${brand.name} activation service from Garnavo, an independent reseller. We walk you through activating the ${brand.name} license you bought from us on the official ${brand.portalName} portal.`}
-        keywords={`${brand.name} activation, ${brand.name} activation service, ${brand.name} activation code, independent reseller activation, ${brand.name} install`}
+        title={`${brand.name} ${brand.serviceName.charAt(0).toUpperCase() + brand.serviceName.slice(1)} — Independent Reseller | Garnavo`}
+        description={`${brand.name} ${brand.serviceName} from Garnavo, an independent reseller. We walk you through the process for the ${brand.name} license you bought from us via ${brand.portalName}.`}
+        keywords={`${brand.name} ${brand.serviceName}, ${brand.name} license code, independent reseller, ${brand.name} install, ${brand.name} setup`}
       />
 
       {/* Trust badges header strip */}
@@ -138,7 +138,7 @@ export default function ActivationBrand() {
             <div className="hidden sm:block w-px h-5 bg-neutral-200"></div>
             <div className="flex items-center gap-2 text-sm"><Clock size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">Fast Delivery</span></div>
             <div className="hidden sm:block w-px h-5 bg-neutral-200"></div>
-            <div className="flex items-center gap-2 text-sm"><Headset size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">Activation Service</span></div>
+            <div className="flex items-center gap-2 text-sm"><Headset size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">{brand.verbTitle} Service</span></div>
             <div className="hidden sm:block w-px h-5 bg-neutral-200"></div>
             <div className="flex items-center gap-2 text-sm"><LockKey size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">Secure</span></div>
           </div>
@@ -150,19 +150,19 @@ export default function ActivationBrand() {
         <div className="container-page py-8 md:py-12">
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700 brand-border">
-              <Headset size={14} weight="fill" className="brand-text" /> Garnavo activation service
+              <Headset size={14} weight="fill" className="brand-text" /> Garnavo {brand.serviceName}
             </div>
             <h1 className="mt-5 font-display text-3xl font-black leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-              Need your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license activated, set up or installed?
+              Need help with setup, install or {brand.verbIng} your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license?
             </h1>
             <div className="mt-3 font-display text-xl font-semibold text-neutral-800 sm:text-2xl">
-              Activate your {brand.name} license
+              {brand.verbTitle} your {brand.name} license — we do it with you
             </div>
             <p className="mt-4 text-lg leading-relaxed text-neutral-700">
-              We're an independent reseller. Send us your details and our team will walk you through activating the {brand.name} license you purchased — usually within 5–15 minutes.
+              We're an independent reseller. Send us your details and our team will guide you through the process for the {brand.name} license you purchased — usually within 5–15 minutes.
             </p>
             <p className="mt-3 text-xs leading-relaxed text-neutral-400">
-              We assist with activation, setup and installation for products purchased on our website.
+              We assist with setup and installation for products purchased on our website.
             </p>
           </div>
         </div>
@@ -172,10 +172,10 @@ export default function ActivationBrand() {
       <div className="border-b border-neutral-200 bg-white">
         <div className="container-page py-3">
           <p className="mx-auto max-w-3xl text-center text-[11px] leading-relaxed text-neutral-400">
-            This is not the official {brand.name} website. Garnavo is an independent reseller and is not affiliated with or endorsed by {brand.entity}.
-            Activation is completed on the official {brand.name} portal at{" "}
+            This is a Garnavo service page — Garnavo is an independent reseller and is not affiliated with or endorsed by {brand.entity}.
+            Your license is registered on the {brand.name} website at{" "}
             <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-neutral-600">{brand.portalName}</a> —
-            this page simply offers an optional activation service for that process.
+            this page simply offers an optional {brand.serviceName} for that process.
           </p>
         </div>
       </div>
@@ -187,12 +187,12 @@ export default function ActivationBrand() {
           <div id="activation-form" ref={formRef} className="order-1 scroll-mt-32 lg:order-1">
             <div className="sticky top-24 rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.15)] sm:p-8">
               <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-lg brand-bg" style={{ color: "#fff" }}>
+                <div className="grid h-11 w-11 place-items-center rounded-lg bg-[#101826]" style={{ color: "#fff" }}>
                   <Key size={22} weight="duotone" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">Activation service</div>
-                  <div className="font-display text-xl font-bold">Activate your {brand.name} license</div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{brand.serviceName}</div>
+                  <div className="font-display text-xl font-bold">{brand.verbTitle} your {brand.name} license</div>
                 </div>
               </div>
 
@@ -242,13 +242,13 @@ export default function ActivationBrand() {
                 </button>
 
                 <p className="mt-4 text-[11px] leading-relaxed text-neutral-400">
-                  By submitting, you agree to receive activation service via email and phone. We are an independent reseller and not affiliated with {brand.entity}. {brand.name} is a trademark of {brand.entity}. Your information is used solely for activation service and is never sold or shared with third parties.
+                  By submitting, you agree to receive the {brand.serviceName} via email and phone. We are an independent reseller and not affiliated with {brand.entity}. {brand.name} is a trademark of {brand.entity}. Your information is used solely for the {brand.serviceName} and is never sold or shared with third parties.
                 </p>
               </form>
 
               <div className="mt-6 flex items-center justify-center gap-4 border-t border-neutral-200 pt-4 text-xs text-neutral-600">
                 <div className="inline-flex items-center gap-1.5"><ShieldCheck size={14} weight="fill" className="text-emerald-600" /> SSL Secured</div>
-                <div className="inline-flex items-center gap-1.5"><CheckCircle size={14} weight="fill" className="text-emerald-600" /> Activation service</div>
+                <div className="inline-flex items-center gap-1.5"><CheckCircle size={14} weight="fill" className="text-emerald-600" /> {brand.verbTitle} service</div>
               </div>
               <div className="mt-4 flex items-center justify-center gap-4 text-xs text-neutral-500">
                 <Link to="/privacy-policy" className="hover:text-neutral-900 underline">Privacy Policy</Link>
@@ -260,15 +260,15 @@ export default function ActivationBrand() {
 
           {/* RIGHT: Instructions */}
           <div className="order-2 lg:order-2">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">How activation works</div>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Activate on the official {brand.name} site</h2>
-            <p className="mt-3 text-neutral-600">Activation always happens on {brand.name}'s official portal. Follow the steps below yourself, or submit your details and our team will guide you through them.</p>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">How it works</div>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Steps on the {brand.name} website</h2>
+            <p className="mt-3 text-neutral-600">Everything happens on {brand.name}'s own website. Follow the steps below yourself, or submit your details and our team will guide you through them.</p>
 
             <ol className="mt-10 space-y-6">
               {brand.steps.map((s, i) => (
                 <li key={i} className="relative flex gap-5 rounded-xl border border-neutral-200 bg-white p-5">
                   <div className="flex flex-col items-center">
-                    <div className="grid h-11 w-11 place-items-center rounded-lg brand-bg" style={{ color: "#fff" }}>
+                    <div className="grid h-11 w-11 place-items-center rounded-lg bg-[#101826]" style={{ color: "#fff" }}>
                       {STEP_ICONS[i]}
                     </div>
                     <span className="mt-3 font-mono text-xs text-neutral-500">0{i + 1}</span>
@@ -285,9 +285,9 @@ export default function ActivationBrand() {
               <div className="flex items-start gap-3">
                 <LockKey size={22} weight="duotone" className="mt-1 shrink-0 brand-text" />
                 <div>
-                  <div className="font-display font-semibold">Where do I find my {brand.name} activation code?</div>
+                  <div className="font-display font-semibold">Where do I find my {brand.name} code?</div>
                   <p className="mt-1 text-sm text-neutral-700">
-                    Your activation code is in the email we sent after purchase. {brand.keyHint} If you can't find it, <Link to="/contact" className="font-semibold underline">contact us</Link>.
+                    Your code is in the email we sent after purchase. {brand.keyHint} If you can't find it, <Link to="/contact" className="font-semibold underline">contact us</Link>.
                   </p>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export default function ActivationBrand() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Common questions</div>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">{brand.name} activation, made easy</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">{brand.name} setup, made easy</h2>
           </div>
           <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
             {brand.faqs.map((f, i) => (

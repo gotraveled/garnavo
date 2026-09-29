@@ -31,19 +31,19 @@ export default function Activation() {
             <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation service
           </div>
           <h1 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl">
-            Need your license activated, set up or installed?
+            Need help with setup, install or registering your license?
           </h1>
           <div className="mx-auto mt-2 font-display text-lg font-semibold text-neutral-800 sm:text-xl">
-            Activate your license
+            Expert guidance for the license you purchased
           </div>
           <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-neutral-600">
-            Pick the brand you purchased — our team walks you through activation on the official portal, usually within 5–15 minutes.
+            Pick the brand you purchased — our team walks you through the process on the brand's own website, usually within 5–15 minutes.
           </p>
           <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-neutral-400">
-            We assist with activation, setup and installation for products purchased on our website.
+            We assist with setup and installation for products purchased on our website.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-[11px] leading-relaxed text-neutral-400">
-            Garnavo is an independent reseller — not affiliated with the brands shown below. Activation is always completed on the brand's official website.
+            Garnavo is an independent reseller — not affiliated with the brands shown below. Your license is always registered on the brand's own website.
           </p>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default function Activation() {
               <div
                 className="mt-6 inline-flex items-center gap-2 rounded-md bg-[#101826] px-5 py-2.5 text-sm font-semibold text-white transition-transform group-hover:scale-[1.03]"
               >
-                Activate {b.name} <ArrowRight size={16} weight="bold" />
+                {b.ctaLabel} <ArrowRight size={16} weight="bold" />
               </div>
             </Link>
           ))}

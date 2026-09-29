@@ -131,8 +131,8 @@ export default function CategoryPage() {
         {/* Independence notice — compliance, kept light */}
         <div className="container-page py-3">
           <p className="mx-auto max-w-3xl text-center text-[11px] leading-relaxed text-neutral-400">
-            Independent reseller — not affiliated with or endorsed by {brand.entity}. Activation is completed on the
-            official {brand.name} portal at{" "}
+            Independent reseller — not affiliated with or endorsed by {brand.entity}. Your license is registered on the
+            {brand.name} website at{" "}
             <a href={brand.portalUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-neutral-600">{brand.portalName}</a>.
           </p>
         </div>
@@ -201,7 +201,7 @@ export default function CategoryPage() {
               {[
                 { n: "1", icon: <Package size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Pick your plan", d: `Choose the ${brand.name} product and device count that fits your needs, then check out securely with PayPal.` },
                 { n: "2", icon: <Envelope size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Get your license by email", d: "We verify your order and email your activation code — usually within 5–15 minutes." },
-                { n: "3", icon: <DownloadSimple size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Activate on the official site", d: `Enter your code at ${brand.portalName} to register the subscription to your own account and download the software.` },
+                { n: "3", icon: <DownloadSimple size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Register on the brand's website", d: `Enter your code at ${brand.portalName} to register the subscription to your own account and download the software.` },
               ].map((s, i) => (
                 <div key={i} className="relative rounded-2xl border bg-white p-6 brand-border">
                   <div className="flex items-center justify-between">
@@ -232,7 +232,7 @@ export default function CategoryPage() {
                   {[
                     "A genuine, unused activation code",
                     "Delivery to your email in 5–15 min",
-                    "Activation on the official brand site",
+                    "Registration on the brand's website",
                     "Step-by-step activation service",
                     "30-day money-back guarantee",
                     "Replacement if your code doesn't work",
