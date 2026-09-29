@@ -33,7 +33,7 @@ def build_feed(products):
         f"Genuine antivirus and security software licenses with fast email delivery from {STORE_NAME}.")
 
     count = 0
-    for product in products:
+    for p_idx, product in enumerate(products):
         if not product.get("variants") or not product.get("is_active", True):
             continue
         brand = product.get("brand") or "Norton"
@@ -43,7 +43,7 @@ def build_feed(products):
         link = f"{STORE_URL}/product/{product['slug']}"
         img = f"{STORE_URL}/images/products/{product['slug']}.png"
 
-        for variant in product["variants"]:
+        for v_idx, variant in enumerate(product["variants"]):
             price = float(variant.get("price") or 0)
             original = variant.get("original_price")
             try:
@@ -53,8 +53,9 @@ def build_feed(products):
             vslug = re.sub(r"[^a-z0-9]+", "-", variant["label"].lower()).strip("-")
 
             item = SubElement(channel, "item")
-            SubElement(item, "g:id").text = f"{product['slug']}-{vslug}"
-            SubElement(item, "g:item_group_id").text = product["slug"]
+            # g:id is limited to 50 chars — use compact product/variant indexes
+            SubElement(item, "g:id").text = f"g{p_idx + 1:02d}v{v_idx + 1}"
+            SubElement(item, "g:item_group_id").text = f"g{p_idx + 1:02d}"
             SubElement(item, "g:title").text = f"{product['name']} - {variant['label']}"
             SubElement(item, "g:description").text = desc
             SubElement(item, "g:link").text = link
