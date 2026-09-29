@@ -176,7 +176,7 @@ export default function CategoryPage() {
             </div>
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { icon: <Certificate size={24} weight="duotone" className="brand-text" />, t: "Genuine & verified", d: "Every license is sourced from authorized channels and checked before it's sent to you." },
+                { icon: <Certificate size={24} weight="duotone" className="brand-text" />, t: "Genuine & verified", d: "Every license is sourced from vetted channels and checked before it's sent to you." },
                 { icon: <Lightning size={24} weight="duotone" className="brand-text" />, t: "5–15 min delivery", d: "Your activation code is emailed to you within minutes of a successful checkout." },
                 { icon: <CreditCard size={24} weight="duotone" className="brand-text" />, t: "Secure checkout", d: "Pay safely with PayPal. We never see or store your card details." },
                 { icon: <Headset size={24} weight="duotone" className="brand-text" />, t: "Activation service", d: "Step-by-step activation service and a 30-day money-back guarantee on every order." },

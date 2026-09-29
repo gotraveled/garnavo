@@ -27,7 +27,7 @@ export default function OfferBanner() {
           </span>
           <Link to="/contact" className="hidden items-center gap-1.5 text-neutral-200 hover:text-white md:inline-flex">
             <Headset size={14} weight="duotone" className="text-[#FF9776]" />
-            Real human support, replies within 12h
+            Real humans reply within 12h
           </Link>
         </div>
         <div className="flex items-center gap-3">

@@ -79,7 +79,7 @@ export default function ActivationThanks() {
                 <ChatCircleDots size={28} weight="duotone" className="mt-1 shrink-0 text-neutral-900" />
                 <div>
                   <div className="font-display text-lg font-semibold">Questions about your activation?</div>
-                  <p className="text-sm text-neutral-700">Reach our activation team for assistance with your order.</p>
+                  <p className="text-sm text-neutral-700">Reach our activation team about your order.</p>
                 </div>
               </div>
               <button

@@ -42,7 +42,7 @@ export default function Home() {
     "name": "Garnavo",
     "url": "https://garnavo.com",
     "logo": "https://garnavo.com/logo.png",
-    "description": "Garnavo is an independently run online shop for genuine antivirus subscription licenses, with same-day email delivery and real human support.",
+    "description": "Garnavo is an independently run online shop for genuine antivirus subscription licenses, with same-day email delivery and a real human behind every order.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Westwood Street",

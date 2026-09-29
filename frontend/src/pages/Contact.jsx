@@ -91,7 +91,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact Us | Garnavo"
-        description="Reach the Garnavo team for order help, license questions, or activation support — most messages answered within 12 hours."
+        description="Reach the Garnavo team for order help, license questions, or activation requests — most messages answered within 12 hours."
         keywords="Contact Garnavo, customer service, license inquiries, order inquiry, activation service, contact"
         schema={[contactSchema]}
       />

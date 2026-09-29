@@ -55,7 +55,7 @@ export default function Terms() {
       </Section>
 
       <Section id="products" title="4. Products & services">
-        <p>Garnavo is an independent digital software reseller. We source authentic software licenses from authorized channels and deliver them electronically to our customers via email. All Products are sold as digital licenses only — <strong>no physical goods are shipped</strong>.</p>
+        <p>Garnavo is an independent digital software reseller. We source authentic software licenses from vetted channels and deliver them electronically to our customers via email. All Products are sold as digital licenses only — <strong>no physical goods are shipped</strong>.</p>
         <p>The use of any Product is subject to the end-user license agreement (EULA) provided by the Publisher. It is your responsibility to review and accept the Publisher's EULA before using the software.</p>
         <p>Product descriptions, features, device counts, and subscription lengths are provided by us based on publicly available Publisher information. We do our best to ensure accuracy, but we do not warrant that all descriptions are current, complete, or error-free. In the event of a discrepancy, the Publisher's terms control.</p>
       </Section>

@@ -57,7 +57,7 @@ export default function Disclaimer() {
         <ul className="list-disc pl-6">
           <li>Software publishers may change product features, pricing, subscription terms, or names at any time without notifying resellers.</li>
           <li>Screenshots, images, and product descriptions are for illustrative purposes only and may not perfectly reflect the current publisher offering.</li>
-          <li>Regional availability, language support, and system requirements are determined by the publisher — please verify on the publisher's official site before purchase.</li>
+          <li>Regional availability, language availability, and system requirements are determined by the publisher — please verify on the publisher's official site before purchase.</li>
           <li>Typographical errors, pricing errors, and stock discrepancies may occur. We reserve the right to correct any such error and, if necessary, cancel an order and issue a full refund.</li>
         </ul>
       </Section>
