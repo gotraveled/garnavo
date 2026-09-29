@@ -5,10 +5,9 @@ const slugify = (s) =>
   (s || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 /**
- * Renders the generated product-box image for a product/variant.
- * Images live at /images/products/{slug}--{variant-label-slug}.svg with a
- * per-product fallback at /images/products/{slug}.svg. If neither exists,
- * a clean neutral placeholder is shown.
+ * Renders the product image. Prefers the generated PNG card at
+ * /images/products/{slug}.png (GMC-compliant), falling back to the
+ * older per-variant SVG art, then a clean neutral placeholder.
  */
 export default function ProductBox({ product, variant, size = "md", showRibbon = true }) {
   const activeVariant = variant || product?.variants?.[0] || {};
@@ -16,6 +15,7 @@ export default function ProductBox({ product, variant, size = "md", showRibbon =
   const vslug = slugify(activeVariant.label);
 
   const candidates = [
+    `/images/products/${slug}.png`,
     vslug ? `/images/products/${slug}--${vslug}.svg` : null,
     `/images/products/${slug}.svg`,
   ].filter(Boolean);
