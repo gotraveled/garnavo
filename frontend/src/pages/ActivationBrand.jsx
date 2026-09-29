@@ -155,9 +155,6 @@ export default function ActivationBrand() {
             <h1 className="mt-5 font-display text-3xl font-black leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
               Need help with setup, install or {brand.verbIng} your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license?
             </h1>
-            <div className="mt-3 font-display text-xl font-semibold text-neutral-800 sm:text-2xl">
-              {brand.verbTitle} your license — we do it with you
-            </div>
             <p className="mt-4 text-lg leading-relaxed text-neutral-700">
               We're an independent reseller. Send us your details and our team will guide you through the process for the license you purchased — usually within 5–15 minutes.
             </p>
@@ -192,7 +189,7 @@ export default function ActivationBrand() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{brand.serviceName}</div>
-                  <div className="font-display text-xl font-bold">{brand.verbTitle} your license</div>
+                  <div className="font-display text-xl font-bold">Activation Assistance</div>
                 </div>
               </div>
 

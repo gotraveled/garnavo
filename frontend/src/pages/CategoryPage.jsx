@@ -104,7 +104,7 @@ export default function CategoryPage() {
               {/* Two paths matching the ad groups: buy vs redeem/activate */}
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
                 <button onClick={scrollToProducts} className="btn-brand">
-                  Shop {brand.name} Products <ArrowRight size={18} weight="bold" />
+                  Browse Products <ArrowRight size={18} weight="bold" />
                 </button>
                 <Link to={`/activation/${brand.slug}`} className="btn-outline justify-center">
                   {brand.ctaLabel}
@@ -152,7 +152,7 @@ export default function CategoryPage() {
               ))}
             </div>
           ) : error ? (
-            <LoadError label={`${brand.name} products`} onRetry={load} />
+            <LoadError label="products" onRetry={load} />
           ) : products.length > 0 ? (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {products.map((p) => <ProductCard key={p.id} product={p} />)}
