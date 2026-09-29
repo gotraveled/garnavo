@@ -67,7 +67,7 @@ export default function DigitalDelivery() {
         <ul className="list-disc pl-6">
           <li><strong>Norton</strong> — sign in at <a href="https://my.norton.com" target="_blank" rel="noopener noreferrer" className="underline">my.norton.com</a> and enter your activation code.</li>
           <li><strong>Webroot</strong> — go to <a href="https://www.webroot.com/safe" target="_blank" rel="noopener noreferrer" className="underline">webroot.com/safe</a> and enter your activation code.</li>
-          <li><strong>McAfee</strong> — go to <a href="https://www.mcafee.com/activate" target="_blank" rel="noopener noreferrer" className="underline">mcafee.com/activate</a> and enter your activation code.</li>
+          <li><strong>Mcafee</strong> — go to <a href="https://www.mcafee.com/activate" target="_blank" rel="noopener noreferrer" className="underline">mcafee.com/activate</a> and enter your activation code.</li>
         </ul>
         <p>In every case you'll sign in (or create an account), enter your activation code, and follow the on-screen prompts to download and install on your devices.</p>
         <p>Questions? Our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a> gives you step-by-step guidance, and our team is available at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>

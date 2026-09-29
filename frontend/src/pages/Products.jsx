@@ -37,7 +37,7 @@ export default function Products() {
   const pageTitle = activeBrand ? `${activeBrand.name} Products` : q ? `Results for "${params.get("q")}"` : "All Antivirus Products";
   const pageDesc = activeBrand
     ? `Browse genuine ${activeBrand.name} security software with fast email delivery and a 30-day money-back guarantee.`
-    : "Browse our full catalog of genuine antivirus license keys — Norton, Webroot and McAfee — with fast email delivery and a 30-day money-back guarantee.";
+    : "Browse our full catalog of genuine antivirus license keys — Norton, Webroot and Mcafee — with fast email delivery and a 30-day money-back guarantee.";
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -53,7 +53,7 @@ export default function Products() {
       <SEO
         title={pageTitle}
         description={pageDesc}
-        keywords={`${brand || "antivirus"}, Norton key, Webroot keycode, McAfee activation code, antivirus license key, genuine software keys, email delivery`}
+        keywords={`${brand || "antivirus"}, Norton key, Webroot keycode, Mcafee activation code, antivirus license key, genuine software keys, email delivery`}
         schema={[breadcrumbSchema]}
       />
       <div className="container-page py-10 md:py-14">

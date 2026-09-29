@@ -110,8 +110,8 @@ export const BRANDS = {
 
   mcafee: {
     slug: "mcafee",
-    name: "McAfee",
-    // Red accent (McAfee-inspired) — white text reads best on it
+    name: "Mcafee",
+    // Red accent (Mcafee-inspired) — white text reads best on it
     color: "#DC2626",
     colorDark: "#B91C1C",
     soft: "#FEE2E2",
@@ -119,7 +119,7 @@ export const BRANDS = {
     border: "#FCA5A5",
     textOn: "#FFFFFF",
     ring: "#DC2626",
-    // Shifted accent — deep wine/maroon instead of McAfee's bright red.
+    // Shifted accent — deep wine/maroon instead of Mcafee's bright red.
     accent: "#9F1239",
     accentDark: "#7A0E2C",
     accentTextOn: "#FFFFFF",
@@ -133,29 +133,29 @@ export const BRANDS = {
     verbTitle: "Redeem",
     verbIng: "redeeming",
     serviceName: "redemption service",
-    keyLabel: "McAfee activation code (25 characters)",
+    keyLabel: "Mcafee activation code (25 characters)",
     keyPlaceholder: "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX",
     keyHint: "Format: 25-character activation code from your delivery email.",
     tagline: "All-in-one protection for every device you own",
-    heroTitle: "McAfee Security Products",
-    heroSub: "Genuine McAfee licenses delivered to your email within minutes of checkout.",
-    seoTitle: "McAfee Licenses — Total Protection & McAfee+",
-    seoDesc: "Buy genuine McAfee licenses. McAfee Total Protection, McAfee+ Premium & AntiVirus with fast email delivery and a 30-day money-back guarantee.",
-    seoKeywords: "McAfee license, McAfee Total Protection, McAfee+ Premium, McAfee AntiVirus, McAfee activation code, buy McAfee online, genuine McAfee software",
+    heroTitle: "Mcafee Security Products",
+    heroSub: "Genuine Mcafee licenses delivered to your email within minutes of checkout.",
+    seoTitle: "Mcafee Licenses — Total Protection & Mcafee+",
+    seoDesc: "Buy genuine Mcafee licenses. Mcafee Total Protection, Mcafee+ Premium & AntiVirus with fast email delivery and a 30-day money-back guarantee.",
+    seoKeywords: "Mcafee license, Mcafee Total Protection, Mcafee+ Premium, Mcafee AntiVirus, Mcafee activation code, buy Mcafee online, genuine Mcafee software",
     steps: [
-      { title: "Go to the McAfee redeem page", desc: "Visit mcafee.com/activate or sign in to your account at home.mcafee.com." },
-      { title: "Enter your 25-character code", desc: "Paste the code we emailed you and sign in or create a McAfee account." },
-      { title: "Download and install McAfee", desc: "Follow the prompts to download the McAfee installer and complete setup on your device." },
+      { title: "Go to the Mcafee redeem page", desc: "Visit mcafee.com/activate or sign in to your account at home.mcafee.com." },
+      { title: "Enter your 25-character code", desc: "Paste the code we emailed you and sign in or create a Mcafee account." },
+      { title: "Download and install Mcafee", desc: "Follow the prompts to download the Mcafee installer and complete setup on your device." },
       { title: "Run protection and stay covered", desc: "Your subscription turns on and begins protecting your device in real time." },
     ],
     about: [
-      "McAfee is a long-standing leader in consumer security, offering all-in-one protection that combines antivirus, a Secure VPN, identity monitoring, a password manager and privacy tools across PCs, Macs and mobile devices.",
-      "When you buy a McAfee license from Garnavo, you receive a genuine 25-character code by email — usually within 5–15 minutes. Enter it at mcafee.com/activate to register the subscription to your own McAfee account and download the software directly from McAfee.",
+      "Mcafee is a long-standing leader in consumer security, offering all-in-one protection that combines antivirus, a Secure VPN, identity monitoring, a password manager and privacy tools across PCs, Macs and mobile devices.",
+      "When you buy a Mcafee license from Garnavo, you receive a genuine 25-character code by email — usually within 5–15 minutes. Enter it at mcafee.com/activate to register the subscription to your own Mcafee account and download the software directly from Mcafee.",
     ],
     faqs: [
-      { q: "How do I redeem my McAfee code?", a: "Go to mcafee.com/activate, enter your 25-character code, sign in or create a McAfee account, then download and install." },
-      { q: "Is this a genuine McAfee license?", a: "Yes. Every code we sell is a genuine license code that registers directly to your own McAfee account." },
-      { q: "How many devices can I protect?", a: "It depends on the plan — McAfee AntiVirus covers 1 PC, while McAfee+ Premium and LiveSafe cover unlimited devices." },
+      { q: "How do I redeem my Mcafee code?", a: "Go to mcafee.com/activate, enter your 25-character code, sign in or create a Mcafee account, then download and install." },
+      { q: "Is this a genuine Mcafee license?", a: "Yes. Every code we sell is a genuine license code that registers directly to your own Mcafee account." },
+      { q: "How many devices can I protect?", a: "It depends on the plan — Mcafee AntiVirus covers 1 PC, while Mcafee+ Premium and LiveSafe cover unlimited devices." },
       { q: "What if my code doesn't work?", a: "Contact us and we'll verify it or issue a replacement — covered by our 30-day money-back guarantee." },
     ],
   },

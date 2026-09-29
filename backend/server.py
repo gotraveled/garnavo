@@ -74,7 +74,7 @@ class Product(BaseModel):
     description: str = ""
     long_description: str = ""
     category: str
-    brand: str = "Norton"  # Norton | Webroot | McAfee
+    brand: str = "Norton"  # Norton | Webroot | Mcafee
     image_url: str = ""
     box_variant: str = "gold"  # gold | amber | black | green | red | purple
     badge: Optional[str] = None
@@ -468,38 +468,38 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'is_featured': False,
   'platforms': ['windows']},
  {'slug': 'mcafee-antivirus',
-  'name': 'McAfee AntiVirus',
-  'brand': 'McAfee',
+  'name': 'Mcafee AntiVirus',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee AntiVirus',
+  'category': 'Mcafee AntiVirus',
   'image_url': '',
   'tagline': 'Award-winning antivirus protection for a single Windows PC with automatic updates.',
-  'description': 'McAfee AntiVirus provides essential, lightweight protection for one Windows PC, defending against '
+  'description': 'Mcafee AntiVirus provides essential, lightweight protection for one Windows PC, defending against '
                  'viruses, malware, ransomware and phishing with real-time threat detection.',
   'features': ['Real-time antivirus & malware protection',
                'Anti-phishing web protection',
                'Lightweight background performance',
                'Automatic threat intelligence updates',
-               'McAfee Virus Protection Pledge*'],
+               'Mcafee Virus Protection Pledge*'],
   'variants': [{'devices': 1, 'years': 1, 'label': '1 PC / 1 Year', 'price': 39.99, 'original_price': 59.99},
                {'devices': 1, 'years': 3, 'label': '1 PC / 3 Years', 'price': 79.99, 'original_price': 119.99}],
-  'long_description': 'McAfee AntiVirus is a straightforward, reliable solution for protecting one Windows PC. It '
+  'long_description': 'Mcafee AntiVirus is a straightforward, reliable solution for protecting one Windows PC. It '
                       'delivers real-time detection and blocking of viruses, malware, ransomware and phishing attacks '
                       'without slowing your computer down.\n'
                       '\n'
-                      "Automatic updates keep your protection current, and McAfee's Virus Protection Pledge means "
+                      "Automatic updates keep your protection current, and Mcafee's Virus Protection Pledge means "
                       'experts will help remove viruses or your money back (with auto-renewal enrollment).',
   'source': 'seed',
   'is_featured': False,
   'platforms': ['windows']},
  {'slug': 'mcafee-internet-security',
-  'name': 'McAfee Internet Security',
-  'brand': 'McAfee',
+  'name': 'Mcafee Internet Security',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee Internet Security',
+  'category': 'Mcafee Internet Security',
   'image_url': '',
   'tagline': 'Multi-device security with firewall, VPN, identity monitoring and award-winning antivirus.',
-  'description': 'McAfee Internet Security protects your devices with real-time antivirus, a smart firewall, a Secure '
+  'description': 'Mcafee Internet Security protects your devices with real-time antivirus, a smart firewall, a Secure '
                  'VPN, identity monitoring and safe web browsing tools.',
   'features': ['Real-time antivirus & malware protection',
                'Advanced firewall',
@@ -512,7 +512,7 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
                {'devices': 3, 'years': 1, 'label': '3 Devices / 1 Year', 'price': 49.99, 'original_price': 79.99},
                {'devices': 5, 'years': 1, 'label': '5 Devices / 1 Year', 'price': 59.99, 'original_price': 99.99},
                {'devices': 10, 'years': 1, 'label': '10 Devices / 1 Year', 'price': 69.99, 'original_price': 119.99}],
-  'long_description': 'McAfee Internet Security provides comprehensive online protection for multiple devices. It '
+  'long_description': 'Mcafee Internet Security provides comprehensive online protection for multiple devices. It '
                       'combines real-time antivirus with an advanced firewall, a Secure VPN, anti-phishing web '
                       'protection and identity monitoring alerts.\n'
                       '\n'
@@ -522,13 +522,13 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'is_featured': True,
   'platforms': ['windows', 'macos', 'android', 'ios']},
  {'slug': 'mcafee-mobile-security',
-  'name': 'McAfee Mobile Security',
-  'brand': 'McAfee',
+  'name': 'Mcafee Mobile Security',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee Mobile Security',
+  'category': 'Mcafee Mobile Security',
   'image_url': '',
   'tagline': 'Antivirus, anti-theft and privacy protection for Android and iOS devices.',
-  'description': 'McAfee Mobile Security keeps your smartphone or tablet safe with antivirus, anti-theft tools, Wi-Fi '
+  'description': 'Mcafee Mobile Security keeps your smartphone or tablet safe with antivirus, anti-theft tools, Wi-Fi '
                  'protection and privacy features designed for life on the go.',
   'features': ['Mobile antivirus & malware protection',
                'Anti-theft protection (Android)',
@@ -537,7 +537,7 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
                'Anti-phishing web protection'],
   'variants': [{'devices': 1, 'years': 1, 'label': '1 Device / 1 Year', 'price': 29.99, 'original_price': 44.99},
                {'devices': 10, 'years': 1, 'label': '10 Devices / 1 Year', 'price': 49.99, 'original_price': 89.99}],
-  'long_description': 'McAfee Mobile Security is designed for Android and iOS smartphones and tablets. It blocks '
+  'long_description': 'Mcafee Mobile Security is designed for Android and iOS smartphones and tablets. It blocks '
                       'mobile malware, reviews app permissions for privacy risks, warns you about unsafe Wi-Fi '
                       'networks and helps protect against phishing links.\n'
                       '\n'
@@ -547,13 +547,13 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'is_featured': False,
   'platforms': ['android', 'ios']},
  {'slug': 'mcafee-total-protection',
-  'name': 'McAfee Total Protection',
-  'brand': 'McAfee',
+  'name': 'Mcafee Total Protection',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee Total Protection',
+  'category': 'Mcafee Total Protection',
   'image_url': '',
   'tagline': 'All-in-one antivirus, privacy and identity protection for your whole household.',
-  'description': 'McAfee Total Protection delivers premium antivirus, a Secure VPN, identity monitoring, a Password '
+  'description': 'Mcafee Total Protection delivers premium antivirus, a Secure VPN, identity monitoring, a Password '
                  'Manager and safe browsing for multiple devices under one subscription.',
   'features': ['Premium antivirus & ransomware protection',
                'Scam protection & deepfake scam defense',
@@ -566,7 +566,7 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'variants': [{'devices': 1, 'years': 1, 'label': '1 Device / 1 Year', 'price': 44.99, 'original_price': 84.99},
                {'devices': 5, 'years': 1, 'label': '5 Devices / 1 Year', 'price': 59.99, 'original_price': 119.99},
                {'devices': 10, 'years': 1, 'label': '10 Devices / 1 Year', 'price': 74.99, 'original_price': 159.99}],
-  'long_description': 'McAfee Total Protection is an all-in-one security suite that helps keep your devices, privacy '
+  'long_description': 'Mcafee Total Protection is an all-in-one security suite that helps keep your devices, privacy '
                       'and identity safer. It includes premium antivirus, scam protection, a Secure VPN, identity '
                       'monitoring alerts and a Password Manager.\n'
                       '\n'
@@ -792,13 +792,13 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'platforms': ['windows', 'macos', 'android', 'ios'],
   'is_featured': False},
  {'slug': 'mcafee-plus-essential',
-  'name': 'McAfee+ Essential',
-  'brand': 'McAfee',
+  'name': 'Mcafee+ Essential',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee+',
+  'category': 'Mcafee+',
   'image_url': '',
   'tagline': 'Modern antivirus, VPN and identity monitoring for up to 5 devices.',
-  'description': 'McAfee+ Essential delivers award-winning antivirus, an intelligent firewall, a Secure VPN, basic '
+  'description': 'Mcafee+ Essential delivers award-winning antivirus, an intelligent firewall, a Secure VPN, basic '
                  'identity monitoring and a Password Manager for up to five devices.',
   'features': ['Real-time antivirus & firewall',
                'Scam protection',
@@ -807,7 +807,7 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
                'Password Manager',
                'Protection for 5 devices'],
   'variants': [{'devices': 5, 'years': 1, 'label': '5 Devices / 1 Year', 'price': 59.99, 'original_price': 89.99}],
-  'long_description': "McAfee+ Essential is the entry point into McAfee's current subscription lineup. It covers up to "
+  'long_description': "Mcafee+ Essential is the entry point into Mcafee's current subscription lineup. It covers up to "
                       'five devices with real-time antivirus, an intelligent firewall, a Secure VPN and a Password '
                       'Manager.\n'
                       '\n'
@@ -816,13 +816,13 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'platforms': ['windows', 'macos', 'android', 'ios'],
   'is_featured': False},
  {'slug': 'mcafee-plus-premium',
-  'name': 'McAfee+ Premium',
-  'brand': 'McAfee',
+  'name': 'Mcafee+ Premium',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee+',
+  'category': 'Mcafee+',
   'image_url': '',
   'tagline': 'Unlimited devices with full identity theft protection, credit monitoring and $1 million coverage.',
-  'description': 'McAfee+ Premium protects an unlimited number of devices and adds full identity theft protection, '
+  'description': 'Mcafee+ Premium protects an unlimited number of devices and adds full identity theft protection, '
                  'credit monitoring, dark web monitoring and $1 million in identity theft coverage.',
   'features': ['Unlimited device protection',
                'Real-time antivirus & firewall',
@@ -836,7 +836,7 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
                 'label': 'Unlimited Devices / 1 Year',
                 'price': 99.99,
                 'original_price': 149.99}],
-  'long_description': "McAfee+ Premium is McAfee's full-featured plan for households with many devices. It covers an "
+  'long_description': "Mcafee+ Premium is Mcafee's full-featured plan for households with many devices. It covers an "
                       'unlimited number of PCs, Macs, smartphones and tablets with antivirus, firewall, VPN and '
                       'password management.\n'
                       '\n'
@@ -845,13 +845,13 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'platforms': ['windows', 'macos', 'android', 'ios'],
   'is_featured': False},
  {'slug': 'mcafee-plus-advanced',
-  'name': 'McAfee+ Advanced',
-  'brand': 'McAfee',
+  'name': 'Mcafee+ Advanced',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee+',
+  'category': 'Mcafee+',
   'image_url': '',
   'tagline': 'Maximum device and identity protection with credit lock, credit scores and $1 million coverage.',
-  'description': 'McAfee+ Advanced adds credit lock, monthly credit scores and dedicated identity restoration support '
+  'description': 'Mcafee+ Advanced adds credit lock, monthly credit scores and dedicated identity restoration support '
                  'on top of unlimited device security, VPN and $1 million in identity coverage.',
   'features': ['Unlimited device protection',
                'Credit lock & monthly credit score',
@@ -864,7 +864,7 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
                 'label': 'Unlimited Devices / 1 Year',
                 'price': 149.99,
                 'original_price': 199.99}],
-  'long_description': "McAfee+ Advanced is McAfee's top consumer security tier. It includes everything in Premium plus "
+  'long_description': "Mcafee+ Advanced is Mcafee's top consumer security tier. It includes everything in Premium plus "
                       'credit lock, monthly credit scores and hands-on identity restoration support if theft occurs.\n'
                       '\n'
                       'With unlimited device coverage, real-time antivirus, a firewall, VPN and $1 million in identity '
@@ -872,14 +872,14 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'platforms': ['windows', 'macos', 'android', 'ios'],
   'is_featured': False},
  {'slug': 'mcafee-livesafe',
-  'name': 'McAfee LiveSafe',
-  'brand': 'McAfee',
+  'name': 'Mcafee LiveSafe',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee LiveSafe',
+  'category': 'Mcafee LiveSafe',
   'image_url': '',
   'tagline': 'Legacy unlimited-device antivirus with secure cloud storage and identity tools.',
-  'description': 'McAfee LiveSafe offers unlimited-device antivirus, a Password Manager, secure cloud storage and '
-                 'identity protection in one familiar McAfee package.',
+  'description': 'Mcafee LiveSafe offers unlimited-device antivirus, a Password Manager, secure cloud storage and '
+                 'identity protection in one familiar Mcafee package.',
   'features': ['Unlimited device protection',
                'Real-time antivirus & firewall',
                'Secure cloud storage',
@@ -891,12 +891,12 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
                 'label': 'Unlimited Devices / 1 Year',
                 'price': 89.99,
                 'original_price': 129.99}],
-  'long_description': 'McAfee LiveSafe has been a trusted McAfee flagship for years. It covers an unlimited number of '
+  'long_description': 'Mcafee LiveSafe has been a trusted Mcafee flagship for years. It covers an unlimited number of '
                       'devices with real-time antivirus, firewall, password management and secure cloud storage for '
                       'your important files.\n'
                       '\n'
                       'It also includes basic identity protection features, making it a well-rounded choice for '
-                      'households that want one subscription to protect everything without moving to the newer McAfee+ '
+                      'households that want one subscription to protect everything without moving to the newer Mcafee+ '
                       'tiers.',
   'platforms': ['windows', 'macos', 'android', 'ios'],
   'is_featured': False},
@@ -1001,13 +1001,13 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
   'platforms': ['windows', 'macos', 'android', 'ios'],
   'is_featured': False},
  {'slug': 'mcafee-plus-ultimate',
-  'name': 'McAfee+ Ultimate',
-  'brand': 'McAfee',
+  'name': 'Mcafee+ Ultimate',
+  'brand': 'Mcafee',
   'box_variant': 'red',
-  'category': 'McAfee+',
+  'category': 'Mcafee+',
   'image_url': '',
   'tagline': 'Maximum identity, privacy and device protection with full-service data removal and unlimited devices.',
-  'description': 'McAfee+ Ultimate delivers unlimited device antivirus, comprehensive identity monitoring, '
+  'description': 'Mcafee+ Ultimate delivers unlimited device antivirus, comprehensive identity monitoring, '
                  'full-service personal data cleanup from broker sites, social privacy management and up to $2 million '
                  'in identity theft coverage.',
   'features': ['Unlimited device protection',
@@ -1025,7 +1025,7 @@ PRODUCTS = [{'slug': 'norton-360-deluxe',
                 'label': 'Unlimited Devices / 1 Year',
                 'price': 179.99,
                 'original_price': 249.99}],
-  'long_description': "McAfee+ Ultimate is McAfee's most comprehensive protection plan. It covers an unlimited number "
+  'long_description': "Mcafee+ Ultimate is Mcafee's most comprehensive protection plan. It covers an unlimited number "
                       'of devices with premium antivirus, a firewall, VPN and scam protection, while adding '
                       'full-service Personal Data Cleanup that removes your info from data broker sites, a Social '
                       'Privacy Manager and comprehensive identity monitoring.\n'

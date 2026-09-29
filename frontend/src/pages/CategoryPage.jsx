@@ -142,7 +142,7 @@ export default function CategoryPage() {
           <div className="mb-8 flex items-end justify-between">
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">{products.length} products</div>
-              <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">Shop {brand.name}</h2>
+              <h2 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">Choose your plan</h2>
             </div>
           </div>
           {loading ? (
@@ -159,7 +159,7 @@ export default function CategoryPage() {
             </div>
           ) : (
             <div className="rounded-xl border border-dashed border-neutral-300 p-16 text-center text-neutral-600">
-              No {brand.name} products found. <Link to="/products" className="font-semibold underline">Browse all products</Link>
+              No products found here yet. <Link to="/products" className="font-semibold underline">Browse all products</Link>
             </div>
           )}
         </section>
@@ -169,7 +169,7 @@ export default function CategoryPage() {
           <div className="container-page">
             <div className="mx-auto max-w-2xl text-center">
               <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Why Garnavo</div>
-              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Why buy your {brand.name} license from us</h2>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Why buy your license from us</h2>
               <p className="mt-3 text-neutral-600">We're an independent reseller focused on one thing: genuine licenses, delivered fast, at a fair price.</p>
             </div>
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -199,7 +199,7 @@ export default function CategoryPage() {
             </div>
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 md:grid-cols-3">
               {[
-                { n: "1", icon: <Package size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Pick your plan", d: `Choose the ${brand.name} product and device count that fits your needs, then check out securely with PayPal.` },
+                { n: "1", icon: <Package size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Pick your plan", d: `Choose the product and device count that fits your needs, then check out securely with PayPal.` },
                 { n: "2", icon: <Envelope size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Get your license by email", d: "We verify your order and email your activation code — usually within 5–15 minutes." },
                 { n: "3", icon: <DownloadSimple size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Register on the brand's website", d: `Enter your code at ${brand.portalName} to register the subscription to your own account and download the software.` },
               ].map((s, i) => (
@@ -220,7 +220,7 @@ export default function CategoryPage() {
         <section className="border-t border-neutral-200 brand-bg-softer py-16">
           <div className="container-page">
             <div className="mx-auto max-w-3xl">
-              <h2 className="font-display text-3xl font-bold tracking-tight">About {brand.name} security</h2>
+              <h2 className="font-display text-3xl font-bold tracking-tight">About this security software</h2>
               <div className="mt-5 space-y-4 text-neutral-700">
                 {brand.about.map((para, i) => <p key={i}>{para}</p>)}
               </div>
@@ -260,11 +260,11 @@ export default function CategoryPage() {
                 <div className="flex items-start gap-3">
                   <CheckCircle size={22} weight="duotone" className="mt-0.5 shrink-0 brand-text" />
                   <div>
-                    <div className="font-display font-semibold">Activation service for {brand.name}</div>
+                    <div className="font-display font-semibold">Activation service included</div>
                     <p className="mt-1 text-sm text-neutral-700">
                       Every order includes our activation service for licenses purchased from us.{" "}
                       <Link to={`/activation/${brand.slug}`} className="font-semibold underline brand-text">
-                        Go to {brand.name} activation
+                        Go to activation service
                       </Link>
                     </p>
                   </div>

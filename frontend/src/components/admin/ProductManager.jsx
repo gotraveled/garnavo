@@ -3,7 +3,7 @@ import { api } from "@/lib/api";
 import { toast } from "sonner";
 import { Plus, PencilSimple, Trash, X, ArrowLeft, Eye, EyeSlash, Star } from "@phosphor-icons/react";
 
-const BRANDS = ["Norton", "Webroot", "McAfee"];
+const BRANDS = ["Norton", "Webroot", "Mcafee"];
 const BOX_VARIANTS = ["gold", "amber", "black", "green", "red", "purple"];
 
 const INP = "w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100";

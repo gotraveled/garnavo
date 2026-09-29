@@ -134,7 +134,7 @@ export default function ActivationBrand() {
       <div className="border-b border-neutral-200 bg-white">
         <div className="container-page flex items-center justify-center py-4">
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-2 text-sm"><ShieldCheck size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">100% Genuine</span></div>
+            <div className="flex items-center gap-2 text-sm"><ShieldCheck size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">Genuine Licenses</span></div>
             <div className="hidden sm:block w-px h-5 bg-neutral-200"></div>
             <div className="flex items-center gap-2 text-sm"><Clock size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">Fast Delivery</span></div>
             <div className="hidden sm:block w-px h-5 bg-neutral-200"></div>
@@ -156,10 +156,10 @@ export default function ActivationBrand() {
               Need help with setup, install or {brand.verbIng} your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license?
             </h1>
             <div className="mt-3 font-display text-xl font-semibold text-neutral-800 sm:text-2xl">
-              {brand.verbTitle} your {brand.name} license — we do it with you
+              {brand.verbTitle} your license — we do it with you
             </div>
             <p className="mt-4 text-lg leading-relaxed text-neutral-700">
-              We're an independent reseller. Send us your details and our team will guide you through the process for the {brand.name} license you purchased — usually within 5–15 minutes.
+              We're an independent reseller. Send us your details and our team will guide you through the process for the license you purchased — usually within 5–15 minutes.
             </p>
             <p className="mt-3 text-xs leading-relaxed text-neutral-400">
               We assist with setup and installation for products purchased on our website.
@@ -192,7 +192,7 @@ export default function ActivationBrand() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{brand.serviceName}</div>
-                  <div className="font-display text-xl font-bold">{brand.verbTitle} your {brand.name} license</div>
+                  <div className="font-display text-xl font-bold">{brand.verbTitle} your license</div>
                 </div>
               </div>
 
@@ -261,8 +261,8 @@ export default function ActivationBrand() {
           {/* RIGHT: Instructions */}
           <div className="order-2 lg:order-2">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">How it works</div>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Steps on the {brand.name} website</h2>
-            <p className="mt-3 text-neutral-600">Everything happens on {brand.name}'s own website. Follow the steps below yourself, or submit your details and our team will guide you through them.</p>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Steps on the brand's website</h2>
+            <p className="mt-3 text-neutral-600">Everything happens on the brand's own website. Follow the steps below yourself, or submit your details and our team will guide you through them.</p>
 
             <ol className="mt-10 space-y-6">
               {brand.steps.map((s, i) => (
@@ -285,7 +285,7 @@ export default function ActivationBrand() {
               <div className="flex items-start gap-3">
                 <LockKey size={22} weight="duotone" className="mt-1 shrink-0 brand-text" />
                 <div>
-                  <div className="font-display font-semibold">Where do I find my {brand.name} code?</div>
+                  <div className="font-display font-semibold">Where do I find my code?</div>
                   <p className="mt-1 text-sm text-neutral-700">
                     Your code is in the email we sent after purchase. {brand.keyHint} If you can't find it, <Link to="/contact" className="font-semibold underline">contact us</Link>.
                   </p>
@@ -301,7 +301,7 @@ export default function ActivationBrand() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Common questions</div>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">{brand.name} setup, made easy</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Setup, made easy</h2>
           </div>
           <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
             {brand.faqs.map((f, i) => (
@@ -318,22 +318,22 @@ export default function ActivationBrand() {
       <section className="border-t border-neutral-200 brand-bg-softer py-16">
         <div className="container-page">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Shop {brand.name}</div>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Genuine {brand.name} products</h2>
-            <p className="mt-3 text-neutral-600">Genuine {brand.name} software with fast email delivery.</p>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Shop</div>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Genuine products</h2>
+            <p className="mt-3 text-neutral-600">Genuine software licenses with fast email delivery.</p>
           </div>
           <div className="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
             {loading ? (
               [1, 2, 3].map((i) => <div key={i} className="h-80 animate-pulse rounded-xl bg-neutral-100" />)
             ) : loadError ? (
-              <div className="md:col-span-2 lg:col-span-3"><LoadError label={`${brand.name} products`} onRetry={loadProducts} /></div>
+              <div className="md:col-span-2 lg:col-span-3"><LoadError label="products" onRetry={loadProducts} /></div>
             ) : (
               products.map((p) => <ProductCard key={p.id} product={p} />)
             )}
           </div>
           <div className="mt-10 text-center">
             <Link to={`/category/${brand.slug}`} className="btn-brand">
-              View all {brand.name} products <ArrowRight size={16} weight="bold" />
+              View all products <ArrowRight size={16} weight="bold" />
             </Link>
           </div>
         </div>
