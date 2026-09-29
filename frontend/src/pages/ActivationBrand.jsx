@@ -67,15 +67,15 @@ export default function ActivationBrand() {
     );
   }
 
-  // Use Garnavo's own palette on activation pages — never brand colors,
-  // so the page can't be mistaken for an official brand site.
+  // Shifted brand-adjacent accent — same hue family but visibly different
+  // from the official brand color, so the page can't be mistaken for it.
   const theme = {
-    "--brand": "#FF6B45",
-    "--brand-dark": "#E8502B",
-    "--brand-text": "#FFFFFF",
-    "--brand-soft": "#FFEDE6",
-    "--brand-softer": "#FFF8F5",
-    "--brand-border": "#FFD5C6",
+    "--brand": brand.accent,
+    "--brand-dark": brand.accentDark,
+    "--brand-text": brand.accentTextOn,
+    "--brand-soft": brand.accentSoft,
+    "--brand-softer": brand.accentSoftAlt,
+    "--brand-border": brand.accentBorder,
   };
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

@@ -43,12 +43,12 @@ export default function CategoryPage() {
   }
 
   const theme = {
-    "--brand": brand.color,
-    "--brand-dark": brand.colorDark,
-    "--brand-text": brand.textOn,
-    "--brand-soft": brand.soft,
-    "--brand-softer": brand.softAlt,
-    "--brand-border": brand.border,
+    "--brand": brand.accent,
+    "--brand-dark": brand.accentDark,
+    "--brand-text": brand.accentTextOn,
+    "--brand-soft": brand.accentSoft,
+    "--brand-softer": brand.accentSoftAlt,
+    "--brand-border": brand.accentBorder,
   };
 
   const breadcrumbSchema = {
@@ -201,9 +201,9 @@ export default function CategoryPage() {
             </div>
             <div className="mx-auto mt-10 grid max-w-5xl gap-5 md:grid-cols-3">
               {[
-                { n: "1", icon: <Package size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Pick your plan", d: `Choose the ${brand.name} product and device count that fits your needs, then check out securely with PayPal.` },
-                { n: "2", icon: <Envelope size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Get your license by email", d: "We verify your order and email your activation code — usually within 5–15 minutes." },
-                { n: "3", icon: <DownloadSimple size={22} weight="duotone" style={{ color: brand.textOn }} />, t: "Activate on the official site", d: `Enter your code at ${brand.portalName} to register the subscription to your own account and download the software.` },
+                { n: "1", icon: <Package size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Pick your plan", d: `Choose the ${brand.name} product and device count that fits your needs, then check out securely with PayPal.` },
+                { n: "2", icon: <Envelope size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Get your license by email", d: "We verify your order and email your activation code — usually within 5–15 minutes." },
+                { n: "3", icon: <DownloadSimple size={22} weight="duotone" style={{ color: brand.accentTextOn }} />, t: "Activate on the official site", d: `Enter your code at ${brand.portalName} to register the subscription to your own account and download the software.` },
               ].map((s, i) => (
                 <div key={i} className="relative rounded-2xl border bg-white p-6 brand-border">
                   <div className="flex items-center justify-between">

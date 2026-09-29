@@ -14,6 +14,14 @@ export const BRANDS = {
     border: "#FDE047",
     textOn: "#1C1917", // dark text on yellow
     ring: "#EAB308",
+    // Shifted accent — same hue family as the brand but visibly different
+    // (deeper amber), so the page never looks like the official brand site.
+    accent: "#B98A04",
+    accentDark: "#966F03",
+    accentTextOn: "#FFFFFF",
+    accentSoft: "#F9F0D0",
+    accentSoftAlt: "#FDF9EC",
+    accentBorder: "#E8D48B",
     entity: "NortonLifeLock / Gen Digital Inc.",
     portalName: "my.norton.com",
     portalUrl: "https://my.norton.com",
@@ -55,6 +63,13 @@ export const BRANDS = {
     border: "#86EFAC",
     textOn: "#FFFFFF",
     ring: "#16A34A",
+    // Shifted accent — deeper forest green instead of Webroot's bright green.
+    accent: "#0E7A45",
+    accentDark: "#0A5C34",
+    accentTextOn: "#FFFFFF",
+    accentSoft: "#D9F0E2",
+    accentSoftAlt: "#F0FAF4",
+    accentBorder: "#8FD2AB",
     entity: "OpenText / Webroot Inc.",
     portalName: "webroot.com/safe",
     portalUrl: "https://www.webroot.com/safe",
@@ -96,6 +111,13 @@ export const BRANDS = {
     border: "#FCA5A5",
     textOn: "#FFFFFF",
     ring: "#DC2626",
+    // Shifted accent — deeper crimson instead of McAfee's bright red.
+    accent: "#A91E1E",
+    accentDark: "#861414",
+    accentTextOn: "#FFFFFF",
+    accentSoft: "#F6E0E0",
+    accentSoftAlt: "#FBF1F1",
+    accentBorder: "#E09B9B",
     entity: "McAfee LLC",
     portalName: "mcafee.com/activate",
     portalUrl: "https://www.mcafee.com/activate",
