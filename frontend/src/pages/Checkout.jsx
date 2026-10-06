@@ -234,10 +234,10 @@ export default function Checkout() {
                   />
                 </PayPalScriptProvider>
               </div>
-            ) : (
+            ) : config.simulate_allowed ? (
               <div className="mt-6">
                 <div className="rounded-lg border border-orange-200 bg-orange-50 p-4 text-sm text-neutral-800">
-                  <strong>Demo mode:</strong> PayPal credentials are not yet configured. Use the button below to simulate a paid order. Add real PayPal credentials in <code className="rounded bg-white px-1 py-0.5 text-xs">/app/backend/.env</code> to enable live PayPal checkout.
+                  <strong>Demo mode:</strong> PayPal credentials are not yet configured. Use the button below to simulate a paid order.
                 </div>
                 <button
                   data-testid="checkout-simulate-btn"
@@ -247,6 +247,12 @@ export default function Checkout() {
                 >
                   {paying ? "Processing..." : "Simulate PayPal payment (Demo)"}
                 </button>
+              </div>
+            ) : (
+              <div className="mt-6 rounded-lg border border-neutral-200 bg-neutral-50 p-4 text-sm text-neutral-700">
+                Online payment is temporarily unavailable. Please contact us at{" "}
+                <a href="mailto:info@garnavo.com" className="font-semibold underline">info@garnavo.com</a>{" "}
+                and we'll complete your order manually.
               </div>
             )}
           </div>

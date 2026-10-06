@@ -48,6 +48,11 @@ if RESEND_API_KEY:
 PAYPAL_BASE = "https://api-m.sandbox.paypal.com" if PAYPAL_MODE == 'sandbox' else "https://api-m.paypal.com"
 PAYPAL_ENABLED = bool(PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET)
 
+# Dev-only: the simulate-payment endpoint marks orders as paid with no
+# real payment. Disabled by default — set ALLOW_SIMULATE_PAYMENT=true
+# only in local/dev environments, never in production.
+ALLOW_SIMULATE_PAYMENT = os.environ.get('ALLOW_SIMULATE_PAYMENT', '').lower() in ('1', 'true', 'yes')
+
 app = FastAPI(title="Garnavo API")
 api_router = APIRouter(prefix="/api")
 
@@ -1292,7 +1297,7 @@ async def root():
 
 @api_router.get("/config")
 async def config():
-    return {"paypal_enabled": PAYPAL_ENABLED, "paypal_client_id": PAYPAL_CLIENT_ID if PAYPAL_ENABLED else "", "paypal_mode": PAYPAL_MODE}
+    return {"paypal_enabled": PAYPAL_ENABLED, "paypal_client_id": PAYPAL_CLIENT_ID if PAYPAL_ENABLED else "", "paypal_mode": PAYPAL_MODE, "simulate_allowed": ALLOW_SIMULATE_PAYMENT}
 
 # ---- product read cache (short TTL; invalidated on admin writes) ----
 _PRODUCT_TTL = 60.0
@@ -1460,7 +1465,11 @@ async def capture_paypal_order(order_id: str, body: dict):
     doc = await db.orders.find_one({"id": order_id}, {"_id": 0})
     if not doc:
         raise HTTPException(status_code=404, detail="Order not found")
+    if doc["status"] != "pending":
+        raise HTTPException(status_code=400, detail="Order already processed")
     paypal_order_id = body.get("paypal_order_id") or doc.get("paypal_order_id")
+    if not paypal_order_id:
+        raise HTTPException(status_code=400, detail="No PayPal order linked to this order")
     token = await _paypal_access_token()
     async with httpx.AsyncClient(timeout=15) as c:
         r = await c.post(
@@ -1481,7 +1490,9 @@ async def capture_paypal_order(order_id: str, body: dict):
 
 @api_router.post("/orders/{order_id}/simulate-payment")
 async def simulate_payment(order_id: str):
-    """Mock payment for when PayPal not configured. Marks order as paid."""
+    """Dev-only mock payment. Requires ALLOW_SIMULATE_PAYMENT=true in env."""
+    if not ALLOW_SIMULATE_PAYMENT:
+        raise HTTPException(status_code=403, detail="Simulated payments are disabled")
     doc = await db.orders.find_one({"id": order_id}, {"_id": 0})
     if not doc:
         raise HTTPException(status_code=404, detail="Order not found")
