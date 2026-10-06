@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
-import { MapPin, Envelope } from "@phosphor-icons/react";
+import { MapPin, Envelope, Phone } from "@phosphor-icons/react";
 import BrandDisclaimer from "@/components/BrandDisclaimer";
 import { BRAND_LIST } from "@/lib/brands";
+import {
+  BUSINESS_LEGAL_NAME,
+  BUSINESS_EMAIL,
+  BUSINESS_PHONE,
+  BUSINESS_PHONE_HREF,
+  BUSINESS_ADDRESS,
+} from "@/lib/business";
 
 export default function Footer() {
   return (
@@ -18,12 +25,18 @@ export default function Footer() {
           <div className="mt-5 space-y-1.5 text-sm text-neutral-700">
             <div className="flex items-start gap-2">
               <MapPin size={16} weight="duotone" className="mt-0.5 shrink-0 text-neutral-500" />
-              <span>Westwood Street, Hayward,<br />California, 94544, USA</span>
+              <span>{BUSINESS_LEGAL_NAME}<br />{BUSINESS_ADDRESS.street}, {BUSINESS_ADDRESS.city},<br />{BUSINESS_ADDRESS.region}, {BUSINESS_ADDRESS.postalCode}, {BUSINESS_ADDRESS.countryShort}</span>
             </div>
             <div className="flex items-center gap-2">
               <Envelope size={16} weight="duotone" className="text-neutral-500" />
-              <a href="mailto:info@garnavo.com" className="hover:text-neutral-900">info@garnavo.com</a>
+              <a href={`mailto:${BUSINESS_EMAIL}`} className="hover:text-neutral-900">{BUSINESS_EMAIL}</a>
             </div>
+            {BUSINESS_PHONE && (
+              <div className="flex items-center gap-2">
+                <Phone size={16} weight="duotone" className="text-neutral-500" />
+                <a href={BUSINESS_PHONE_HREF} className="hover:text-neutral-900">{BUSINESS_PHONE}</a>
+              </div>
+            )}
           </div>
         </div>
 
@@ -70,13 +83,13 @@ export default function Footer() {
 
       <div className="border-t border-neutral-200 bg-neutral-100">
         <div className="container-page flex flex-col items-center justify-between gap-3 py-5 text-xs text-neutral-500 md:flex-row">
-          <div>© {new Date().getFullYear()} Garnavo. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} {BUSINESS_LEGAL_NAME}. All rights reserved.</div>
           <div className="flex flex-wrap items-center gap-4">
             <Link to="/privacy-policy" className="hover:text-neutral-900">Privacy</Link>
             <Link to="/terms" className="hover:text-neutral-900">Terms</Link>
             <Link to="/disclaimer" className="hover:text-neutral-900">Disclaimer</Link>
             <Link to="/refund-policy" className="hover:text-neutral-900">Refunds</Link>
-            <span>Hayward, CA</span>
+            <span>{BUSINESS_ADDRESS.city}, {BUSINESS_ADDRESS.regionShort}</span>
           </div>
         </div>
       </div>

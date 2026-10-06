@@ -3,6 +3,15 @@ import { toast } from "sonner";
 import { api } from "@/lib/api";
 import SEO from "@/components/SEO";
 import { Envelope, ChatCircle, MapPin, Phone } from "@phosphor-icons/react";
+import {
+  BUSINESS_LEGAL_NAME,
+  BUSINESS_EMAIL,
+  BUSINESS_PHONE,
+  BUSINESS_PHONE_HREF,
+  BUSINESS_ADDRESS,
+  BUSINESS_POSTAL_SCHEMA,
+  BUSINESS_CONTACT_SCHEMA,
+} from "@/lib/business";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "", honeypot: "" });
@@ -67,23 +76,10 @@ export default function Contact() {
     "@type": "ContactPage",
     "mainEntity": {
       "@type": "Organization",
-      "name": "Garnavo",
+      "name": BUSINESS_LEGAL_NAME,
       "url": "https://garnavo.com",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "email": "info@garnavo.com",
-        "availableLanguage": "English",
-        "areaServed": "US"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Westwood Street",
-        "addressLocality": "Hayward",
-        "addressRegion": "CA",
-        "postalCode": "94544",
-        "addressCountry": "US"
-      }
+      "contactPoint": BUSINESS_CONTACT_SCHEMA,
+      "address": BUSINESS_POSTAL_SCHEMA
     }
   };
 
@@ -107,14 +103,23 @@ export default function Contact() {
             <div className="rounded-xl border border-neutral-200 bg-white p-6">
               <div className="grid h-10 w-10 place-items-center rounded-lg bg-[#FF6B45]/10 text-[#FF6B45]"><Envelope size={20} weight="duotone" /></div>
               <div className="mt-3 font-display font-semibold">Email us</div>
-              <a href="mailto:info@garnavo.com" className="text-sm font-medium text-neutral-900 hover:underline">info@garnavo.com</a>
+              <a href={`mailto:${BUSINESS_EMAIL}`} className="text-sm font-medium text-neutral-900 hover:underline">{BUSINESS_EMAIL}</a>
               <p className="mt-1 text-xs text-neutral-500">Fastest way to reach us — include your order number if you have one.</p>
             </div>
             <div className="rounded-xl border border-neutral-200 bg-white p-6">
               <div className="grid h-10 w-10 place-items-center rounded-lg bg-[#FF6B45]/10 text-[#FF6B45]"><MapPin size={20} weight="duotone" /></div>
               <div className="mt-3 font-display font-semibold">Registered address</div>
-              <div className="text-sm text-neutral-600">Westwood Street,<br />Hayward, California, 94544<br />United States</div>
+              <div className="text-sm font-medium text-neutral-900">{BUSINESS_LEGAL_NAME}</div>
+              <div className="text-sm text-neutral-600">{BUSINESS_ADDRESS.street},<br />{BUSINESS_ADDRESS.city}, {BUSINESS_ADDRESS.region}, {BUSINESS_ADDRESS.postalCode}<br />{BUSINESS_ADDRESS.country}</div>
             </div>
+            {BUSINESS_PHONE && (
+              <div className="rounded-xl border border-neutral-200 bg-white p-6">
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-[#FF6B45]/10 text-[#FF6B45]"><Phone size={20} weight="duotone" /></div>
+                <div className="mt-3 font-display font-semibold">Call us</div>
+                <a href={BUSINESS_PHONE_HREF} className="text-sm font-medium text-neutral-900 hover:underline">{BUSINESS_PHONE}</a>
+                <p className="mt-1 text-xs text-neutral-500">Mon–Fri, 9am–6pm PT.</p>
+              </div>
+            )}
             <div className="rounded-xl border border-neutral-200 bg-[#101826] p-6 text-white">
               <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/10 text-[#FF9776]"><ChatCircle size={20} weight="duotone" /></div>
               <div className="mt-3 font-display font-semibold">Response time</div>

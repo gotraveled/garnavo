@@ -94,6 +94,33 @@ export default function ProductDetail() {
         "refundType": "https://schema.org/FullRefund",
         "returnFees": "https://schema.org/FreeReturn"
       },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": "USD"
+        },
+        "shippingDestination": [
+          { "@type": "DefinedRegion", "addressCountry": "US" },
+          { "@type": "DefinedRegion", "addressCountry": "CA" }
+        ],
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 0,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          }
+        }
+      },
       "seller": {
         "@type": "Organization",
         "name": "Garnavo",

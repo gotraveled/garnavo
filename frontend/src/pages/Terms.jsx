@@ -1,4 +1,5 @@
 import PolicyLayout, { Section } from "@/components/PolicyLayout";
+import BusinessContactBlock from "@/components/BusinessInfo";
 import SEO from "@/components/SEO";
 
 const SECTIONS = [
@@ -118,12 +119,12 @@ export default function Terms() {
       </Section>
 
       <Section id="governing-law" title="15. Governing law">
-        <p>These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict-of-law principles. You consent to the exclusive jurisdiction of the state and federal courts located in Alameda County, California, for the resolution of any disputes arising under or in connection with these Terms.</p>
+        <p>These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict-of-law principles. You consent to the exclusive jurisdiction of the state and federal courts located in Kern County, California, for the resolution of any disputes arising under or in connection with these Terms.</p>
       </Section>
 
       <Section id="disputes" title="16. Dispute resolution">
         <p>Before filing a claim, you agree to attempt to resolve any dispute informally by contacting <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>. We will respond within 30 days. If the dispute is not resolved within 60 days, either party may pursue formal legal action.</p>
-        <p>Any dispute not resolved informally shall be settled by binding arbitration administered by the American Arbitration Association ("AAA") under its Consumer Arbitration Rules, in Alameda County, California. You waive any right to a jury trial and to participate in a class action.</p>
+        <p>Any dispute not resolved informally shall be settled by binding arbitration administered by the American Arbitration Association ("AAA") under its Consumer Arbitration Rules, in Kern County, California. You waive any right to a jury trial and to participate in a class action.</p>
       </Section>
 
       <Section id="changes" title="17. Changes to terms">
@@ -131,11 +132,7 @@ export default function Terms() {
       </Section>
 
       <Section id="contact" title="18. Contact">
-        <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>Garnavo</strong><br />
-          Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
-        </p>
+        <BusinessContactBlock />
       </Section>
     </PolicyLayout>
     </>

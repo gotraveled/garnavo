@@ -1,4 +1,5 @@
 import PolicyLayout, { Section } from "@/components/PolicyLayout";
+import BusinessContactBlock from "@/components/BusinessInfo";
 
 const SECTIONS = [
   { id: "overview", title: "1. What is digital delivery?" },
@@ -98,11 +99,7 @@ export default function DigitalDelivery() {
       </Section>
 
       <Section id="contact" title="10. Contact">
-        <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>Garnavo — Delivery Team</strong><br />
-          Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
-        </p>
+        <BusinessContactBlock team="Delivery Team" />
       </Section>
     </PolicyLayout>
   );

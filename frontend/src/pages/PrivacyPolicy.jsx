@@ -1,4 +1,5 @@
 import PolicyLayout, { Section } from "@/components/PolicyLayout";
+import BusinessContactBlock from "@/components/BusinessInfo";
 import SEO from "@/components/SEO";
 
 const SECTIONS = [
@@ -40,13 +41,8 @@ export default function PrivacyPolicy() {
       </Section>
 
       <Section id="who-we-are" title="2. Who we are">
-        <p>Garnavo is a digital software reseller registered in the United States. Our business address is:</p>
-        <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          Garnavo<br />
-          Westwood Street, Hayward, California, 94544<br />
-          United States<br />
-          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
-        </p>
+        <p>Garnavo is a digital software reseller operating in the United States. Our business address is:</p>
+        <BusinessContactBlock />
         <p>We are the data controller responsible for your personal information collected through this Site.</p>
       </Section>
 
@@ -189,11 +185,7 @@ export default function PrivacyPolicy() {
 
       <Section id="contact" title="16. Contact us">
         <p>For any questions, concerns, or requests related to this Privacy Policy or your personal information, please contact us:</p>
-        <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>Garnavo — Privacy Team</strong><br />
-          Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
-        </p>
+        <BusinessContactBlock team="Privacy Team" />
       </Section>
     </PolicyLayout>
     </>

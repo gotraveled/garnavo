@@ -1,4 +1,5 @@
 import PolicyLayout, { Section } from "@/components/PolicyLayout";
+import BusinessContactBlock from "@/components/BusinessInfo";
 
 const SECTIONS = [
   { id: "general", title: "1. General disclaimer" },
@@ -94,11 +95,7 @@ export default function Disclaimer() {
       </Section>
 
       <Section id="contact" title="11. Contact">
-        <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
-          <strong>Garnavo</strong><br />
-          Westwood Street, Hayward, California, 94544, USA<br />
-          Email: <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>
-        </p>
+        <BusinessContactBlock />
       </Section>
     </PolicyLayout>
   );

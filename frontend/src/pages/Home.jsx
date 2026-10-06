@@ -6,6 +6,12 @@ import LoadError from "@/components/LoadError";
 import SEO from "@/components/SEO";
 import { TrustBadges, TrustMarquee } from "@/components/Trust";
 import { BRAND_LIST } from "@/lib/brands";
+import {
+  BUSINESS_LEGAL_NAME,
+  BUSINESS_EMAIL,
+  BUSINESS_POSTAL_SCHEMA,
+  BUSINESS_CONTACT_SCHEMA,
+} from "@/lib/business";
 import { ShieldCheck, LockKey, Envelope, CreditCard, Lightning, ArrowRight, CheckCircle } from "@phosphor-icons/react";
 
 export default function Home() {
@@ -40,23 +46,13 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Garnavo",
+    "legalName": BUSINESS_LEGAL_NAME,
     "url": "https://garnavo.com",
     "logo": "https://garnavo.com/logo.png",
+    "email": BUSINESS_EMAIL,
     "description": "Garnavo is an independently run online shop for genuine antivirus subscription licenses, with same-day email delivery and a real human behind every order.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Westwood Street",
-      "addressLocality": "Hayward",
-      "addressRegion": "CA",
-      "postalCode": "94544",
-      "addressCountry": "US"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "info@garnavo.com",
-      "availableLanguage": "English"
-    }
+    "address": BUSINESS_POSTAL_SCHEMA,
+    "contactPoint": BUSINESS_CONTACT_SCHEMA
   };
 
   return (
