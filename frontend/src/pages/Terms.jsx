@@ -17,10 +17,8 @@ const SECTIONS = [
   { id: "liability", title: "12. Limitation of liability" },
   { id: "indemnification", title: "13. Indemnification" },
   { id: "termination", title: "14. Termination" },
-  { id: "governing-law", title: "15. Governing law" },
-  { id: "disputes", title: "16. Dispute resolution" },
-  { id: "changes", title: "17. Changes to terms" },
-  { id: "contact", title: "18. Contact" },
+  { id: "changes", title: "15. Changes to terms" },
+  { id: "contact", title: "16. Contact" },
 ];
 
 export default function Terms() {
@@ -118,20 +116,11 @@ export default function Terms() {
         <p>We may suspend or terminate your access to the Site at any time, with or without cause and with or without notice, if we determine that you have violated these Terms or that your conduct poses a risk to us, our customers, or third parties. Upon termination, any Licenses obtained through fraudulent means will be revoked.</p>
       </Section>
 
-      <Section id="governing-law" title="15. Governing law">
-        <p>These Terms are governed by and construed in accordance with the laws of the State of California, United States, without regard to conflict-of-law principles. You consent to the exclusive jurisdiction of the state and federal courts located in Kern County, California, for the resolution of any disputes arising under or in connection with these Terms.</p>
-      </Section>
-
-      <Section id="disputes" title="16. Dispute resolution">
-        <p>Before filing a claim, you agree to attempt to resolve any dispute informally by contacting <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>. We will respond within 30 days. If the dispute is not resolved within 60 days, either party may pursue formal legal action.</p>
-        <p>Any dispute not resolved informally shall be settled by binding arbitration administered by the American Arbitration Association ("AAA") under its Consumer Arbitration Rules, in Kern County, California. You waive any right to a jury trial and to participate in a class action.</p>
-      </Section>
-
-      <Section id="changes" title="17. Changes to terms">
+      <Section id="changes" title="15. Changes to terms">
         <p>We reserve the right to modify these Terms at any time. Material changes will be posted on this page with a new "Last updated" date. Your continued use of the Site after such changes constitutes your acceptance of the revised Terms.</p>
       </Section>
 
-      <Section id="contact" title="18. Contact">
+      <Section id="contact" title="16. Contact">
         <BusinessContactBlock />
       </Section>
     </PolicyLayout>

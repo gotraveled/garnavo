@@ -271,11 +271,6 @@ export default function ProductDetail() {
               <span data-testid="product-price" className="font-display text-4xl font-bold">${variant.price.toFixed(2)}</span>
               <span className="text-sm text-neutral-500">one-time · {variant.years} yr{variant.years > 1 ? 's' : ''}</span>
             </div>
-            {variant.original_price > variant.price && (
-              <div className="mt-1.5 text-sm text-neutral-500">
-                Retail price <span className="line-through">${variant.original_price.toFixed(2)}</span>
-              </div>
-            )}
 
             <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
               <button data-testid="add-to-cart-btn" onClick={() => handleAdd(false)} className="btn-outline flex-1 justify-center">Add to cart</button>

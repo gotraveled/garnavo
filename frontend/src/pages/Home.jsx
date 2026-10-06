@@ -59,7 +59,7 @@ export default function Home() {
     <>
       <SEO
         title="Genuine Antivirus Protection Plans, Delivered Instantly | Garnavo"
-        description="Garnavo sells genuine, ready-to-activate antivirus subscription licenses from leading security publishers. Instant email delivery, encrypted checkout, 30-day guarantee."
+        description="Garnavo sells genuine, ready-to-activate antivirus subscription licenses from leading security publishers. Email delivery in 5–15 minutes, encrypted checkout, 30-day guarantee."
         keywords="antivirus subscription, genuine antivirus license, buy antivirus online, internet security plan, email delivery"
         schema={[homeSchema, organizationSchema]}
       />

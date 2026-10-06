@@ -22,7 +22,7 @@ export default function ActivationThanks() {
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <div className="flex items-center gap-2 text-sm">
               <ShieldCheck size={18} weight="duotone" className="text-emerald-600" />
-              <span className="font-semibold text-neutral-900">100% Genuine</span>
+              <span className="font-semibold text-neutral-900">Genuine, Verified Licenses</span>
             </div>
             <div className="hidden sm:block w-px h-5 bg-neutral-200"></div>
             <div className="flex items-center gap-2 text-sm">

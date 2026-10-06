@@ -32,7 +32,7 @@ export const BRANDS = {
     keyLabel: "Norton activation code (25 characters)",
     keyPlaceholder: "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX",
     keyHint: "Format: 25 alphanumeric characters, usually shown with dashes.",
-    tagline: "Award-winning device security, VPN, and identity protection",
+    tagline: "Device security, VPN, and identity protection in one plan",
     heroTitle: "Norton Security Products",
     heroSub: "Genuine Norton licenses delivered to your email within minutes of checkout.",
     seoTitle: "Norton Licenses — Norton 360, AntiVirus & LifeLock",

@@ -7,7 +7,7 @@ const faqs = [
   { q: "Where do I actually enter the code?", a: "Each brand has its own activation portal. Our Activation page has step-by-step instructions for the exact brand you purchased, including which site to log into and how to redeem your code." },
   { q: "My license won't activate — now what?", a: "Reach out right away and we'll sort it out — either a replacement or a full refund, as long as it's within 30 days of your purchase." },
   { q: "Does one license cover more than one computer or phone?", a: "Depends on the plan you choose — some tiers cover a single device, others cover several, and a few are unlimited. Device limits are listed on each product page." },
-  { q: "What's your refund policy?", a: "A straightforward 30-day guarantee — if it doesn't work or you're just not happy with it, we'll make it right." },
+  { q: "What's your refund policy?", a: "If your license won't activate, was already redeemed, or isn't the product you ordered, you're covered by our 30-day money-back guarantee — full details and conditions are in our Refund Policy." },
   { q: "Is it safe to pay on this site?", a: "Payments run entirely through PayPal's encrypted platform. Your card number never passes through our servers at any point." },
   { q: "Do I have to make an account to buy something?", a: "No account needed — checkout as a guest. We just need a valid email address to send your license to." },
   { q: "What antivirus brands can I get here?", a: "We carry a curated set of trusted security brands, spanning basic antivirus up through full internet security suites, VPN, and identity protection plans, all delivered instantly by email. See the full lineup on our Products page." },
