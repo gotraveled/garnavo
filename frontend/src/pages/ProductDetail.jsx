@@ -83,7 +83,7 @@ export default function ProductDetail() {
       "url": `https://garnavo.com/product/${product.slug}`,
       "priceCurrency": "USD",
       "price": variant.price,
-      "priceValidUntil": "2026-12-31",
+      "priceValidUntil": `${new Date().getFullYear() + 1}-12-31`,
       "availability": "https://schema.org/InStock",
       "itemCondition": "https://schema.org/NewCondition",
       "hasMerchantReturnPolicy": {
