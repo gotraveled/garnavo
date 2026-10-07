@@ -14,6 +14,16 @@ export default function OrderSuccess() {
     if (id) api.get(`/orders/${id}`).then((r) => setOrder(r.data)).catch(() => {});
   }, [id]);
 
+  // Google Ads purchase conversion tracking
+  useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18497972963/XIDACP-m0ZQdEOPVwvRE",
+        transaction_id: id || "",
+      });
+    }
+  }, [id]);
+
   return (
     <div className="container-page py-20">
       <SEO title="Order Confirmed | Garnavo" noindex />
