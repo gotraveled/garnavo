@@ -29,11 +29,8 @@ export default function Navbar() {
   return (
     <header className="glass-header sticky top-0 z-40 border-b border-neutral-200">
       <div className="container-page flex h-16 items-center justify-between">
-        <Link to="/" data-testid="nav-logo" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Garnavo logo" className="h-9 w-9 rounded-lg" />
-          <span className="font-display text-lg font-bold tracking-tight">
-            Garnavo
-          </span>
+        <Link to="/" data-testid="nav-logo" className="flex items-center">
+          <img src="/logo.png" alt="Garnavo" className="h-10 w-auto rounded-lg" />
         </Link>
         <nav className="hidden items-center gap-7 md:flex">
           <NavLink to="/" testId="nav-home">Home</NavLink>

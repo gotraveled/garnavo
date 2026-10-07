@@ -15,9 +15,8 @@ export default function Footer() {
     <footer className="border-t border-neutral-200 bg-neutral-50">
       <div className="container-page grid gap-10 py-16 md:grid-cols-5">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2.5">
-            <img src="/logo.svg" alt="Garnavo logo" className="h-9 w-9 rounded-lg" />
-            <span className="font-display text-lg font-bold">Garnavo</span>
+          <div className="flex items-center">
+            <img src="/logo.png" alt="Garnavo" className="h-10 w-auto rounded-lg" />
           </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-600">
             An independent digital software reseller. Genuine antivirus subscription licenses with fast email delivery and a 30-day money-back guarantee.
