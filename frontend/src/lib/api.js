@@ -1,10 +1,8 @@
 import axios from "axios";
 
-// The frontend is a static site on Render (buyinstantkeys-frontend.onrender.com)
-// and the FastAPI backend is a separate Render service. Default to the deployed
-// backend so the built app reaches it with no env config. Override with
+// Default to the deployed Vercel backend. Override with
 // REACT_APP_BACKEND_URL if the backend URL ever changes.
-const DEFAULT_BACKEND = "https://buyinstantkeys-backend.onrender.com";
+const DEFAULT_BACKEND = "https://garnavo.vercel.app";
 const BACKEND_URL = (process.env.REACT_APP_BACKEND_URL || DEFAULT_BACKEND).replace(/\/$/, "");
 export const API = `${BACKEND_URL}/api`;
 
