@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { api } from "@/lib/api";
+import { api, cachedGet } from "@/lib/api";
 import ProductCard from "@/components/ProductCard";
 import LoadError from "@/components/LoadError";
 import SEO from "@/components/SEO";
@@ -20,12 +20,22 @@ export default function Home() {
   const [featuredLoading, setFeaturedLoading] = useState(true);
 
   const loadFeatured = () => {
-    setFeaturedLoading(true);
     setFeaturedError(false);
-    api.get("/products", { params: { featured: true } })
-      .then((r) => setFeatured(r.data))
-      .catch(() => setFeaturedError(true))
-      .finally(() => setFeaturedLoading(false));
+    const config = { params: { featured: true } };
+    const cached = cachedGet("/products", config, (fresh) => {
+      setFeatured(fresh);
+      setFeaturedLoading(false);
+    });
+    if (cached) {
+      setFeatured(cached.data);
+      setFeaturedLoading(false);
+    } else {
+      setFeaturedLoading(true);
+      api.get("/products", config)
+        .then((r) => setFeatured(r.data))
+        .catch(() => setFeaturedError(true))
+        .finally(() => setFeaturedLoading(false));
+    }
   };
   useEffect(loadFeatured, []);
 

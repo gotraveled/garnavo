@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { api } from "@/lib/api";
+import { api, cachedGet } from "@/lib/api";
 import SEO from "@/components/SEO";
 import ProductCard from "@/components/ProductCard";
 import LoadError from "@/components/LoadError";
@@ -20,12 +20,22 @@ export default function CategoryPage() {
 
   const load = () => {
     if (!brand) { setLoading(false); return; }
-    setLoading(true);
     setError(false);
-    api.get("/products", { params: { brand: brand.name } })
-      .then((r) => setProducts(r.data))
-      .catch(() => { setProducts([]); setError(true); })
-      .finally(() => setLoading(false));
+    const config = { params: { brand: brand.name } };
+    const cached = cachedGet("/products", config, (fresh) => {
+      setProducts(fresh);
+      setLoading(false);
+    });
+    if (cached) {
+      setProducts(cached.data);
+      setLoading(false);
+    } else {
+      setLoading(true);
+      api.get("/products", config)
+        .then((r) => setProducts(r.data))
+        .catch(() => { setProducts([]); setError(true); })
+        .finally(() => setLoading(false));
+    }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(load, [category]);

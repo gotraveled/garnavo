@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { api } from "@/lib/api";
+import { api, cachedGet } from "@/lib/api";
 import SEO from "@/components/SEO";
 import ProductCard from "@/components/ProductCard";
 import LoadError from "@/components/LoadError";
@@ -15,12 +15,22 @@ export default function Products() {
   const q = (params.get("q") || "").trim().toLowerCase();
 
   const load = () => {
-    setLoading(true);
     setError(false);
-    api.get("/products", { params: brand ? { brand } : {} })
-      .then((r) => setProducts(r.data))
-      .catch(() => { setProducts([]); setError(true); })
-      .finally(() => setLoading(false));
+    const config = { params: brand ? { brand } : {} };
+    const cached = cachedGet("/products", config, (fresh) => {
+      setProducts(fresh);
+      setLoading(false);
+    });
+    if (cached) {
+      setProducts(cached.data);
+      setLoading(false);
+    } else {
+      setLoading(true);
+      api.get("/products", config)
+        .then((r) => setProducts(r.data))
+        .catch(() => { setProducts([]); setError(true); })
+        .finally(() => setLoading(false));
+    }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(load, [brand]);

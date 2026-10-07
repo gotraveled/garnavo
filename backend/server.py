@@ -1300,7 +1300,7 @@ async def config():
     return {"paypal_enabled": PAYPAL_ENABLED, "paypal_client_id": PAYPAL_CLIENT_ID if PAYPAL_ENABLED else "", "paypal_mode": PAYPAL_MODE, "simulate_allowed": ALLOW_SIMULATE_PAYMENT}
 
 # ---- product read cache (short TTL; invalidated on admin writes) ----
-_PRODUCT_TTL = 60.0
+_PRODUCT_TTL = 300.0
 _product_cache = {}
 
 def _invalidate_products():
@@ -1316,7 +1316,8 @@ def _cache_set(key, val):
     _product_cache[key] = (datetime.now(timezone.utc).timestamp(), val)
 
 @api_router.get("/products", response_model=List[Product])
-async def list_products(category: Optional[str] = None, brand: Optional[str] = None, featured: Optional[bool] = None):
+async def list_products(response: Response, category: Optional[str] = None, brand: Optional[str] = None, featured: Optional[bool] = None):
+    response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=600"
     q = {"is_active": True}
     if category:
         q["category"] = category
@@ -1334,7 +1335,8 @@ async def list_products(category: Optional[str] = None, brand: Optional[str] = N
     return res
 
 @api_router.get("/products/{slug}", response_model=Product)
-async def get_product(slug: str):
+async def get_product(response: Response, slug: str):
+    response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=600"
     key = ("one", slug)
     cached = _cache_get(key)
     if cached is not None:

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { api } from "@/lib/api";
+import { api, cachedGet } from "@/lib/api";
 import { useCart } from "@/lib/cart";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
@@ -19,17 +19,27 @@ export default function ProductDetail() {
   const [related, setRelated] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
+    const setProductData = (d) => {
+      setProduct(d);
+      setVariantId(d.variants[0]?.id || null);
+    };
+    // Try cache first for product detail
+    const cached = cachedGet(`/products/${slug}`, {}, (fresh) => setProductData(fresh));
+    if (cached) {
+      setProductData(cached.data);
+      setLoading(false);
+    } else {
+      setLoading(true);
+    }
+    // Always fetch from network (updates cache)
     api.get(`/products/${slug}`).then((r) => {
-      setProduct(r.data);
-      setVariantId(r.data.variants[0]?.id || null);
+      setProductData(r.data);
       // fetch related products from the same brand
-      api.get("/products", { params: { brand: r.data.brand } })
-        .then((rel) => setRelated(rel.data.filter((x) => x.slug !== slug).slice(0, 3)))
-        .catch(() => {});
+      const relConfig = { params: { brand: r.data.brand } };
+      const relCached = cachedGet("/products", relConfig, (fresh) => setRelated(fresh.filter((x) => x.slug !== slug).slice(0, 3)));
+      if (relCached) setRelated(relCached.data.filter((x) => x.slug !== slug).slice(0, 3));
     }).catch(() => {
-      toast.error("Product not found");
-      nav("/products");
+      if (!cached) { toast.error("Product not found"); nav("/products"); }
     }).finally(() => setLoading(false));
   }, [slug, nav]);
 
