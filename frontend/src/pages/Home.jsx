@@ -72,14 +72,14 @@ export default function Home() {
               <ShieldCheck size={14} weight="fill" className="text-teal-600" /> Independently run · Licenses verified before sale
             </div>
             <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
-              Genuine licenses.<br />
+              Software for Security,<br />
               <span className="relative inline-block">
-                <span className="relative z-10">Delivered by email.</span>
+                <span className="relative z-10">Productivity & More</span>
                 <span className="absolute inset-x-0 bottom-1 z-0 h-3 bg-[#FF6B45]/15" aria-hidden />
               </span>
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-neutral-700">
-              Shop verified antivirus subscription licenses from top publishers. Every key is checked before delivery — straight to your inbox, typically within 5–15 minutes.
+              Shop software products for security, privacy, productivity, and everyday computing. Garnavo provides clear product information, secure online ordering, and straightforward digital delivery.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link to="/products" data-testid="hero-shop-btn" className="btn-dark">
