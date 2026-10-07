@@ -30,7 +30,7 @@ export default function Navbar() {
     <header className="glass-header sticky top-0 z-40 border-b border-neutral-200">
       <div className="container-page flex h-20 items-center justify-between">
         <Link to="/" data-testid="nav-logo" className="flex items-center">
-          <img src="/logo.png" alt="Garnavo" className="h-14 w-auto" />
+          <img src="/logo.png" alt="Garnavo" className="h-12 w-auto" />
         </Link>
         <nav className="hidden items-center gap-7 md:flex">
           <NavLink to="/" testId="nav-home">Home</NavLink>
