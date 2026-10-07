@@ -1,6 +1,6 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "sonner";
 import { CartProvider } from "@/lib/cart";
@@ -35,6 +35,21 @@ import NotFound from "@/pages/NotFound";
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
+// Pre-warm: fetch all products + featured on app boot so they're cached in localStorage
+function Prefetch() {
+  const ran = useRef(false);
+  useEffect(() => {
+    if (ran.current) return;
+    ran.current = true;
+    import("@/lib/api").then(({ api, cachedGet }) => {
+      // Try cache first; if miss, fetch from network (populates cache for next visit)
+      if (!cachedGet("/products", {})) api.get("/products").catch(() => {});
+      if (!cachedGet("/products", { params: { featured: true } })) api.get("/products", { params: { featured: true } }).catch(() => {});
+    });
+  }, []);
   return null;
 }
 
@@ -97,6 +112,7 @@ function App() {
         <CustomerProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <Prefetch />
           <AppShell />
           <Toaster position="top-right" richColors />
         </BrowserRouter>

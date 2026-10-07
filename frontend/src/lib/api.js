@@ -62,6 +62,16 @@ export function cachedGet(url, config = {}, onUpdate) {
   return null; // no cache, caller should await networkPromise
 }
 
+// Auto-cache product API responses to localStorage
+api.interceptors.response.use((response) => {
+  const url = response.config?.url || "";
+  if (url.startsWith("/products")) {
+    const key = _cacheKey(url, response.config?.params);
+    _cacheSet(key, response.data);
+  }
+  return response;
+});
+
 api.interceptors.request.use((config) => {
   const adminToken = localStorage.getItem("bik_admin_token");
   if (adminToken && config.url && config.url.startsWith("/admin")) {
