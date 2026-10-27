@@ -563,6 +563,32 @@ function OrderDetail({ orderId, onBack }) {
           </div>
 
           <div className="rounded-xl border border-neutral-200 bg-white p-5">
+            <div className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">Delivery evidence</div>
+            <div className="mt-3 space-y-1.5 text-xs text-neutral-600">
+              <div><span className="text-neutral-500">Checkout IP:</span> <span className="font-mono">{order.checkout_ip || "—"}</span></div>
+              <div><span className="text-neutral-500">Browser:</span> <span className="break-all font-mono">{order.checkout_user_agent ? order.checkout_user_agent.slice(0, 60) + "…" : "—"}</span></div>
+              <div><span className="text-neutral-500">PayPal capture:</span> <span className="font-mono">{order.paypal_capture_id || "—"}</span></div>
+              <div><span className="text-neutral-500">Payer email:</span> {order.paypal_payer_email || "—"}</div>
+              <div><span className="text-neutral-500">Delivery email ID:</span> <span className="font-mono">{order.delivered_email_id || "—"}</span></div>
+              <div><span className="text-neutral-500">Keys viewed:</span> {order.keys_viewed_at ? `${new Date(order.keys_viewed_at).toLocaleString()} from ${order.keys_viewed_ip || "?"}` : "not yet"}</div>
+              {order.email_log?.length > 0 && (
+                <div className="mt-2 border-t border-neutral-100 pt-2">
+                  <div className="mb-1 font-semibold text-neutral-500">Emails sent</div>
+                  {order.email_log.map((e, i) => (
+                    <div key={i} className="mb-1">
+                      <span className="font-medium">{e.kind.replace("_", " ")}</span> → {e.to}
+                      <span className="text-neutral-400"> · {new Date(e.at).toLocaleString()}</span>
+                      {e.events?.map((ev, j) => (
+                        <span key={j} className="ml-1 rounded bg-emerald-50 px-1 text-emerald-700">{ev.type.replace("email.", "")}</span>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-neutral-200 bg-white p-5">
             <div className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">Order notes</div>
             <textarea
               data-testid="order-notes-input"

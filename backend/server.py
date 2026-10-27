@@ -164,6 +164,14 @@ class Order(BaseModel):
     paypal_order_id: Optional[str] = None
     account_created: bool = False
     payment_error: Optional[str] = None
+    checkout_ip: Optional[str] = None
+    checkout_user_agent: Optional[str] = None
+    paypal_capture_id: Optional[str] = None
+    paypal_payer_email: Optional[str] = None
+    delivered_email_id: Optional[str] = None
+    email_log: List[dict] = []
+    keys_viewed_at: Optional[str] = None
+    keys_viewed_ip: Optional[str] = None
     paid_at: Optional[str] = None
     delivered_at: Optional[str] = None
     admin_notes: Optional[str] = None
@@ -1555,8 +1563,16 @@ async def get_product(response: Response, slug: str):
     _cache_set(key, res)
     return res
 
+async def _log_order_email(order_id: str, kind: str, to: str, result):
+    """Persist email-send receipts on the order — chargeback evidence."""
+    entry = {"kind": kind, "to": to, "at": now_iso(),
+             "resend_id": result.get("id") if isinstance(result, dict) else None}
+    if isinstance(result, dict) and result.get("error"):
+        entry["error"] = str(result["error"])[:300]
+    await db.orders.update_one({"id": order_id}, {"$push": {"email_log": entry}})
+
 @api_router.post("/orders", response_model=Order)
-async def create_order(body: OrderCreate):
+async def create_order(body: OrderCreate, request: Request):
     if not body.items:
         raise HTTPException(status_code=400, detail="Cart is empty")
     # Validate items and recompute totals from DB
@@ -1600,6 +1616,8 @@ async def create_order(body: OrderCreate):
         items=validated_items,
         subtotal=subtotal, discount_amount=discount_amount, coupon_code=coupon_code,
         total=total,
+        checkout_ip=request.client.host if request.client else None,
+        checkout_user_agent=request.headers.get("user-agent"),
     )
     await db.orders.insert_one(order.model_dump())
     if body.create_account or (body.account_password and len(body.account_password) >= 8):
@@ -1637,7 +1655,7 @@ async def get_order(order_id: str):
     }
 
 @api_router.post("/orders/track", response_model=Order)
-async def track_order(body: OrderTrackQuery):
+async def track_order(body: OrderTrackQuery, request: Request):
     # Accept "18501", "gnv-18501", or legacy long numbers — normalize to uppercase GNV-XXXXX
     num = body.order_number.strip().upper()
     if num.isdigit():
@@ -1648,6 +1666,12 @@ async def track_order(body: OrderTrackQuery):
         doc = await db.orders.find_one({"order_number": num}, {"_id": 0})
         if not doc or doc["customer_email"].lower() != body.email.lower():
             raise HTTPException(status_code=404, detail="Order not found. Check your email and order number.")
+    if doc["status"] == "delivered":
+        # Proof of access: customer viewed their delivered license keys
+        await db.orders.update_one({"id": doc["id"]}, {"$set": {
+            "keys_viewed_at": now_iso(),
+            "keys_viewed_ip": request.client.host if request.client else None,
+        }})
     return Order(**doc)
 
 # ============ PAYMENT ============
@@ -1718,20 +1742,30 @@ async def capture_paypal_order(order_id: str, body: dict):
         await _notify_payment_failed(doc, reason)
         raise HTTPException(status_code=502, detail="Payment capture failed — our team has been notified and will contact you.")
     if cap.get("status") == "COMPLETED":
+        capture_id = None
+        try:
+            capture_id = cap["purchase_units"][0]["payments"]["captures"][0]["id"]
+        except Exception:
+            pass
         await db.orders.update_one({"id": order_id}, {"$set": {
             "status": "paid", "payment_method": "paypal",
             "paypal_order_id": paypal_order_id, "paid_at": now_iso(),
+            "paypal_capture_id": capture_id,
+            "paypal_payer_email": (cap.get("payer") or {}).get("email_address"),
         }})
         updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
-        await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
-        await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']} — ${updated['total']:.2f}", new_order_admin_html(updated), cc=[ADMIN_EMAIL])
+        res = await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
+        await _log_order_email(order_id, "order_confirmation", updated["customer_email"], res)
+        res = await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']} — ${updated['total']:.2f}", new_order_admin_html(updated), cc=[ADMIN_EMAIL])
+        await _log_order_email(order_id, "admin_notification", STORE_NOTIFICATION_EMAIL, res)
         if updated.get("account_created"):
             token_pw = create_password_setup_token(updated["customer_email"])
-            await send_email(
+            res = await send_email(
                 updated["customer_email"],
                 f"Your {STORE_NAME} account is ready",
                 account_welcome_html(updated, f"{STORE_URL}/set-password?token={token_pw}"),
             )
+            await _log_order_email(order_id, "account_welcome", updated["customer_email"], res)
     else:
         reason = f"PayPal returned capture status: {cap.get('status') or 'unknown'}"
         await db.orders.update_one({"id": order_id}, {"$set": {"payment_error": reason}})
@@ -1798,8 +1832,15 @@ async def customer_update(body: CustomerUpdate, email: str = Depends(verify_cust
     return doc
 
 @api_router.get("/auth/orders", response_model=List[Order])
-async def customer_orders(email: str = Depends(verify_customer)):
+async def customer_orders(request: Request, email: str = Depends(verify_customer)):
     docs = await db.orders.find({"customer_email": email.lower()}, {"_id": 0}).sort("created_at", -1).to_list(200)
+    delivered_ids = [d["id"] for d in docs if d["status"] == "delivered"]
+    if delivered_ids:
+        # Proof of access: signed-in customer fetched their delivered license keys
+        await db.orders.update_many({"id": {"$in": delivered_ids}}, {"$set": {
+            "keys_viewed_at": now_iso(),
+            "keys_viewed_ip": request.client.host if request.client else None,
+        }})
     return [Order(**d) for d in docs]
 
 @api_router.post("/auth/set-password")
@@ -1994,12 +2035,17 @@ async def admin_deliver(order_id: str, body: DeliverKeysBody, admin_email: str =
     }})
     updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
     first_product = updated["items"][0]["product_name"] if updated["items"] else "Software"
-    await send_email(
+    res = await send_email(
         updated["customer_email"],
         f"Your {first_product} Order #{updated['order_number']}",
         license_delivery_html(updated),
         cc=[STORE_NOTIFICATION_EMAIL],
     )
+    email_id = res.get("id") if isinstance(res, dict) else None
+    upd = {"delivered_email_id": email_id} if email_id else {}
+    if upd:
+        await db.orders.update_one({"id": order_id}, {"$set": upd})
+    await _log_order_email(order_id, "license_delivery", updated["customer_email"], res)
     return {"status": "delivered", "order_id": order_id}
 
 @api_router.post("/admin/orders/{order_id}/cancel")
@@ -2239,6 +2285,44 @@ async def admin_list_activations(status: Optional[str] = None, admin_email: str 
         q["status"] = status
     docs = await db.activations.find(q, {"_id": 0}).sort("created_at", -1).to_list(500)
     return [ActivationRequest(**d) for d in docs]
+
+@api_router.post("/webhooks/resend")
+async def resend_webhook(request: Request):
+    """Records Resend delivery events (delivered/opened/bounced) onto the matching order —
+    gives per-order email delivery proof for PayPal chargeback disputes.
+    Set RESEND_WEBHOOK_SECRET (whsec_...) in env to enable signature verification."""
+    raw = await request.body()
+    secret = os.environ.get("RESEND_WEBHOOK_SECRET", "")
+    if secret:
+        import hmac, hashlib, base64
+        svix_id = request.headers.get("svix-id", "")
+        svix_ts = request.headers.get("svix-timestamp", "")
+        svix_sig = request.headers.get("svix-signature", "")
+        try:
+            key = base64.b64decode(secret.split("_", 1)[1])
+            expected = base64.b64encode(
+                hmac.new(key, f"{svix_id}.{svix_ts}.{raw.decode()}".encode(), hashlib.sha256).digest()
+            ).decode()
+            valid = any(expected == s.split(",", 1)[1] for s in svix_sig.split() if s.startswith("v1,"))
+            if not valid:
+                raise HTTPException(status_code=401, detail="Invalid webhook signature")
+        except HTTPException:
+            raise
+        except Exception:
+            raise HTTPException(status_code=401, detail="Webhook verification failed")
+    body = await request.json()
+    etype = body.get("type", "")
+    data = body.get("data", {})
+    email_id = data.get("email_id")
+    if email_id:
+        ev = {"type": etype, "at": body.get("created_at") or now_iso()}
+        res = await db.orders.update_one(
+            {"email_log.resend_id": email_id},
+            {"$push": {"email_log.$.events": ev}},
+        )
+        if res.matched_count == 0:
+            logger.info(f"Resend event for unknown email {email_id}: {etype}")
+    return {"ok": True}
 
 @api_router.post("/contact", response_model=ContactRequest)
 async def create_contact(body: ContactCreate):
