@@ -375,6 +375,29 @@ function CustomerDetail({ customer, onBack, onOpenOrder }) {
                   {new Date(o.created_at).toLocaleString()}
                   {o.paid_at ? ` · paid ${new Date(o.paid_at).toLocaleString()}` : ""}
                 </div>
+                {o.email_log?.length > 0 && (
+                  <div className="mt-2 space-y-1">
+                    {o.email_log.map((e, i) => {
+                      const evTypes = (e.events || []).map((ev) => ev.type);
+                      const failed = evTypes.includes("email.bounced") || evTypes.includes("email.complained") || e.error;
+                      const opened = evTypes.includes("email.opened");
+                      const delivered = evTypes.includes("email.delivered");
+                      const [label, cls] = failed ? ["failed", "bg-red-100 text-red-700"]
+                        : opened ? ["opened", "bg-blue-100 text-blue-700"]
+                        : delivered ? ["delivered", "bg-emerald-100 text-emerald-700"]
+                        : ["sent", "bg-neutral-100 text-neutral-600"];
+                      return (
+                        <div key={i} className="flex flex-wrap items-center gap-2 text-xs text-neutral-500" title={e.resend_id || ""}>
+                          <Envelope size={12} weight="duotone" />
+                          <span className="capitalize">{e.kind.replace(/_/g, " ")}</span>
+                          <span>→ {e.to}</span>
+                          <span className={`rounded px-1.5 py-0.5 font-semibold ${cls}`}>{label}</span>
+                          <span className="text-neutral-400">{new Date(e.at).toLocaleString()}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             ))}
           </div>
