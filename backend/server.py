@@ -1139,13 +1139,31 @@ async def _ensure_indexes():
     try:
         await db.products.create_index([("is_active", 1), ("created_at", 1)])
         await db.products.create_index("slug", unique=False)
+        await db.orders.create_index("order_number", unique=True)
     except Exception as e:
         logger.warning(f"index ensure failed: {e}")
+
+ORDER_NUMBER_START = 18500  # first issued number is ORDER_NUMBER_START + 1
+
+async def _next_order_number() -> str:
+    from pymongo import ReturnDocument
+    doc = await db.counters.find_one_and_update(
+        {"key": "order_number"},
+        {"$inc": {"seq": 1}},
+        upsert=True,
+        return_document=ReturnDocument.AFTER,
+    )
+    return f"GNV-{doc['seq']}"
 
 @app.on_event("startup")
 async def startup():
     await seed_data()
     await _ensure_indexes()
+    await db.counters.update_one(
+        {"key": "order_number"},
+        {"$setOnInsert": {"seq": ORDER_NUMBER_START}},
+        upsert=True,
+    )
 
 # ============ COUPON MODELS ============
 class Coupon(BaseModel):
@@ -1424,7 +1442,7 @@ async def create_order(body: OrderCreate):
                 coupon_code = code_up
                 await db.coupons.update_one({"code": code_up}, {"$inc": {"current_uses": 1}})
     total = round(max(0, subtotal - discount_amount), 2)
-    order_number = "GNV-" + datetime.now(timezone.utc).strftime("%Y%m%d") + "-" + uuid.uuid4().hex[:6].upper()
+    order_number = await _next_order_number()
     order = Order(
         order_number=order_number, customer_name=body.customer_name,
         customer_email=body.customer_email,
@@ -1451,10 +1469,14 @@ async def get_order(order_id: str):
 
 @api_router.post("/orders/track", response_model=Order)
 async def track_order(body: OrderTrackQuery):
-    doc = await db.orders.find_one({"order_number": body.order_number, "customer_email": body.email.lower()}, {"_id": 0})
+    # Accept "18501", "gnv-18501", or legacy long numbers — normalize to uppercase GNV-XXXXX
+    num = body.order_number.strip().upper()
+    if num.isdigit():
+        num = f"GNV-{num}"
+    doc = await db.orders.find_one({"order_number": num, "customer_email": body.email.lower()}, {"_id": 0})
     if not doc:
         # try case insensitive
-        doc = await db.orders.find_one({"order_number": body.order_number}, {"_id": 0})
+        doc = await db.orders.find_one({"order_number": num}, {"_id": 0})
         if not doc or doc["customer_email"].lower() != body.email.lower():
             raise HTTPException(status_code=404, detail="Order not found. Check your email and order number.")
     return Order(**doc)
@@ -1630,6 +1652,7 @@ async def admin_get_order(order_id: str, admin_email: str = Depends(verify_admin
 class OrderUpdate(BaseModel):
     status: Optional[str] = None
     admin_notes: Optional[str] = None
+    payment_method: Optional[str] = None
 
 ORDER_STATUSES = {"pending", "paid", "delivered", "cancelled", "refunded"}
 
@@ -1647,6 +1670,8 @@ async def admin_update_order(order_id: str, body: OrderUpdate, admin_email: str 
             update["delivered_at"] = now_iso()
         if body.status == "paid" and not doc.get("paid_at"):
             update["paid_at"] = now_iso()
+    if body.payment_method is not None:
+        update["payment_method"] = body.payment_method
     if body.admin_notes is not None:
         update["admin_notes"] = body.admin_notes
     if update:
@@ -1677,6 +1702,53 @@ async def admin_list_customers(admin_email: str = Depends(verify_admin)):
          "last_order_at": d["last_order_at"]}
         for d in docs
     ]
+
+@api_router.get("/admin/customers/{email}/orders", response_model=List[Order])
+async def admin_customer_orders(email: str, admin_email: str = Depends(verify_admin)):
+    docs = await db.orders.find(
+        {"customer_email": {"$regex": f"^{re.escape(email.lower())}$", "$options": "i"}},
+        {"_id": 0},
+    ).sort("created_at", -1).to_list(200)
+    return [Order(**d) for d in docs]
+
+@api_router.get("/admin/payments")
+async def admin_list_payments(admin_email: str = Depends(verify_admin)):
+    """Payment records + totals, derived from orders (like WooCommerce payments)."""
+    docs = await db.orders.find(
+        {"status": {"$in": ["paid", "delivered", "refunded"]}, "paid_at": {"$ne": None}},
+        {"_id": 0},
+    ).sort("paid_at", -1).to_list(1000)
+    payments = []
+    by_method = {}
+    total_received = 0.0
+    total_refunded = 0.0
+    for d in docs:
+        method = d.get("payment_method") or "unknown"
+        amount = round(d.get("total", 0), 2)
+        if d["status"] == "refunded":
+            total_refunded += amount
+        else:
+            total_received += amount
+            by_method[method] = round(by_method.get(method, 0) + amount, 2)
+        payments.append({
+            "order_id": d["id"], "order_number": d["order_number"],
+            "customer_name": d["customer_name"], "customer_email": d["customer_email"],
+            "method": method, "transaction_id": d.get("paypal_order_id"),
+            "amount": amount, "status": d["status"],
+            "paid_at": d.get("paid_at"), "created_at": d["created_at"],
+        })
+    pending_docs = await db.orders.find({"status": "pending"}, {"_id": 0, "total": 1}).to_list(1000)
+    total_pending = round(sum(d.get("total", 0) for d in pending_docs), 2)
+    return {
+        "summary": {
+            "total_received": round(total_received, 2),
+            "total_pending": total_pending,
+            "total_refunded": round(total_refunded, 2),
+            "payments_count": len(payments),
+            "by_method": by_method,
+        },
+        "payments": payments,
+    }
 
 @api_router.post("/admin/orders/{order_id}/deliver")
 async def admin_deliver(order_id: str, body: DeliverKeysBody, admin_email: str = Depends(verify_admin)):

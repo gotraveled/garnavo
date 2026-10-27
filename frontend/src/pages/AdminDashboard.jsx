@@ -29,22 +29,25 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
   const [orders, setOrders] = useState([]);
   const [customers, setCustomers] = useState([]);
+  const [payments, setPayments] = useState(null);
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("");
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
 
   const token = typeof window !== "undefined" ? localStorage.getItem("bik_admin_token") : null;
   const adminEmail = typeof window !== "undefined" ? localStorage.getItem("bik_admin_email") : null;
 
   const load = useCallback(async () => {
     try {
-      const [s, o, p, c] = await Promise.all([
+      const [s, o, p, c, pay] = await Promise.all([
         api.get("/admin/stats"),
         api.get("/admin/orders", { params: filter ? { status: filter } : {} }),
         api.get("/admin/products"),
         api.get("/admin/customers"),
+        api.get("/admin/payments"),
       ]);
-      setStats(s.data); setOrders(o.data); setProducts(p.data); setCustomers(c.data);
+      setStats(s.data); setOrders(o.data); setProducts(p.data); setCustomers(c.data); setPayments(pay.data);
     } catch (e) {
       if (e?.response?.status === 401) {
         localStorage.removeItem("bik_admin_token");
@@ -83,6 +86,18 @@ export default function AdminDashboard() {
     );
   }
 
+  if (selectedCustomer) {
+    return (
+      <div className="container-page py-10">
+        <CustomerDetail
+          customer={selectedCustomer}
+          onBack={() => setSelectedCustomer(null)}
+          onOpenOrder={(id) => { setSelectedCustomer(null); setSelectedOrderId(id); }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="container-page py-10">
       <div className="flex items-center justify-between">
@@ -108,6 +123,7 @@ export default function AdminDashboard() {
         {[
           { k: "orders", label: "Orders" },
           { k: "customers", label: "Customers" },
+          { k: "payments", label: "Payments" },
           { k: "products", label: "Products" },
         ].map((t) => (
           <button
@@ -187,7 +203,12 @@ export default function AdminDashboard() {
             </thead>
             <tbody>
               {customers.map((c) => (
-                <tr key={c.email} data-testid={`admin-customer-${c.email}`} className="border-b border-neutral-100 last:border-0">
+                <tr
+                  key={c.email}
+                  data-testid={`admin-customer-${c.email}`}
+                  onClick={() => setSelectedCustomer(c)}
+                  className="cursor-pointer border-b border-neutral-100 transition-colors last:border-0 hover:bg-neutral-50"
+                >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <div className="grid h-8 w-8 place-items-center rounded-full bg-neutral-100 text-neutral-500"><User size={16} weight="duotone" /></div>
@@ -211,9 +232,154 @@ export default function AdminDashboard() {
         </div>
       )}
 
+      {tab === "payments" && payments && (
+        <div className="mt-6">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-xl border border-neutral-200 bg-white p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">Total received</div>
+              <div className="mt-1 font-display text-2xl font-bold text-emerald-700">${payments.summary.total_received.toFixed(2)}</div>
+              <div className="mt-1 text-xs text-neutral-500">{payments.summary.payments_count} payments</div>
+            </div>
+            <div className="rounded-xl border border-neutral-200 bg-white p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">Pending payment</div>
+              <div className="mt-1 font-display text-2xl font-bold text-yellow-700">${payments.summary.total_pending.toFixed(2)}</div>
+              <div className="mt-1 text-xs text-neutral-500">Orders awaiting payment</div>
+            </div>
+            <div className="rounded-xl border border-neutral-200 bg-white p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">Refunded</div>
+              <div className="mt-1 font-display text-2xl font-bold text-red-700">${payments.summary.total_refunded.toFixed(2)}</div>
+            </div>
+            <div className="rounded-xl border border-neutral-200 bg-white p-5">
+              <div className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">By method</div>
+              <div className="mt-2 space-y-1 text-sm">
+                {Object.entries(payments.summary.by_method).map(([m, amt]) => (
+                  <div key={m} className="flex justify-between"><span className="capitalize text-neutral-600">{m}</span><span className="font-semibold">${amt.toFixed(2)}</span></div>
+                ))}
+                {Object.keys(payments.summary.by_method).length === 0 && <div className="text-neutral-500">—</div>}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 overflow-hidden rounded-xl border border-neutral-200 bg-white">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-neutral-200 bg-neutral-50 text-xs uppercase tracking-wider text-neutral-500">
+                  <th className="px-4 py-3">Date</th>
+                  <th className="px-4 py-3">Order</th>
+                  <th className="px-4 py-3">Customer</th>
+                  <th className="hidden px-4 py-3 md:table-cell">Method</th>
+                  <th className="hidden px-4 py-3 lg:table-cell">Transaction ID</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3 text-right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {payments.payments.map((p) => (
+                  <tr
+                    key={p.order_id}
+                    onClick={() => setSelectedOrderId(p.order_id)}
+                    className="cursor-pointer border-b border-neutral-100 transition-colors last:border-0 hover:bg-neutral-50"
+                  >
+                    <td className="px-4 py-3 text-neutral-500">{p.paid_at ? new Date(p.paid_at).toLocaleString() : "—"}</td>
+                    <td className="px-4 py-3 font-mono font-semibold">{p.order_number}</td>
+                    <td className="px-4 py-3">
+                      <div className="font-medium">{p.customer_name}</div>
+                      <div className="text-xs text-neutral-500">{p.customer_email}</div>
+                    </td>
+                    <td className="hidden px-4 py-3 capitalize md:table-cell">{p.method}</td>
+                    <td className="hidden px-4 py-3 font-mono text-xs text-neutral-500 lg:table-cell">{p.transaction_id || "—"}</td>
+                    <td className="px-4 py-3"><StatusBadge status={p.status} /></td>
+                    <td className="px-4 py-3 text-right font-semibold">${p.amount.toFixed(2)}</td>
+                  </tr>
+                ))}
+                {payments.payments.length === 0 && (
+                  <tr><td colSpan={7} className="px-4 py-10 text-center text-neutral-500">No payments received yet.</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {tab === "products" && (
         <ProductManager products={products} onChange={load} />
       )}
+    </div>
+  );
+}
+
+function CustomerDetail({ customer, onBack, onOpenOrder }) {
+  const [orders, setOrders] = useState(null);
+
+  useEffect(() => {
+    api.get(`/admin/customers/${encodeURIComponent(customer.email)}/orders`)
+      .then((r) => setOrders(r.data))
+      .catch(() => toast.error("Failed to load customer orders"));
+  }, [customer.email]);
+
+  return (
+    <div>
+      <button onClick={onBack} data-testid="customer-back-btn" className="btn-outline"><ArrowLeft size={16} weight="duotone" /> Back to customers</button>
+
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="font-display text-xl font-bold sm:text-2xl">{customer.name}</h1>
+          <div className="mt-1 text-sm text-neutral-500">{customer.orders_count} orders · ${customer.total_spent.toFixed(2)} spent</div>
+        </div>
+      </div>
+
+      <div className="mt-8 grid gap-6 lg:grid-cols-3">
+        <div className="space-y-6">
+          <div className="rounded-xl border border-neutral-200 bg-white p-5">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500"><User size={16} weight="duotone" /> Customer details</div>
+            <div className="mt-3 space-y-2 text-sm">
+              <div><span className="text-neutral-500">Name:</span> {customer.name}</div>
+              <div><span className="text-neutral-500">Email:</span> <a className="text-[#FF6B45] underline" href={`mailto:${customer.email}`}>{customer.email}</a></div>
+              <div><span className="text-neutral-500">Phone:</span> {customer.phone ? <a className="text-[#FF6B45] underline" href={`tel:${customer.phone}`}>{customer.phone}</a> : "—"}</div>
+              <div><span className="text-neutral-500">Address:</span> {customer.address || "—"}</div>
+              <div><span className="text-neutral-500">Customer since:</span> {customer.last_order_at ? new Date(customer.last_order_at).toLocaleDateString() : "—"}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-2">
+          <div className="rounded-xl border border-neutral-200 bg-white">
+            <div className="border-b border-neutral-200 px-5 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">Purchase history</div>
+            {!orders && <div className="p-10 text-center text-neutral-500">Loading orders…</div>}
+            {orders && orders.length === 0 && <div className="p-10 text-center text-neutral-500">No orders.</div>}
+            {orders && orders.map((o) => (
+              <div
+                key={o.id}
+                onClick={() => onOpenOrder(o.id)}
+                className="cursor-pointer border-b border-neutral-100 p-5 transition-colors last:border-0 hover:bg-neutral-50"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-sm font-semibold">{o.order_number}</span>
+                    <StatusBadge status={o.status} />
+                  </div>
+                  <div className="text-sm">
+                    <span className="font-semibold">${o.total.toFixed(2)}</span>
+                    <span className="ml-2 text-neutral-500">{o.payment_method || "unpaid"}</span>
+                  </div>
+                </div>
+                <div className="mt-2 space-y-1">
+                  {o.items.map((it, i) => (
+                    <div key={i} className="flex justify-between text-sm">
+                      <span>{it.product_name} <span className="text-neutral-500">— {it.variant_label} × {it.quantity}</span></span>
+                      <span className="text-neutral-600">${it.subtotal.toFixed(2)}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-1 text-xs text-neutral-500">
+                  {new Date(o.created_at).toLocaleString()}
+                  {o.paid_at ? ` · paid ${new Date(o.paid_at).toLocaleString()}` : ""}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -223,6 +389,7 @@ function OrderDetail({ orderId, onBack }) {
   const [keys, setKeys] = useState([]);
   const [note, setNote] = useState("");
   const [status, setStatus] = useState("");
+  const [payMethod, setPayMethod] = useState("");
   const [saving, setSaving] = useState(false);
   const [savingStatus, setSavingStatus] = useState(false);
 
@@ -233,6 +400,7 @@ function OrderDetail({ orderId, onBack }) {
       setKeys(r.data.items.map((it) => it.license_key || ""));
       setNote(r.data.admin_notes || "");
       setStatus(r.data.status);
+      setPayMethod(r.data.payment_method || "");
     } catch (e) {
       toast.error(e?.response?.data?.detail || "Failed to load order");
       onBack();
@@ -264,7 +432,11 @@ function OrderDetail({ orderId, onBack }) {
   const updateStatus = async () => {
     setSavingStatus(true);
     try {
-      await api.patch(`/admin/orders/${order.id}`, { status, admin_notes: note.trim() || null });
+      await api.patch(`/admin/orders/${order.id}`, {
+        status,
+        admin_notes: note.trim() || null,
+        payment_method: payMethod.trim() || null,
+      });
       toast.success(`Order marked ${status}`);
       load();
     } catch (e) {
@@ -290,7 +462,7 @@ function OrderDetail({ orderId, onBack }) {
           </div>
           <div className="mt-1 text-sm text-neutral-500">Placed {new Date(order.created_at).toLocaleString()}{order.paid_at ? ` · Paid ${new Date(order.paid_at).toLocaleString()}` : ""}</div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <select
             data-testid="order-status-select"
             value={status}
@@ -299,8 +471,18 @@ function OrderDetail({ orderId, onBack }) {
           >
             {ALL_STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
           </select>
+          <select
+            data-testid="order-paymethod-select"
+            value={payMethod}
+            onChange={(e) => setPayMethod(e.target.value)}
+            className="rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40"
+            title="Payment method"
+          >
+            <option value="">Payment method…</option>
+            {["paypal", "manual", "bank_transfer", "card", "other"].map((m) => <option key={m} value={m}>{m.replace("_", " ")}</option>)}
+          </select>
           <button onClick={updateStatus} disabled={savingStatus} data-testid="order-status-update-btn" className="btn-primary">
-            {savingStatus ? "Saving..." : "Update status"}
+            {savingStatus ? "Saving..." : "Update"}
           </button>
         </div>
       </div>
