@@ -1620,6 +1620,64 @@ async def admin_list_orders(status: Optional[str] = None, admin_email: str = Dep
     docs = await db.orders.find(q, {"_id": 0}).sort("created_at", -1).to_list(500)
     return [Order(**d) for d in docs]
 
+@api_router.get("/admin/orders/{order_id}", response_model=Order)
+async def admin_get_order(order_id: str, admin_email: str = Depends(verify_admin)):
+    doc = await db.orders.find_one({"id": order_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return Order(**doc)
+
+class OrderUpdate(BaseModel):
+    status: Optional[str] = None
+    admin_notes: Optional[str] = None
+
+ORDER_STATUSES = {"pending", "paid", "delivered", "cancelled", "refunded"}
+
+@api_router.patch("/admin/orders/{order_id}", response_model=Order)
+async def admin_update_order(order_id: str, body: OrderUpdate, admin_email: str = Depends(verify_admin)):
+    doc = await db.orders.find_one({"id": order_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Order not found")
+    update = {}
+    if body.status is not None:
+        if body.status not in ORDER_STATUSES:
+            raise HTTPException(status_code=400, detail=f"Invalid status. Allowed: {sorted(ORDER_STATUSES)}")
+        update["status"] = body.status
+        if body.status == "delivered" and not doc.get("delivered_at"):
+            update["delivered_at"] = now_iso()
+        if body.status == "paid" and not doc.get("paid_at"):
+            update["paid_at"] = now_iso()
+    if body.admin_notes is not None:
+        update["admin_notes"] = body.admin_notes
+    if update:
+        await db.orders.update_one({"id": order_id}, {"$set": update})
+    doc = await db.orders.find_one({"id": order_id}, {"_id": 0})
+    return Order(**doc)
+
+@api_router.get("/admin/customers")
+async def admin_list_customers(admin_email: str = Depends(verify_admin)):
+    """Aggregate customers from orders — one row per email with order stats."""
+    pipeline = [
+        {"$group": {
+            "_id": {"$toLower": "$customer_email"},
+            "name": {"$last": "$customer_name"},
+            "phone": {"$last": "$customer_phone"},
+            "address": {"$last": "$customer_address"},
+            "orders_count": {"$sum": 1},
+            "total_spent": {"$sum": {"$cond": [{"$in": ["$status", ["paid", "delivered"]]}, "$total", 0]}},
+            "last_order_at": {"$max": "$created_at"},
+        }},
+        {"$sort": {"last_order_at": -1}},
+        {"$limit": 500},
+    ]
+    docs = await db.orders.aggregate(pipeline).to_list(500)
+    return [
+        {"email": d["_id"], "name": d["name"], "phone": d.get("phone"), "address": d.get("address"),
+         "orders_count": d["orders_count"], "total_spent": round(d["total_spent"], 2),
+         "last_order_at": d["last_order_at"]}
+        for d in docs
+    ]
+
 @api_router.post("/admin/orders/{order_id}/deliver")
 async def admin_deliver(order_id: str, body: DeliverKeysBody, admin_email: str = Depends(verify_admin)):
     doc = await db.orders.find_one({"id": order_id}, {"_id": 0})
