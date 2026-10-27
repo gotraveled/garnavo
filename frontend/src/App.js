@@ -30,6 +30,7 @@ import ActivationThanks from "@/pages/ActivationThanks";
 import CategoryPage from "@/pages/CategoryPage";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
+import SetPassword from "@/pages/SetPassword";
 import NotFound from "@/pages/NotFound";
 
 function ScrollToTop() {
@@ -82,6 +83,7 @@ function AppShell() {
         <Route path="/track" element={<OrderTrack />} />
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Account />} />
+        <Route path="/set-password" element={<SetPassword />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />

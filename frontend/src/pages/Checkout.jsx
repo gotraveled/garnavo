@@ -12,11 +12,10 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 export default function Checkout() {
   const nav = useNavigate();
   const { items, subtotal, coupon, clearCart } = useCart();
-  const { customer, ready, login } = useCustomer();
+  const { customer, ready } = useCustomer();
   const [config, setConfig] = useState({ paypal_enabled: false });
   const [form, setForm] = useState({ customer_name: "", customer_email: "", customer_phone: "", customer_address: "" });
-  const [createAccount, setCreateAccount] = useState(false);
-  const [accountPassword, setAccountPassword] = useState("");
+  const [createAccount, setCreateAccount] = useState(true);
   const [order, setOrder] = useState(null);
   const [creating, setCreating] = useState(false);
   const [paying, setPaying] = useState(false);
@@ -53,10 +52,6 @@ export default function Checkout() {
       toast.error("Please fill in name, email, phone and address.");
       return null;
     }
-    if (createAccount && accountPassword.length < 8) {
-      toast.error("Account password must be at least 8 characters.");
-      return null;
-    }
     setCreating(true);
     try {
       const payload = {
@@ -65,7 +60,7 @@ export default function Checkout() {
         customer_phone: form.customer_phone.trim(),
         customer_address: form.customer_address.trim(),
         coupon_code: coupon?.code || null,
-        account_password: createAccount ? accountPassword : null,
+        create_account: createAccount,
         items: items.map((i) => ({
           product_id: i.product_id, product_name: i.product_name,
           variant_id: i.variant_id, variant_label: i.variant_label,
@@ -85,9 +80,6 @@ export default function Checkout() {
   };
 
   const finalizeOrder = async (orderId, orderNumber) => {
-    if (createAccount && accountPassword) {
-      try { await login(form.customer_email.trim().toLowerCase(), accountPassword); } catch { /* account exists or login hiccup — order still complete */ }
-    }
     clearCart();
     toast.success("Payment successful!");
     nav(`/order-success?id=${orderId}&num=${orderNumber}`);
@@ -117,6 +109,15 @@ export default function Checkout() {
           <div className="rounded-xl border border-neutral-200 bg-white p-6">
             <h2 className="font-display text-lg font-semibold">Delivery details</h2>
             <p className="mt-1 text-sm text-neutral-600">Your license will be sent to this email within 5–15 minutes.</p>
+            {order && (
+              <button
+                type="button"
+                onClick={() => setOrder(null)}
+                className="mt-2 text-xs font-semibold text-[#FF6B45] underline"
+              >
+                Edit details — a fresh order will be created
+              </button>
+            )}
             {customer && (
               <div className="mt-3 flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs font-medium text-neutral-700">
                 <UserCircle size={15} weight="duotone" /> Ordering as {customer.name} ({customer.email})
@@ -185,23 +186,9 @@ export default function Checkout() {
                     />
                     <span>
                       <span className="flex items-center gap-1.5 text-sm font-semibold"><UserCircle size={15} weight="duotone" /> Create a Garnavo account</span>
-                      <span className="mt-0.5 block text-xs text-neutral-500">Optional — track this order and access delivered licenses anytime.</span>
+                      <span className="mt-0.5 block text-xs text-neutral-500">Recommended — track this order and access delivered licenses anytime. We'll email you a link to set your password after payment.</span>
                     </span>
                   </label>
-                  {createAccount && (
-                    <div className="mt-3">
-                      <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">Choose a password</label>
-                      <input
-                        data-testid="checkout-account-password"
-                        type="password"
-                        value={accountPassword}
-                        onChange={(e) => setAccountPassword(e.target.value)}
-                        placeholder="At least 8 characters"
-                        disabled={!!order}
-                        className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
-                      />
-                    </div>
-                  )}
                 </div>
               )}
             </div>
@@ -227,7 +214,16 @@ export default function Checkout() {
                     onApprove={async (data) => {
                       const o = order;
                       if (!o) return;
-                      await api.post(`/orders/${o.id}/paypal/capture`, { paypal_order_id: data.orderID });
+                      try {
+                        const r = await api.post(`/orders/${o.id}/paypal/capture`, { paypal_order_id: data.orderID });
+                        if (r.data?.status !== "COMPLETED") {
+                          toast.error("Payment was not completed. Please try again or contact support.");
+                          return;
+                        }
+                      } catch (e) {
+                        toast.error(e?.response?.data?.detail || "Payment capture failed");
+                        return;
+                      }
                       await finalizeOrder(o.id, o.order_number);
                     }}
                     onError={(err) => { console.error(err); toast.error("PayPal payment failed"); }}

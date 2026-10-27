@@ -15,6 +15,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
 import uuid
+import secrets
 from datetime import datetime, timezone, timedelta
 import bcrypt
 import jwt as pyjwt
@@ -142,7 +143,8 @@ class OrderCreate(BaseModel):
     customer_address: Optional[str] = None
     items: List[OrderItem]
     coupon_code: Optional[str] = None
-    account_password: Optional[str] = None  # if set, creates/links a customer account
+    create_account: bool = False  # checked by default on storefront; account emailed after payment
+    account_password: Optional[str] = None  # optional — if absent, a set-password email is sent
 
 class Order(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -160,6 +162,8 @@ class Order(BaseModel):
     status: str = "pending"  # pending, paid, delivered, cancelled, refunded
     payment_method: Optional[str] = None
     paypal_order_id: Optional[str] = None
+    account_created: bool = False
+    payment_error: Optional[str] = None
     paid_at: Optional[str] = None
     delivered_at: Optional[str] = None
     admin_notes: Optional[str] = None
@@ -193,6 +197,13 @@ class CustomerUpdate(BaseModel):
     phone: Optional[str] = None
     address: Optional[str] = None
 
+class PasswordSet(BaseModel):
+    token: str
+    password: str
+
+class ForgotPassword(BaseModel):
+    email: EmailStr
+
 # ============ AUTH ============
 def create_token(email: str) -> str:
     payload = {
@@ -207,6 +218,15 @@ def create_customer_token(email: str) -> str:
         "sub": email,
         "role": "customer",
         "exp": datetime.now(timezone.utc) + timedelta(days=30),
+    }
+    return pyjwt.encode(payload, JWT_SECRET, algorithm="HS256")
+
+def create_password_setup_token(email: str) -> str:
+    """Short-lived single-purpose token emailed so customers can set their password."""
+    payload = {
+        "sub": email.lower(),
+        "purpose": "password_setup",
+        "exp": datetime.now(timezone.utc) + timedelta(hours=48),
     }
     return pyjwt.encode(payload, JWT_SECRET, algorithm="HS256")
 
@@ -1247,63 +1267,105 @@ async def send_email(to: str, subject: str, html: str, cc: Optional[List[str]] =
                 return {"error": str(e2)}
         return {"error": err}
 
+def _email_header_html() -> str:
+    """Branded header used across customer-facing emails."""
+    return f"""
+      <div style="background:#101826;padding:26px;text-align:center">
+        <img src="{STORE_URL}/logo.png" alt="{STORE_NAME}" style="height:60px;width:auto;display:inline-block" />
+      </div>
+      <div style="height:4px;background:linear-gradient(90deg,#FF6B45,#FFB84D)"></div>
+    """
+
+def _email_signature_html() -> str:
+    """Sales signature block used across customer-facing emails."""
+    return f"""
+      <table style="margin-top:32px;width:100%" cellpadding="0" cellspacing="0">
+        <tr><td style="border-top:1px solid #E5E7EB;padding-top:18px">
+          <div style="font-weight:700;color:#101826;font-size:15px">Victor Jones</div>
+          <div style="color:#6B7280;font-size:13px">Head of Sales — {STORE_NAME}</div>
+          <div style="margin-top:8px;font-size:13px;line-height:1.8">
+            <a href="{STORE_URL}" style="color:#FF6B45;text-decoration:none">{STORE_URL.replace('https://', '').replace('http://', '')}</a>
+            &nbsp;·&nbsp;
+            <a href="mailto:info@garnavo.com" style="color:#FF6B45;text-decoration:none">info@garnavo.com</a>
+            &nbsp;·&nbsp;
+            <a href="tel:+18449667866" style="color:#FF6B45;text-decoration:none">+1 (844) 966-7866</a>
+          </div>
+        </td></tr>
+      </table>
+    """
+
+def _email_footer_html(order_number: str = "") -> str:
+    """Compliance footer: reason for email + sender identity (CAN-SPAM style)."""
+    reason = f" because you placed order <strong>{order_number}</strong>" if order_number else ""
+    return f"""
+      <div style="background:#101826;padding:20px 32px;border-radius:0 0 8px 8px;text-align:center">
+        <div style="color:#9CA3AF;font-size:11px;line-height:1.7">
+          You received this email{reason} at <a href="{STORE_URL}" style="color:#FF9776;text-decoration:none">{STORE_NAME}</a>.<br>
+          This is a transactional message about your purchase, not a marketing email.<br>
+          © {datetime.now(timezone.utc).year} {STORE_NAME}. All rights reserved.
+        </div>
+      </div>
+    """
+
 def order_confirmation_html(order: dict) -> str:
     items_html = "".join([
-        f"<tr><td style='padding:8px;border-bottom:1px solid #eee'>{it['product_name']}<br><small style='color:#666'>{it['variant_label']}</small></td>"
-        f"<td style='padding:8px;border-bottom:1px solid #eee;text-align:center'>{it['quantity']}</td>"
-        f"<td style='padding:8px;border-bottom:1px solid #eee;text-align:right'>${it['subtotal']:.2f}</td></tr>"
+        f"<tr><td style='padding:10px 8px;border-bottom:1px solid #eee'>{it['product_name']}<br><small style='color:#666'>{it['variant_label']}</small></td>"
+        f"<td style='padding:10px 8px;border-bottom:1px solid #eee;text-align:center'>{it['quantity']}</td>"
+        f"<td style='padding:10px 8px;border-bottom:1px solid #eee;text-align:right'>${it['subtotal']:.2f}</td></tr>"
         for it in order['items']
     ])
     return f"""
-    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#f9fafb">
-      <div style="background:#101826;padding:24px;border-radius:8px 8px 0 0">
-        <h1 style="color:#FF9776;margin:0;font-size:24px">{STORE_NAME}</h1>
-      </div>
-      <div style="background:#fff;padding:32px;border-radius:0 0 8px 8px">
-        <h2 style="color:#101826">Order Confirmed!</h2>
-        <p>Hi {order['customer_name']}, thank you for your order.</p>
-        <p><strong>Order Number:</strong> {order['order_number']}</p>
-        <div style="background:#FFF1EC;padding:16px;border-radius:6px;margin:16px 0;border-left:4px solid #FF6B45">
-          <strong>Delivery in 5-15 minutes:</strong> Your license(s) will be emailed to you shortly after our team verifies your payment.
+    <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#F3F4F6">
+      <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08)">
+        {_email_header_html()}
+        <div style="padding:32px">
+          <h2 style="color:#101826;margin-top:0">Order Confirmed!</h2>
+          <p style="color:#374151">Hi {order['customer_name']}, thank you for your order.</p>
+          <p style="color:#374151"><strong>Order Number:</strong> <span style="font-family:monospace">{order['order_number']}</span></p>
+          <div style="background:#FFF1EC;padding:16px;border-radius:6px;margin:16px 0;border-left:4px solid #FF6B45;color:#374151">
+            <strong>Delivery in 5-15 minutes:</strong> Your license(s) will be emailed to you shortly after our team verifies your payment.
+          </div>
+          <table style="width:100%;border-collapse:collapse;margin:24px 0">
+            <thead><tr style="background:#F3F4F6"><th style="padding:10px 8px;text-align:left;color:#6B7280;font-size:12px;text-transform:uppercase">Product</th><th style="padding:10px 8px;color:#6B7280;font-size:12px;text-transform:uppercase">Qty</th><th style="padding:10px 8px;text-align:right;color:#6B7280;font-size:12px;text-transform:uppercase">Total</th></tr></thead>
+            <tbody>{items_html}</tbody>
+            <tfoot><tr><td colspan="2" style="padding:12px 8px;text-align:right;font-weight:bold">Total:</td><td style="padding:12px 8px;text-align:right;font-weight:bold">${order['total']:.2f}</td></tr></tfoot>
+          </table>
+          <p style="color:#374151">Track your order anytime: <a href="{STORE_URL}/track" style="color:#FF6B45">{STORE_URL}/track</a></p>
+          {_email_signature_html()}
         </div>
-        <table style="width:100%;border-collapse:collapse;margin:24px 0">
-          <thead><tr style="background:#F3F4F6"><th style="padding:8px;text-align:left">Product</th><th style="padding:8px">Qty</th><th style="padding:8px;text-align:right">Total</th></tr></thead>
-          <tbody>{items_html}</tbody>
-          <tfoot><tr><td colspan="2" style="padding:12px;text-align:right;font-weight:bold">Total:</td><td style="padding:12px;text-align:right;font-weight:bold">${order['total']:.2f}</td></tr></tfoot>
-        </table>
-        <p>Track your order: <a href="{STORE_URL}/track">{STORE_URL}/track</a></p>
-        <p style="color:#6B7280;font-size:12px;margin-top:24px">© {STORE_NAME}. Trusted digital software store.</p>
+        {_email_footer_html(order['order_number'])}
       </div>
     </div>
     """
 
 def license_delivery_html(order: dict) -> str:
     keys_html = "".join([
-        f"<div style='background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;padding:16px;margin:12px 0'>"
+        f"<div style='background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;padding:16px;margin:12px 0'>"
         f"<div style='font-weight:600;color:#101826'>{it['product_name']}</div>"
-        f"<div style='color:#6B7280;font-size:14px;margin-bottom:8px'>{it['variant_label']}</div>"
-        f"<div style='font-family:monospace;background:#101826;color:#FF9776;padding:12px;border-radius:4px;letter-spacing:2px;font-size:16px;word-break:break-all'>{it.get('license_key','[Not yet assigned]')}</div>"
+        f"<div style='color:#6B7280;font-size:13px;margin-bottom:10px'>{it['variant_label']} · Qty {it['quantity']}</div>"
+        f"<div style='font-size:11px;color:#6B7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px'>License key</div>"
+        f"<div style='font-family:Consolas,monospace;background:#101826;color:#FF9776;padding:14px;border-radius:6px;letter-spacing:2px;font-size:16px;word-break:break-all'>{it.get('license_key','[Not yet assigned]')}</div>"
         f"</div>"
         for it in order['items']
     ])
     return f"""
-    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#f9fafb">
-      <div style="background:#101826;padding:24px;border-radius:8px 8px 0 0">
-        <h1 style="color:#FF9776;margin:0;font-size:24px">{STORE_NAME}</h1>
-      </div>
-      <div style="background:#fff;padding:32px;border-radius:0 0 8px 8px">
-        <h2 style="color:#0D9488">Your Activation Codes</h2>
-        <p>Hi {order['customer_name']}, your activation codes are ready!</p>
-        <p><strong>Order:</strong> {order['order_number']}</p>
-        {keys_html}
-        <h3 style="margin-top:32px">How to activate:</h3>
-        <ol style="color:#374151;line-height:1.8">
-          <li>Visit the official activation portal for the product you purchased (linked in our <a href="{STORE_URL}/activation">Activation Portal</a>) and sign in, or create an account</li>
-          <li>Choose the option to enter a new activation code</li>
-          <li>Paste the code shown above and continue</li>
-          <li>Download and install the software on your device</li>
-        </ol>
-        <p style="color:#6B7280;font-size:12px;margin-top:24px">Questions? Reply to this email.</p>
+    <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#F3F4F6">
+      <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08)">
+        {_email_header_html()}
+        <div style="padding:32px">
+          <h2 style="color:#101826;margin-top:0">Your License is Ready</h2>
+          <p style="color:#374151">Hi {order['customer_name']}, thank you for your purchase. Your order <strong style="font-family:monospace">{order['order_number']}</strong> is complete — here are your activation codes:</p>
+          {keys_html}
+          <div style="background:#FFF1EC;border:1px solid #FFD8C7;border-radius:8px;padding:16px;margin:24px 0">
+            <div style="font-weight:700;color:#101826">Need help installing or activating?</div>
+            <div style="color:#374151;font-size:14px;margin-top:4px;line-height:1.6">
+              Your dedicated account manager, <strong>Mr. Kevin Jensen</strong>, will be happy to assist you.<br>
+              Call: <a href="tel:+18449667866" style="color:#FF6B45;text-decoration:none;font-weight:700">+1 (844) 966-7866</a>
+            </div>
+          </div>
+          {_email_signature_html()}
+        </div>
+        {_email_footer_html(order['order_number'])}
       </div>
     </div>
     """
@@ -1346,6 +1408,94 @@ def new_order_admin_html(order: dict) -> str:
       </div>
     </div>
     """
+
+def account_welcome_html(order: dict, set_password_url: str) -> str:
+    return f"""
+    <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#F3F4F6">
+      <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08)">
+        {_email_header_html()}
+        <div style="padding:32px">
+          <h2 style="color:#101826;margin-top:0">Your {STORE_NAME} Account is Ready</h2>
+          <p style="color:#374151">Hi {order['customer_name']}, an account has been created for you with your order <strong style="font-family:monospace">{order['order_number']}</strong>.</p>
+          <p style="color:#374151">Sign in to your dashboard anytime to:</p>
+          <ul style="color:#374151;line-height:1.9;margin:8px 0 20px">
+            <li>View your purchased license keys</li>
+            <li>Track current and past orders</li>
+            <li>Manage your delivery details</li>
+          </ul>
+          <div style="text-align:center;margin:28px 0">
+            <a href="{set_password_url}" style="display:inline-block;background:#FF6B45;color:#fff;text-decoration:none;font-weight:700;padding:14px 32px;border-radius:8px">Set your password</a>
+          </div>
+          <p style="color:#6B7280;font-size:13px">This link is valid for 48 hours. After setting your password, sign in at <a href="{STORE_URL}/account" style="color:#FF6B45">{STORE_URL}/account</a> using your email <strong>{order['customer_email']}</strong>.</p>
+          {_email_signature_html()}
+        </div>
+        {_email_footer_html(order['order_number'])}
+      </div>
+    </div>
+    """
+
+def password_setup_html(customer: dict, set_password_url: str) -> str:
+    return f"""
+    <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#F3F4F6">
+      <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08)">
+        {_email_header_html()}
+        <div style="padding:32px">
+          <h2 style="color:#101826;margin-top:0">Set Your Password</h2>
+          <p style="color:#374151">Hi {customer.get('name') or 'there'}, click below to set a new password for your {STORE_NAME} account (<strong>{customer['email']}</strong>).</p>
+          <div style="text-align:center;margin:28px 0">
+            <a href="{set_password_url}" style="display:inline-block;background:#FF6B45;color:#fff;text-decoration:none;font-weight:700;padding:14px 32px;border-radius:8px">Set your password</a>
+          </div>
+          <p style="color:#6B7280;font-size:13px">This link is valid for 48 hours. If you didn't request it, you can safely ignore this email.</p>
+          {_email_signature_html()}
+        </div>
+        {_email_footer_html()}
+      </div>
+    </div>
+    """
+
+def payment_failed_admin_html(order: dict, reason: str) -> str:
+    items_html = "".join([
+        f"<tr><td style='padding:8px;border-bottom:1px solid #eee'>{it['product_name']}<br><small style='color:#666'>{it['variant_label']}</small></td>"
+        f"<td style='padding:8px;border-bottom:1px solid #eee;text-align:center'>{it['quantity']}</td>"
+        f"<td style='padding:8px;border-bottom:1px solid #eee;text-align:right'>${it['subtotal']:.2f}</td></tr>"
+        for it in order['items']
+    ])
+    return f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#f9fafb">
+      <div style="background:#7F1D1D;padding:24px;border-radius:8px 8px 0 0">
+        <h1 style="color:#FCA5A5;margin:0;font-size:24px">{STORE_NAME} — Payment Failed</h1>
+      </div>
+      <div style="background:#fff;padding:32px;border-radius:0 0 8px 8px">
+        <div style="background:#FEF2F2;border:1px solid #FECACA;border-left:4px solid #DC2626;padding:16px;border-radius:6px;margin-bottom:20px">
+          <strong>Order:</strong> {order['order_number']} · <strong>Total:</strong> ${order['total']:.2f}<br>
+          <strong>PayPal order:</strong> {order.get('paypal_order_id') or '—'}<br>
+          <strong>Failure reason:</strong> {reason}
+        </div>
+        <p style="color:#374151">Contact the customer to recover this sale — their details are below.</p>
+        <h3 style="margin-top:24px;color:#101826">Customer</h3>
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
+          <tr><td style="padding:6px 8px;color:#6B7280;width:110px">Name</td><td style="padding:6px 8px">{order['customer_name']}</td></tr>
+          <tr><td style="padding:6px 8px;color:#6B7280">Email</td><td style="padding:6px 8px"><a href="mailto:{order['customer_email']}">{order['customer_email']}</a></td></tr>
+          <tr><td style="padding:6px 8px;color:#6B7280">Phone</td><td style="padding:6px 8px"><a href="tel:{order.get('customer_phone') or ''}">{order.get('customer_phone') or '—'}</a></td></tr>
+          <tr><td style="padding:6px 8px;color:#6B7280">Address</td><td style="padding:6px 8px">{order.get('customer_address') or '—'}</td></tr>
+        </table>
+        <h3 style="margin-top:24px;color:#101826">Items</h3>
+        <table style="width:100%;border-collapse:collapse;margin:8px 0">
+          <thead><tr style="background:#F3F4F6"><th style="padding:8px;text-align:left">Product</th><th style="padding:8px">Qty</th><th style="padding:8px;text-align:right">Total</th></tr></thead>
+          <tbody>{items_html}</tbody>
+          <tfoot><tr><td colspan="2" style="padding:12px;text-align:right;font-weight:bold">Total:</td><td style="padding:12px;text-align:right;font-weight:bold">${order['total']:.2f}</td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+    """
+
+async def _notify_payment_failed(order: dict, reason: str):
+    await send_email(
+        STORE_NOTIFICATION_EMAIL,
+        f"Payment FAILED — {order['order_number']} — ${order['total']:.2f}",
+        payment_failed_admin_html(order, reason),
+        cc=[ADMIN_EMAIL],
+    )
 
 # ============ PUBLIC ROUTES ============
 @api_router.get("/")
@@ -1452,20 +1602,39 @@ async def create_order(body: OrderCreate):
         total=total,
     )
     await db.orders.insert_one(order.model_dump())
-    if body.account_password and len(body.account_password) >= 8:
+    if body.create_account or (body.account_password and len(body.account_password) >= 8):
+        password = body.account_password if body.account_password and len(body.account_password) >= 8 else secrets.token_urlsafe(18)
         await _upsert_customer(
             email=body.customer_email, name=body.customer_name,
-            password=body.account_password,
+            password=password,
             phone=body.customer_phone, address=body.customer_address,
         )
+        await db.orders.update_one({"id": order.id}, {"$set": {"account_created": True}})
+        order.account_created = True
     return order
 
-@api_router.get("/orders/{order_id}", response_model=Order)
+def _mask_email(email: str) -> str:
+    try:
+        local, domain = email.split("@", 1)
+        return f"{local[0]}***@{domain}"
+    except Exception:
+        return "***"
+
+@api_router.get("/orders/{order_id}")
 async def get_order(order_id: str):
+    """Public order lookup for the success page — PII and license keys are never exposed."""
     doc = await db.orders.find_one({"id": order_id}, {"_id": 0})
     if not doc:
         raise HTTPException(status_code=404, detail="Order not found")
-    return Order(**doc)
+    return {
+        "id": doc["id"],
+        "order_number": doc["order_number"],
+        "status": doc["status"],
+        "total": doc["total"],
+        "created_at": doc["created_at"],
+        "customer_email": _mask_email(doc["customer_email"]),
+        "items": [{"product_name": it["product_name"], "variant_label": it["variant_label"], "quantity": it["quantity"]} for it in doc["items"]],
+    }
 
 @api_router.post("/orders/track", response_model=Order)
 async def track_order(body: OrderTrackQuery):
@@ -1534,13 +1703,20 @@ async def capture_paypal_order(order_id: str, body: dict):
     if not paypal_order_id:
         raise HTTPException(status_code=400, detail="No PayPal order linked to this order")
     token = await _paypal_access_token()
-    async with httpx.AsyncClient(timeout=15) as c:
-        r = await c.post(
-            f"{PAYPAL_BASE}/v2/checkout/orders/{paypal_order_id}/capture",
-            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
-        )
-        r.raise_for_status()
-        cap = r.json()
+    try:
+        async with httpx.AsyncClient(timeout=15) as c:
+            r = await c.post(
+                f"{PAYPAL_BASE}/v2/checkout/orders/{paypal_order_id}/capture",
+                headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+            )
+            r.raise_for_status()
+            cap = r.json()
+    except Exception as e:
+        reason = f"PayPal capture request failed: {e}"
+        logger.error(f"Payment capture failed for {doc['order_number']}: {e}")
+        await db.orders.update_one({"id": order_id}, {"$set": {"payment_error": reason}})
+        await _notify_payment_failed(doc, reason)
+        raise HTTPException(status_code=502, detail="Payment capture failed — our team has been notified and will contact you.")
     if cap.get("status") == "COMPLETED":
         await db.orders.update_one({"id": order_id}, {"$set": {
             "status": "paid", "payment_method": "paypal",
@@ -1549,6 +1725,17 @@ async def capture_paypal_order(order_id: str, body: dict):
         updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
         await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
         await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']} — ${updated['total']:.2f}", new_order_admin_html(updated), cc=[ADMIN_EMAIL])
+        if updated.get("account_created"):
+            token_pw = create_password_setup_token(updated["customer_email"])
+            await send_email(
+                updated["customer_email"],
+                f"Your {STORE_NAME} account is ready",
+                account_welcome_html(updated, f"{STORE_URL}/set-password?token={token_pw}"),
+            )
+    else:
+        reason = f"PayPal returned capture status: {cap.get('status') or 'unknown'}"
+        await db.orders.update_one({"id": order_id}, {"$set": {"payment_error": reason}})
+        await _notify_payment_failed(doc, reason)
     return {"status": cap.get("status"), "order_id": order_id}
 
 @api_router.post("/orders/{order_id}/simulate-payment")
@@ -1568,6 +1755,13 @@ async def simulate_payment(order_id: str):
     updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
     await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
     await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']} — ${updated['total']:.2f}", new_order_admin_html(updated), cc=[ADMIN_EMAIL])
+    if updated.get("account_created"):
+        token_pw = create_password_setup_token(updated["customer_email"])
+        await send_email(
+            updated["customer_email"],
+            f"Your {STORE_NAME} account is ready",
+            account_welcome_html(updated, f"{STORE_URL}/set-password?token={token_pw}"),
+        )
     return {"status": "paid", "order_id": order_id}
 
 # ============ CUSTOMER AUTH ============
@@ -1607,6 +1801,37 @@ async def customer_update(body: CustomerUpdate, email: str = Depends(verify_cust
 async def customer_orders(email: str = Depends(verify_customer)):
     docs = await db.orders.find({"customer_email": email.lower()}, {"_id": 0}).sort("created_at", -1).to_list(200)
     return [Order(**d) for d in docs]
+
+@api_router.post("/auth/set-password")
+async def customer_set_password(body: PasswordSet):
+    try:
+        payload = pyjwt.decode(body.token, JWT_SECRET, algorithms=["HS256"])
+        if payload.get("purpose") != "password_setup":
+            raise HTTPException(status_code=400, detail="Invalid link")
+    except pyjwt.ExpiredSignatureError:
+        raise HTTPException(status_code=400, detail="This link has expired. Request a new one.")
+    except pyjwt.PyJWTError:
+        raise HTTPException(status_code=400, detail="Invalid link")
+    if len(body.password) < 8:
+        raise HTTPException(status_code=400, detail="Password must be at least 8 characters")
+    email = payload["sub"].lower()
+    doc = await db.customers.find_one({"email": email})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Account not found")
+    pw_hash = bcrypt.hashpw(body.password.encode(), bcrypt.gensalt()).decode()
+    await db.customers.update_one({"email": email}, {"$set": {"password_hash": pw_hash}})
+    doc = await db.customers.find_one({"email": email})
+    return {"token": create_customer_token(email), "customer": _customer_public(doc)}
+
+@api_router.post("/auth/forgot-password")
+async def customer_forgot_password(body: ForgotPassword):
+    """Sends a set-password link. Always returns success (no account enumeration)."""
+    email = body.email.lower().strip()
+    doc = await db.customers.find_one({"email": email})
+    if doc:
+        token = create_password_setup_token(email)
+        await send_email(email, f"Set your {STORE_NAME} password", password_setup_html(doc, f"{STORE_URL}/set-password?token={token}"))
+    return {"message": "If an account exists for this email, a password link has been sent."}
 
 # ============ ADMIN ============
 @api_router.post("/admin/login")
@@ -1768,7 +1993,13 @@ async def admin_deliver(order_id: str, body: DeliverKeysBody, admin_email: str =
         "delivered_at": now_iso(), "admin_notes": body.admin_note,
     }})
     updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
-    await send_email(updated["customer_email"], f"Your Activation Codes — Order {updated['order_number']}", license_delivery_html(updated))
+    first_product = updated["items"][0]["product_name"] if updated["items"] else "Software"
+    await send_email(
+        updated["customer_email"],
+        f"Your {first_product} Order #{updated['order_number']}",
+        license_delivery_html(updated),
+        cc=[STORE_NOTIFICATION_EMAIL],
+    )
     return {"status": "delivered", "order_id": order_id}
 
 @api_router.post("/admin/orders/{order_id}/cancel")

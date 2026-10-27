@@ -558,6 +558,7 @@ function OrderDetail({ orderId, onBack }) {
               {order.paypal_order_id && <div><span className="text-neutral-500">PayPal ID:</span> <span className="font-mono text-xs">{order.paypal_order_id}</span></div>}
               <div><span className="text-neutral-500">Paid at:</span> {order.paid_at ? new Date(order.paid_at).toLocaleString() : "—"}</div>
               <div><span className="text-neutral-500">Delivered at:</span> {order.delivered_at ? new Date(order.delivered_at).toLocaleString() : "—"}</div>
+              {order.payment_error && <div className="rounded-md bg-red-50 p-2 text-red-700"><span className="font-semibold">Payment error:</span> {order.payment_error}</div>}
             </div>
           </div>
 
