@@ -162,7 +162,7 @@ function OrderRow({ order, onChange }) {
             <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${statusColor}`}>{order.status}</span>
           </div>
           <div className="mt-1 text-xs text-neutral-500">
-            {order.customer_name} · {order.customer_email} · ${order.total.toFixed(2)} · {new Date(order.created_at).toLocaleString()}
+            {order.customer_name} · {order.customer_email} · {order.customer_phone || "no phone"} · ${order.total.toFixed(2)} · {new Date(order.created_at).toLocaleString()}
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -174,24 +174,40 @@ function OrderRow({ order, onChange }) {
           {order.status === "delivered" && (
             <button onClick={() => setOpen(!open)} className="btn-outline">View keys</button>
           )}
+          {order.status !== "paid" && order.status !== "delivered" && (
+            <button onClick={() => setOpen(!open)} className="btn-outline">Details</button>
+          )}
         </div>
       </div>
       {open && (
         <div className="border-t border-neutral-200 bg-neutral-50 p-4">
+          <div className="mb-4 rounded-lg border border-neutral-200 bg-white p-3 text-sm">
+            <div className="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">Customer details</div>
+            <div className="grid gap-1 sm:grid-cols-2">
+              <div><span className="text-neutral-500">Name:</span> {order.customer_name}</div>
+              <div><span className="text-neutral-500">Email:</span> <a className="text-[#FF6B45] underline" href={`mailto:${order.customer_email}`}>{order.customer_email}</a></div>
+              <div><span className="text-neutral-500">Phone:</span> {order.customer_phone ? <a className="text-[#FF6B45] underline" href={`tel:${order.customer_phone}`}>{order.customer_phone}</a> : "—"}</div>
+              <div><span className="text-neutral-500">Address:</span> {order.customer_address || "—"}</div>
+              <div><span className="text-neutral-500">Payment:</span> {order.payment_method || "—"}{order.paypal_order_id ? ` · ${order.paypal_order_id}` : ""}</div>
+              <div><span className="text-neutral-500">Paid at:</span> {order.paid_at ? new Date(order.paid_at).toLocaleString() : "—"}</div>
+            </div>
+          </div>
           {order.items.map((it, i) => (
             <div key={i} className="mb-3">
-              <div className="text-sm font-semibold">{it.product_name} <span className="text-neutral-500">— {it.variant_label} × {it.quantity}</span></div>
-              <input
-                data-testid={`admin-key-input-${order.order_number}-${i}`}
-                value={keys[i]}
-                onChange={(e) => setKeys(keys.map((k, idx) => idx === i ? e.target.value : k))}
-                placeholder="Paste license key here"
-                disabled={order.status === "delivered"}
-                className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 font-mono text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
-              />
+              <div className="text-sm font-semibold">{it.product_name} <span className="text-neutral-500">— {it.variant_label} × {it.quantity} · ${it.subtotal.toFixed(2)}</span></div>
+              {(order.status === "paid" || order.status === "delivered") && (
+                <input
+                  data-testid={`admin-key-input-${order.order_number}-${i}`}
+                  value={keys[i]}
+                  onChange={(e) => setKeys(keys.map((k, idx) => idx === i ? e.target.value : k))}
+                  placeholder="Paste license key here"
+                  disabled={order.status === "delivered"}
+                  className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 font-mono text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
+                />
+              )}
             </div>
           ))}
-          {order.status !== "delivered" && (
+          {order.status === "paid" && (
             <>
               <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Internal note (optional)" rows={2} className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40" />
               <div className="mt-3">

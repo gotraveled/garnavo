@@ -1290,6 +1290,45 @@ def license_delivery_html(order: dict) -> str:
     </div>
     """
 
+def new_order_admin_html(order: dict) -> str:
+    items_html = "".join([
+        f"<tr><td style='padding:8px;border-bottom:1px solid #eee'>{it['product_name']}<br><small style='color:#666'>{it['variant_label']}</small></td>"
+        f"<td style='padding:8px;border-bottom:1px solid #eee;text-align:center'>{it['quantity']}</td>"
+        f"<td style='padding:8px;border-bottom:1px solid #eee;text-align:right'>${it['subtotal']:.2f}</td></tr>"
+        for it in order['items']
+    ])
+    return f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#f9fafb">
+      <div style="background:#101826;padding:24px;border-radius:8px 8px 0 0">
+        <h1 style="color:#FF9776;margin:0;font-size:24px">{STORE_NAME} — New Paid Order</h1>
+      </div>
+      <div style="background:#fff;padding:32px;border-radius:0 0 8px 8px">
+        <p><strong>Order:</strong> {order['order_number']} &nbsp;·&nbsp; <strong>Total:</strong> ${order['total']:.2f} &nbsp;·&nbsp; <strong>Payment:</strong> {order.get('payment_method') or '—'}</p>
+        <p><strong>Paid at:</strong> {order.get('paid_at') or '—'} &nbsp;·&nbsp; <strong>PayPal order:</strong> {order.get('paypal_order_id') or '—'}{f" &nbsp;·&nbsp; <strong>Coupon:</strong> {order['coupon_code']}" if order.get('coupon_code') else ""}</p>
+        <h3 style="margin-top:24px;color:#101826">Customer</h3>
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
+          <tr><td style="padding:6px 8px;color:#6B7280;width:110px">Name</td><td style="padding:6px 8px">{order['customer_name']}</td></tr>
+          <tr><td style="padding:6px 8px;color:#6B7280">Email</td><td style="padding:6px 8px"><a href="mailto:{order['customer_email']}">{order['customer_email']}</a></td></tr>
+          <tr><td style="padding:6px 8px;color:#6B7280">Phone</td><td style="padding:6px 8px"><a href="tel:{order.get('customer_phone') or ''}">{order.get('customer_phone') or '—'}</a></td></tr>
+          <tr><td style="padding:6px 8px;color:#6B7280">Address</td><td style="padding:6px 8px">{order.get('customer_address') or '—'}</td></tr>
+        </table>
+        <h3 style="margin-top:24px;color:#101826">Items</h3>
+        <table style="width:100%;border-collapse:collapse;margin:8px 0">
+          <thead><tr style="background:#F3F4F6"><th style="padding:8px;text-align:left">Product</th><th style="padding:8px">Qty</th><th style="padding:8px;text-align:right">Total</th></tr></thead>
+          <tbody>{items_html}</tbody>
+          <tfoot>
+            {f"<tr><td colspan='2' style='padding:8px;text-align:right;color:#6B7280'>Subtotal:</td><td style='padding:8px;text-align:right'>${order['subtotal']:.2f}</td></tr>" if order.get('discount_amount') else ""}
+            {f"<tr><td colspan='2' style='padding:8px;text-align:right;color:#6B7280'>Discount:</td><td style='padding:8px;text-align:right'>-${order['discount_amount']:.2f}</td></tr>" if order.get('discount_amount') else ""}
+            <tr><td colspan="2" style="padding:12px;text-align:right;font-weight:bold">Total:</td><td style="padding:12px;text-align:right;font-weight:bold">${order['total']:.2f}</td></tr>
+          </tfoot>
+        </table>
+        <div style="background:#FFF1EC;padding:16px;border-radius:6px;margin:16px 0;border-left:4px solid #FF6B45">
+          Login to the admin panel to deliver license keys: <a href="{STORE_URL}/admin">{STORE_URL}/admin</a>
+        </div>
+      </div>
+    </div>
+    """
+
 # ============ PUBLIC ROUTES ============
 @api_router.get("/")
 async def root():
@@ -1487,7 +1526,7 @@ async def capture_paypal_order(order_id: str, body: dict):
         }})
         updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
         await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
-        await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']}", f"<p>New paid order: {updated['order_number']} — ${updated['total']:.2f}</p><p>Login to admin panel to deliver licenses.</p>")
+        await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']} — ${updated['total']:.2f}", new_order_admin_html(updated), cc=[ADMIN_EMAIL])
     return {"status": cap.get("status"), "order_id": order_id}
 
 @api_router.post("/orders/{order_id}/simulate-payment")
@@ -1506,7 +1545,7 @@ async def simulate_payment(order_id: str):
     }})
     updated = await db.orders.find_one({"id": order_id}, {"_id": 0})
     await send_email(updated["customer_email"], f"Order {updated['order_number']} confirmed — {STORE_NAME}", order_confirmation_html(updated))
-    await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']}", f"<p>Order {updated['order_number']} — ${updated['total']:.2f}</p>")
+    await send_email(STORE_NOTIFICATION_EMAIL, f"New paid order {updated['order_number']} — ${updated['total']:.2f}", new_order_admin_html(updated), cc=[ADMIN_EMAIL])
     return {"status": "paid", "order_id": order_id}
 
 # ============ CUSTOMER AUTH ============
