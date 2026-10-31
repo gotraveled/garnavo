@@ -10,7 +10,7 @@ import { getBrand, BRAND_LIST } from "@/lib/brands";
 import {
   ShieldCheck, ArrowRight, Key, User, Envelope,
   UserCircle, DownloadSimple, CheckCircle, LockKey, MonitorPlay, Phone,
-  Clock, Headset,
+  Clock, Headset, Package, MagnifyingGlass,
 } from "@phosphor-icons/react";
 
 const STEP_ICONS = [
@@ -279,7 +279,28 @@ export default function ActivationBrand() {
 
           {/* RIGHT: Instructions */}
           <div className="order-2 lg:order-2">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">How it works</div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Before you start</div>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">How to find License key?</h2>
+            <p className="mt-3 text-neutral-600">Your {brand.name} code is {KEY_MAX} characters long. Here is where to look, depending on how you bought it.</p>
+
+            <ol className="mt-8 space-y-4">
+              {[
+                { icon: <Package size={22} weight="duotone" />, title: "Bought a key card?", desc: `Turn the card over and gently scratch off the panel on the back. The ${KEY_MAX}-character code underneath is your license key.` },
+                { icon: <Envelope size={22} weight="duotone" />, title: "Bought online from Garnavo?", desc: `Open the email titled "Your ${brand.name} … Order #GNV-…" sent to the address you used at checkout. Your key is shown in the dark box under "License key".` },
+                { icon: <MagnifyingGlass size={22} weight="duotone" />, title: "Can't see the email?", desc: `Check your spam, junk or promotions folder and search for "Garnavo" or your order number. You can also sign in to your Garnavo account to view your delivered key.` },
+                { icon: <Key size={22} weight="duotone" />, title: "Enter it exactly as shown", desc: `Type or paste the code in the field on this page. Dashes are added for you. Letters are not case-sensitive, and the code never contains spaces.` },
+              ].map((s, i) => (
+                <li key={i} className="flex gap-4 rounded-xl border border-neutral-200 bg-white p-5">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-[#101826]" style={{ color: "#fff" }}>{s.icon}</div>
+                  <div className="flex-1">
+                    <div className="font-display text-lg font-semibold tracking-tight">{s.title}</div>
+                    <p className="mt-1 text-sm leading-relaxed text-neutral-600">{s.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-14 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">How it works</div>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Steps on the brand's website</h2>
             <p className="mt-3 text-neutral-600">Everything happens on the brand's own website. Follow the steps below yourself, or submit your details and our team will guide you through them.</p>
 
