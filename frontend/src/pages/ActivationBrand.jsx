@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
@@ -36,10 +36,11 @@ export default function ActivationBrand() {
   // Focus the activation form on load — landing page: form first, no scrolling needed.
   // Retried across paint/load because mobile browsers restore scroll position and
   // shift layout while fonts/images settle — a single early scroll gets overridden.
-  useEffect(() => {
+  // The hero/notice stay above the form in the DOM, so scrolling up reveals them.
+  useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
     const scroll = () => formRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    scroll();
     const raf = requestAnimationFrame(scroll);
     const timers = [80, 300, 800].map((ms) => setTimeout(scroll, ms));
     window.addEventListener("load", scroll);
@@ -141,9 +142,7 @@ export default function ActivationBrand() {
     `w-full rounded-md border bg-white py-3 pl-10 pr-4 text-sm focus:ring-2 brand-ring ${errors[field] ? "border-red-500" : "border-neutral-300"}`;
 
   return (
-    // flex-col + order utilities: on mobile the form section renders FIRST so it is
-    // visible immediately with no scrolling; intro sections follow it (scroll down).
-    <div style={theme} className="flex flex-col bg-neutral-50">
+    <div style={theme} className="bg-neutral-50">
       <SEO
         title={`${brand.name} ${brand.serviceName.charAt(0).toUpperCase() + brand.serviceName.slice(1)} — Independent Reseller | Garnavo`}
         description={`${brand.name} ${brand.serviceName} from Garnavo, an independent reseller. We walk you through the process for the ${brand.name} license you bought from us via ${brand.portalName}.`}
@@ -151,7 +150,7 @@ export default function ActivationBrand() {
       />
 
       {/* Trust badges header strip */}
-      <div className="border-b border-neutral-200 bg-white max-lg:order-2">
+      <div className="border-b border-neutral-200 bg-white">
         <div className="container-page flex items-center justify-center py-4">
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <div className="flex items-center gap-2 text-sm"><ShieldCheck size={18} weight="duotone" className="brand-text" /><span className="font-semibold text-neutral-900">Genuine Licenses</span></div>
@@ -166,7 +165,7 @@ export default function ActivationBrand() {
       </div>
 
       {/* Hero — clearly an independent assistance service */}
-      <section className="relative overflow-hidden border-b border-neutral-200 brand-bg-softer max-lg:order-2">
+      <section className="relative overflow-hidden border-b border-neutral-200 brand-bg-softer">
         <div className="container-page py-8 md:py-12">
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700 brand-border">
@@ -186,7 +185,7 @@ export default function ActivationBrand() {
       </section>
 
       {/* Independence notice — kept light, compliance only */}
-      <div className="border-b border-neutral-200 bg-white max-lg:order-2">
+      <div className="border-b border-neutral-200 bg-white">
         <div className="container-page py-3">
           <p className="mx-auto max-w-3xl text-center text-[11px] leading-relaxed text-neutral-400">
             This is a Garnavo service page — Garnavo is an independent reseller and is not affiliated with or endorsed by {brand.entity}.
@@ -198,10 +197,10 @@ export default function ActivationBrand() {
       </div>
 
       {/* Main split: Form | Instructions — renders first on mobile */}
-      <section className="container-page py-8 md:py-10 lg:py-14 max-lg:order-1 max-lg:pt-6">
+      <section className="container-page py-8 md:py-10 lg:py-14">
         <div className="grid gap-8 md:gap-10 lg:grid-cols-2 lg:gap-16">
           {/* LEFT: Activation form */}
-          <div id="activation-form" ref={formRef} className="order-1 scroll-mt-32 lg:order-1">
+          <div id="activation-form" ref={formRef} className="order-1 scroll-mt-24 lg:order-1">
             <div className="sticky top-24 rounded-2xl border border-neutral-200 bg-white p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.15)] sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="grid h-11 w-11 place-items-center rounded-lg bg-[#101826]" style={{ color: "#fff" }}>
@@ -317,7 +316,7 @@ export default function ActivationBrand() {
       </section>
 
       {/* FAQ strip */}
-      <section className="border-t border-neutral-200 bg-white py-16 max-lg:order-3">
+      <section className="border-t border-neutral-200 bg-white py-16">
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Common questions</div>
@@ -335,7 +334,7 @@ export default function ActivationBrand() {
       </section>
 
       {/* Products */}
-      <section className="border-t border-neutral-200 brand-bg-softer py-16 max-lg:order-3">
+      <section className="border-t border-neutral-200 brand-bg-softer py-16">
         <div className="container-page">
           <div className="mx-auto max-w-4xl text-center">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Shop</div>
@@ -359,7 +358,7 @@ export default function ActivationBrand() {
         </div>
       </section>
 
-      <div className="max-lg:order-3"><BrandDisclaimer variant="light" /></div>
+      <BrandDisclaimer variant="light" />
     </div>
   );
 }

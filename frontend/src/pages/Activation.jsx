@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import BrandDisclaimer from "@/components/BrandDisclaimer";
@@ -11,10 +11,11 @@ export default function Activation() {
   // Landing page: show the 3 brand cards immediately on open.
   // Retried across paint/load because mobile browsers restore scroll position
   // and shift layout — a single early scroll gets overridden.
-  useEffect(() => {
+  // The hero stays above the picker in the DOM, so scrolling up reveals it.
+  useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
     const scroll = () => pickerRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    scroll();
     const raf = requestAnimationFrame(scroll);
     const timers = [80, 300, 800].map((ms) => setTimeout(scroll, ms));
     window.addEventListener("load", scroll);
@@ -26,9 +27,7 @@ export default function Activation() {
   }, []);
 
   return (
-    // flex-col + order utilities: on mobile the brand picker renders FIRST so users
-    // land on the choices immediately; hero text follows below (scroll down to read).
-    <div className="flex flex-col bg-neutral-50">
+    <div className="bg-neutral-50">
       <SEO
         title="Antivirus Activation Service | Garnavo"
         description="Activation service for antivirus licenses purchased from Garnavo, an independent reseller. Choose your brand for step-by-step activation."
@@ -36,7 +35,7 @@ export default function Activation() {
       />
 
       {/* Hero — compact so brand cards are visible on open */}
-      <section className="border-b border-neutral-200 bg-white max-lg:order-2">
+      <section className="border-b border-neutral-200 bg-white">
         <div className="container-page py-8 md:py-10 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700">
             <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation service
@@ -60,7 +59,7 @@ export default function Activation() {
       </section>
 
       {/* Brand picker — renders first on mobile */}
-      <section ref={pickerRef} className="container-page scroll-mt-24 py-8 md:py-12 max-lg:order-1 max-lg:pt-6">
+      <section ref={pickerRef} className="container-page scroll-mt-20 py-8 md:py-12">
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
           {BRAND_LIST.map((b) => (
             <Link
@@ -102,7 +101,7 @@ export default function Activation() {
         </div>
       </section>
 
-      <div className="max-lg:order-3"><BrandDisclaimer variant="light" /></div>
+      <BrandDisclaimer variant="light" />
     </div>
   );
 }
