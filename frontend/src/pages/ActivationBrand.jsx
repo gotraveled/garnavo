@@ -33,12 +33,21 @@ export default function ActivationBrand() {
   const [formStartTime] = useState(Date.now());
   const formRef = useRef(null);
 
-  // Focus the activation form on load — landing page: form first, no scrolling needed
+  // Focus the activation form on load — landing page: form first, no scrolling needed.
+  // Retried across paint/load because mobile browsers restore scroll position and
+  // shift layout while fonts/images settle — a single early scroll gets overridden.
   useEffect(() => {
-    const t = setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
-    }, 60);
-    return () => clearTimeout(t);
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    const scroll = () => formRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    const raf = requestAnimationFrame(scroll);
+    const timers = [80, 300, 800].map((ms) => setTimeout(scroll, ms));
+    window.addEventListener("load", scroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      timers.forEach(clearTimeout);
+      window.removeEventListener("load", scroll);
+    };
   }, [brandSlug]);
 
   const loadProducts = () => {
@@ -76,6 +85,15 @@ export default function ActivationBrand() {
     "--brand-soft": brand.accentSoft,
     "--brand-softer": brand.accentSoftAlt,
     "--brand-border": brand.accentBorder,
+  };
+
+  // Format license key per brand: Norton/McAfee 5×5 (25), Webroot 5×4 (20) — auto-dashes
+  const KEY_MAX = brand.keyGroups * brand.keyGroupLen;
+  const formatKey = (val) => {
+    const clean = val.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, KEY_MAX);
+    const parts = [];
+    for (let i = 0; i < clean.length; i += brand.keyGroupLen) parts.push(clean.slice(i, i + brand.keyGroupLen));
+    return parts.join("-");
   };
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -228,9 +246,12 @@ export default function ActivationBrand() {
                   <label className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">{brand.keyLabel}</label>
                   <div className="relative mt-1">
                     <Key size={18} weight="duotone" className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
-                    <input data-testid="activation-key-input" value={form.product_key} onChange={(e) => { setForm({ ...form, product_key: e.target.value.toUpperCase() }); clearError("product_key"); }} placeholder={brand.keyPlaceholder} maxLength={40} className="w-full rounded-md border border-neutral-300 bg-white py-3 pl-10 pr-4 font-mono text-sm tracking-widest focus:ring-2 brand-ring" />
+                    <input data-testid="activation-key-input" value={form.product_key} onChange={(e) => { setForm({ ...form, product_key: formatKey(e.target.value) }); clearError("product_key"); }} placeholder={brand.keyPlaceholder} maxLength={KEY_MAX + brand.keyGroups - 1} inputMode="text" autoComplete="off" className="w-full rounded-md border border-neutral-300 bg-white py-3 pl-10 pr-4 font-mono text-sm tracking-widest focus:ring-2 brand-ring" />
                   </div>
-                  <div className="mt-1 text-xs text-neutral-500">{brand.keyHint}</div>
+                  <div className="mt-1 flex items-center justify-between text-xs text-neutral-500">
+                    <span>{brand.keyHint}</span>
+                    <span className="font-mono">{form.product_key.replace(/-/g, "").length}/{KEY_MAX}</span>
+                  </div>
                 </div>
 
                 <button data-testid="activation-submit-btn" type="submit" disabled={submitting} className="btn-brand w-full">

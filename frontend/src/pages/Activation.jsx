@@ -8,12 +8,21 @@ import { ShieldCheck, ArrowRight, Clock, Headset } from "@phosphor-icons/react";
 export default function Activation() {
   const pickerRef = useRef(null);
 
-  // Landing page: show the 3 brand cards immediately on open
+  // Landing page: show the 3 brand cards immediately on open.
+  // Retried across paint/load because mobile browsers restore scroll position
+  // and shift layout — a single early scroll gets overridden.
   useEffect(() => {
-    const t = setTimeout(() => {
-      pickerRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
-    }, 60);
-    return () => clearTimeout(t);
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    const scroll = () => pickerRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    const raf = requestAnimationFrame(scroll);
+    const timers = [80, 300, 800].map((ms) => setTimeout(scroll, ms));
+    window.addEventListener("load", scroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      timers.forEach(clearTimeout);
+      window.removeEventListener("load", scroll);
+    };
   }, []);
 
   return (

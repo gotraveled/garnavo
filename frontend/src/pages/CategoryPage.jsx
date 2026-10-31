@@ -62,6 +62,8 @@ export default function CategoryPage() {
     "--brand-soft": brand.accentSoft,
     "--brand-softer": brand.accentSoftAlt,
     "--brand-border": brand.accentBorder,
+    "--cta-bg": brand.color,
+    "--cta-text": brand.textOn,
   };
 
   const breadcrumbSchema = {
@@ -116,8 +118,8 @@ export default function CategoryPage() {
                 <button onClick={scrollToProducts} className="btn-brand">
                   Browse Products <ArrowRight size={18} weight="bold" />
                 </button>
-                <Link to={`/activation/${brand.slug}`} className="btn-outline justify-center">
-                  {brand.ctaLabel}
+                <Link to={`/activation/${brand.slug}`} data-testid="category-cta-activation" className="btn-cta">
+                  {brand.ctaLabel} <ArrowRight size={18} weight="bold" />
                 </Link>
               </div>
             </div>

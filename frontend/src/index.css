@@ -152,6 +152,38 @@
   }
   .btn-brand:hover { transform: translateY(-1px); filter: brightness(1.08); }
   .btn-brand:hover::after { transform: translateX(130%); transition: transform 0.7s ease; }
+
+  /* Urgency CTA — brand-colored button with a lively expanding ring */
+  .btn-cta {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-semibold;
+    background: var(--cta-bg, #FF6B45);
+    color: var(--cta-text, #ffffff);
+    animation: cta-pulse 1.8s ease-in-out infinite;
+    transition: filter 0.2s ease;
+  }
+  .btn-cta::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 10px;
+    border: 2px solid var(--cta-bg, #FF6B45);
+    animation: cta-ring 1.8s ease-out infinite;
+    pointer-events: none;
+  }
+  .btn-cta:hover { filter: brightness(1.1); }
+  @keyframes cta-ring {
+    0%   { opacity: 0.9; transform: scale(0.98); }
+    75%  { opacity: 0;   transform: scale(1.22); }
+    100% { opacity: 0;   transform: scale(1.22); }
+  }
+  @keyframes cta-pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.03); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-cta, .btn-cta::before { animation: none; }
+  }
+
   .brand-text { color: var(--brand, #0f172a); }
   .brand-bg { background-color: var(--brand, #0f172a); }
   .brand-bg-soft { background-color: var(--brand-soft, #f1f5f9); }
