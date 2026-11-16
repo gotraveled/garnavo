@@ -21,6 +21,10 @@ export default function OrderSuccess() {
         send_to: "AW-18497972963/XIDACP-m0ZQdEOPVwvRE",
         transaction_id: id || "",
       });
+      window.gtag("event", "conversion", {
+        send_to: "AW-18565653943/kv7PCLj6y7kdELfL5ZRF",
+        transaction_id: id || "",
+      });
     }
   }, [id]);
 
@@ -48,7 +52,7 @@ export default function OrderSuccess() {
           <div className="mt-4 flex flex-col items-start gap-3 rounded-lg border border-orange-300 bg-white p-4 sm:flex-row sm:items-center">
             <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#101826] font-display text-sm font-bold text-[#FF9776]">KJ</div>
             <div>
-              <div className="text-sm font-semibold text-neutral-900">Mr. Kevin Jense — Account Manager</div>
+              <div className="text-sm font-semibold text-neutral-900">Mr. Kevin Jensen — Account Manager</div>
               <a href="tel:+18449667866" data-testid="success-support-phone" className="font-display text-lg font-bold text-[#FF6B45] hover:underline">+1 (844) 966-7866</a>
             </div>
           </div>
