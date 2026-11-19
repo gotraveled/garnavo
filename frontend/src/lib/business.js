@@ -19,11 +19,11 @@ export const BUSINESS_PHONE_HREF = BUSINESS_PHONE
   : "";
 
 export const BUSINESS_ADDRESS = {
-  street: "4500 Margalo Avenue",
-  city: "Bakersfield",
-  region: "California",
-  regionShort: "CA",
-  postalCode: "93313",
+  street: "202 Main Street",
+  city: "Wasco",
+  region: "Oregon",
+  regionShort: "OR",
+  postalCode: "97065",
   country: "United States",
   countryShort: "US",
 };

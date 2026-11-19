@@ -7,6 +7,7 @@ import {
   BUSINESS_PHONE,
   BUSINESS_PHONE_HREF,
   BUSINESS_POSTAL_SCHEMA,
+  BUSINESS_ADDRESS,
 } from "@/lib/business";
 
 const SECTIONS = [
@@ -54,7 +55,7 @@ export default function About() {
       </Section>
 
       <Section id="story" title="Our story">
-        <p>Garnavo started as a side project among a handful of resellers and software specialists based in Bakersfield, California, after one too many conversations with family members baffled by surprise renewal charges and clunky installers from the big security vendors.</p>
+        <p>Garnavo started as a side project among a handful of resellers and software specialists based in Wasco, Oregon, after one too many conversations with family members baffled by surprise renewal charges and clunky installers from the big security vendors.</p>
         <p>We started with a single product line and a shared inbox. Since then we've expanded our catalog to cover several trusted security brands — spanning basic antivirus through full identity-protection suites — and now ship to customers across the country and beyond.</p>
       </Section>
 
@@ -104,7 +105,7 @@ export default function About() {
         <p className="rounded-md border border-neutral-200 bg-neutral-50 p-3 font-medium text-neutral-800">
           <MapPin size={16} weight="duotone" className="mr-1 inline align-text-bottom" />
           {BUSINESS_LEGAL_NAME}<br />
-          {BUSINESS_POSTAL_SCHEMA.streetAddress}, {BUSINESS_POSTAL_SCHEMA.addressLocality}, {BUSINESS_POSTAL_SCHEMA.addressRegion === 'CA' ? 'California' : BUSINESS_POSTAL_SCHEMA.addressRegion}, {BUSINESS_POSTAL_SCHEMA.postalCode}, {BUSINESS_POSTAL_SCHEMA.addressCountry}<br />
+          {BUSINESS_POSTAL_SCHEMA.streetAddress}, {BUSINESS_POSTAL_SCHEMA.addressLocality}, {BUSINESS_ADDRESS.region}, {BUSINESS_POSTAL_SCHEMA.postalCode}, {BUSINESS_POSTAL_SCHEMA.addressCountry}<br />
           <Envelope size={16} weight="duotone" className="mr-1 inline align-text-bottom" />
           <a href={`mailto:${BUSINESS_EMAIL}`} className="underline">{BUSINESS_EMAIL}</a>
           {BUSINESS_PHONE && (

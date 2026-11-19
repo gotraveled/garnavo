@@ -168,7 +168,6 @@ export default function Checkout() {
                   rows={2}
                   value={form.customer_address}
                   onChange={(e) => setForm({ ...form, customer_address: e.target.value })}
-                  placeholder="123 Main Street, City, State, ZIP, Country"
                   disabled={!!order}
                   className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#FF6B45] focus:ring-2 focus:ring-[#FF6B45]/40 disabled:bg-neutral-100"
                 />

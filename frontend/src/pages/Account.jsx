@@ -93,7 +93,7 @@ function AuthForm() {
             </div>
             <div>
               <label className={labelCls}>Address</label>
-              <textarea rows={2} value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} data-testid="account-address-input" className={inputCls} placeholder="Street, City, State, ZIP, Country" />
+              <textarea rows={2} value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} data-testid="account-address-input" className={inputCls} />
             </div>
           </>
         )}
