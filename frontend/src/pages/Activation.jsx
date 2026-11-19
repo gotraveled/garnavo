@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import BrandDisclaimer from "@/components/BrandDisclaimer";
 import { BRAND_LIST } from "@/lib/brands";
-import { ShieldCheck, ArrowRight, Clock, Headset } from "@phosphor-icons/react";
+import { ShieldCheck, ArrowRight, Clock, Headset, Envelope } from "@phosphor-icons/react";
 
 export default function Activation() {
   const pickerRef = useRef(null);
@@ -29,28 +29,28 @@ export default function Activation() {
   return (
     <div className="bg-neutral-50">
       <SEO
-        title="Antivirus Activation Service | Garnavo"
-        description="Activation service for antivirus licenses purchased from Garnavo, an independent reseller. Choose your brand for step-by-step activation."
-        keywords="antivirus activation, license activation, activation service, independent reseller"
+        title="License Activation Instructions | Garnavo"
+        description="Step-by-step activation instructions for antivirus licenses purchased from Garnavo, an independent reseller. Choose your brand to get started."
+        keywords="antivirus activation, license activation, activation instructions, independent reseller"
       />
 
       {/* Hero — compact so brand cards are visible on open */}
       <section className="border-b border-neutral-200 bg-white">
         <div className="container-page py-8 md:py-10 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-700">
-            <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation service
+            <Headset size={14} weight="fill" className="text-neutral-900" /> Garnavo activation guide
           </div>
           <h1 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-bold leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl">
-            Need help with setup, install or registering your license?
+            Ready to activate your license?
           </h1>
           <div className="mx-auto mt-2 font-display text-lg font-semibold text-neutral-800 sm:text-xl">
-            Expert guidance for the license you purchased
+            Step-by-step instructions for the license you purchased
           </div>
           <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-neutral-600">
-            Pick the brand you purchased — our team walks you through the process on the brand's own website, usually within 5–15 minutes.
+            Pick the brand you purchased — follow the official steps on the brand's own website, or submit your details and we'll email you the instructions, usually within 5–15 minutes.
           </p>
           <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-neutral-400">
-            We assist with setup and installation for products purchased on our website.
+            Official vendor installation guides and activation instructions are included with every license purchased from us.
           </p>
           <p className="mx-auto mt-4 max-w-xl text-[11px] leading-relaxed text-neutral-400">
             Garnavo is an independent reseller — not affiliated with the brands shown below. Your license is always registered on the brand's own website.
@@ -88,9 +88,9 @@ export default function Activation() {
         {/* Reassurance strip */}
         <div className="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-3">
           {[
-            { icon: <Clock size={22} weight="duotone" className="text-neutral-900" />, t: "5–15 min response", d: "Our team replies promptly during business hours." },
-            { icon: <ShieldCheck size={22} weight="duotone" className="text-neutral-900" />, t: "Included with purchase", d: "Activation service is included for every license bought from us." },
-            { icon: <Headset size={22} weight="duotone" className="text-neutral-900" />, t: "Guided setup", d: "Step-by-step guidance until you're protected." },
+            { icon: <Clock size={22} weight="duotone" className="text-neutral-900" />, t: "Fast turnaround", d: "Instructions are typically emailed within 5–15 minutes." },
+            { icon: <ShieldCheck size={22} weight="duotone" className="text-neutral-900" />, t: "Included with purchase", d: "Activation instructions are included for every license bought from us." },
+            { icon: <Envelope size={22} weight="duotone" className="text-neutral-900" />, t: "Official steps", d: "Follow the brand's own activation process on its website." },
           ].map((x, i) => (
             <div key={i} className="rounded-xl border border-neutral-200 bg-white p-5 text-center">
               <div className="mx-auto grid h-11 w-11 place-items-center rounded-lg bg-neutral-100">{x.icon}</div>

@@ -69,7 +69,7 @@ export default function Disclaimer() {
 
       <Section id="no-warranty" title="6. No warranty for third-party software">
         <p>The software Licenses we sell are for third-party products created and maintained by other companies. Garnavo does not develop, host, update, patch, or provide direct assistance for the software itself. Any warranties relating to the software — including but not limited to malware detection accuracy, feature performance, uptime, or compatibility — are provided <strong>solely by the software publisher</strong> under its End-User License Agreement (EULA).</p>
-        <p>You are strongly encouraged to review the publisher's EULA before installation and activation. If the software fails to activate, we will assist you or issue a refund under our <a href="/refund-policy" className="underline">Refund Policy</a>. If the software has bugs, missing features, or fails to protect against a specific threat, that is a matter between you and the publisher.</p>
+        <p>You are strongly encouraged to review the publisher's EULA before installation and activation. If the software fails to activate, we will issue a replacement or a refund under our <a href="/refund-policy" className="underline">Refund Policy</a>. If the software has bugs, missing features, or fails to protect against a specific threat, that is a matter between you and the publisher.</p>
       </Section>
 
       <Section id="ftc" title="7. FTC compliance & material connections">

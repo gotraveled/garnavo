@@ -71,7 +71,7 @@ export default function DigitalDelivery() {
           <li><strong>Mcafee</strong> — go to <a href="https://www.mcafee.com/activate" target="_blank" rel="noopener noreferrer" className="underline">mcafee.com/activate</a> and enter your activation code.</li>
         </ul>
         <p>In every case you'll sign in (or create an account), enter your activation code, and follow the on-screen prompts to download and install on your devices.</p>
-        <p>Questions? Our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a> gives you step-by-step guidance, and our team is available at <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>
+        <p>Questions? Our Activation Portal at <a href="/activation" className="underline">garnavo.com/activation</a> gives you step-by-step activation instructions, and order questions go to <a href="mailto:info@garnavo.com" className="underline">info@garnavo.com</a>.</p>
       </Section>
 
       <Section id="no-shipping" title="6. No physical shipping">

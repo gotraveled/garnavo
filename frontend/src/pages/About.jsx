@@ -94,7 +94,7 @@ export default function About() {
           <li>Licenses sourced only through vetted digital supply channels</li>
           <li>Delivery to your email inbox, typically within 5–15 minutes of a confirmed payment</li>
           <li>Checkout runs through PayPal — your card details never touch our servers</li>
-          <li>Free activation service through our <a href="/activation" className="underline">Activation Portal</a></li>
+          <li>Step-by-step activation instructions through our <a href="/activation" className="underline">Activation Portal</a></li>
           <li>30-day guarantee: replacement or refund if a license won't activate</li>
           <li>Real replies at info@garnavo.com, not an auto-responder</li>
           <li>Coverage across several trusted security brands, spanning antivirus, VPN, and identity protection tiers</li>

@@ -253,7 +253,7 @@ export default function Home() {
 
               <h3 className="font-display text-xl font-semibold text-neutral-900">Why people order from us more than once</h3>
               <p>
-                No inflated renewal pricing, no upsell maze at checkout — just a verified license, delivered fast, backed by a 30-day replace-or-refund policy if something doesn't activate. We'll also walk you through setup if you get stuck.
+                No inflated renewal pricing, no upsell maze at checkout — just a verified license, delivered fast, backed by a 30-day replace-or-refund policy if something doesn't activate. Official vendor installation guides and activation instructions are included with every license.
               </p>
 
               <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">

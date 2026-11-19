@@ -174,22 +174,22 @@ export default function Contact() {
           
           <div className="mt-6 space-y-4 text-neutral-700">
             <p>
-              Our team specializes in antivirus activation and provides guidance across the brands we carry. Whether you're activating a license, installing the software, or have a subscription question, we're here for you.
+              We answer questions about orders, license delivery, and the activation instructions included with every purchase — across all the brands we carry.
             </p>
             
             <h3 className="font-display text-lg font-semibold text-neutral-900">Common reasons to contact us:</h3>
             <ul className="list-disc list-inside space-y-2 text-sm">
-              <li>License activation service</li>
-              <li>Installation guidance for your security software</li>
+              <li>License activation instructions</li>
+              <li>Installation steps for your security software</li>
               <li>Subscription questions</li>
               <li>Order status and delivery inquiries</li>
               <li>Refund and replacement requests</li>
               <li>Product recommendations and upgrades</li>
-              <li>Multi-device activation service</li>
+              <li>Multi-device activation instructions</li>
             </ul>
             
             <p>
-              We respond to all inquiries within 12 hours, with most questions answered on the same day. Our team has hands-on experience across the security brands we carry and can get your devices protected quickly and efficiently.
+              We respond to all inquiries within 12 hours, with most questions answered on the same day. Our team can point you to the correct activation steps for the brands we carry so you get protected quickly.
             </p>
           </div>
         </div>

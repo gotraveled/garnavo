@@ -145,7 +145,7 @@ export default function ActivationBrand() {
     <div style={theme} className="bg-neutral-50">
       <SEO
         title={`${brand.name} ${brand.serviceName.charAt(0).toUpperCase() + brand.serviceName.slice(1)} — Independent Reseller | Garnavo`}
-        description={`${brand.name} ${brand.serviceName} from Garnavo, an independent reseller. We walk you through the process for the ${brand.name} license you bought from us via ${brand.portalName}.`}
+        description={`${brand.name} ${brand.serviceName} from Garnavo, an independent reseller. Step-by-step instructions for the ${brand.name} license you bought from us via ${brand.portalName}.`}
         keywords={`${brand.name} ${brand.serviceName}, ${brand.name} license code, independent reseller, ${brand.name} install, ${brand.name} setup`}
       />
 
@@ -164,7 +164,7 @@ export default function ActivationBrand() {
         </div>
       </div>
 
-      {/* Hero — clearly an independent assistance service */}
+      {/* Hero — clearly an independent activation guide */}
       <section className="relative overflow-hidden border-b border-neutral-200 brand-bg-softer">
         <div className="container-page py-8 md:py-12">
           <div className="mx-auto max-w-3xl text-center">
@@ -172,13 +172,13 @@ export default function ActivationBrand() {
               <Headset size={14} weight="fill" className="brand-text" /> Garnavo {brand.serviceName}
             </div>
             <h1 className="mt-5 font-display text-3xl font-black leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-              Need help with setup, install or {brand.verbIng} your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license?
+              Ready to {brand.verbTitle.toLowerCase()} your <span className="relative inline-block"><span className="relative z-10">{brand.name}</span><span className="absolute inset-x-0 bottom-1 z-0 h-3 brand-underline opacity-40" aria-hidden /></span> license?
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-neutral-700">
-              We're an independent reseller. Send us your details and our team will guide you through the process for the license you purchased — usually within 5–15 minutes.
+              We're an independent reseller. Submit your details and we'll email you step-by-step activation instructions for the license you purchased — usually within 5–15 minutes.
             </p>
             <p className="mt-3 text-xs leading-relaxed text-neutral-400">
-              We assist with setup and installation for products purchased on our website.
+              Official vendor installation guides and activation instructions are included with every license purchased from us.
             </p>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function ActivationBrand() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">{brand.serviceName}</div>
-                  <div className="font-display text-xl font-bold">Activation Assistance</div>
+                  <div className="font-display text-xl font-bold">Activation Instructions</div>
                 </div>
               </div>
 
@@ -261,7 +261,7 @@ export default function ActivationBrand() {
                 </button>
 
                 <p className="mt-4 text-[11px] leading-relaxed text-neutral-400">
-                  By submitting, you agree to receive the {brand.serviceName} via email and phone. We are an independent reseller and not affiliated with {brand.entity}. {brand.name} is a trademark of {brand.entity}. Your information is used solely for the {brand.serviceName} and is never sold or shared with third parties.
+                  By submitting, you agree to receive activation instructions via email and phone. We are an independent reseller and not affiliated with {brand.entity}. {brand.name} is a trademark of {brand.entity}. Your information is used solely for the {brand.serviceName} and is never sold or shared with third parties.
                 </p>
               </form>
 
@@ -302,7 +302,7 @@ export default function ActivationBrand() {
 
             <div className="mt-14 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">How it works</div>
             <h2 className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">Steps on the brand's website</h2>
-            <p className="mt-3 text-neutral-600">Everything happens on the brand's own website. Follow the steps below yourself, or submit your details and our team will guide you through them.</p>
+            <p className="mt-3 text-neutral-600">Everything happens on the brand's own website. Follow the steps below yourself, or submit your details and we'll email the instructions to you.</p>
 
             <ol className="mt-10 space-y-6">
               {brand.steps.map((s, i) => (
@@ -341,7 +341,7 @@ export default function ActivationBrand() {
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">Common questions</div>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Setup, made easy</h2>
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight">Activation, made easy</h2>
           </div>
           <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
             {brand.faqs.map((f, i) => (
